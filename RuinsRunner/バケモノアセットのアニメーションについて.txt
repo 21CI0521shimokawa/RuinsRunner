@@ -1,0 +1,11 @@
+備忘録
+2022/6/1
+工藤大河
+
+Asset"Humanoids_Monsters_Pack"は素体のリグが"Legacy"、アニメーションが"Generic"である。
+ヒト型汎用アニメーションを流用するために素体もアニメーションも"Humanoid"にしてやるのが目的。
+
+１．"./Humanoids_Monsters_Pack/Models/Monster_XX"を選択、Inspector上のRigを"Humanoid"に変えてApply
+２．"./Humanoids_Monsters_Pack/Animations/使用したいアニメーション"を選択、Inspector上のRigを"Humanoid"に変えてApply
+（ループ再生が必要であれば以下も行う）
+３．その中のアニメーションクリップを選択、Inspector上のEditで編集状態に入り、LoopTimeをOnに
