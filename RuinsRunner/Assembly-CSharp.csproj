@@ -65,6 +65,10 @@
     <Compile Include="Assets\Scripts\SuperClass\ObjectSuperClass.cs" />
     <Compile Include="Assets\Scripts\SceneManager\Helper\SceneAddRequester.cs" />
     <Compile Include="Assets\Scripts\GameManager\TakeOverVariables.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\TestRun.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\TestChara.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\StateMachine.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\TestNormal.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

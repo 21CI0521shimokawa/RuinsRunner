@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1280
     height: 646.6667
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Scene
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 44
+  controlID: 102
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -399,36 +399,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/GameManager
+    - Assets/Scripts/SuperClass
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/GameManager
+  - Assets/Scripts/SuperClass
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\taiga\Desktop\RuinsRunner
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 50.333313}
-    m_SelectedIDs: 864f0000
-    m_LastClickedID: 20358
+    scrollPos: {x: 0, y: 66.33331}
+    m_SelectedIDs: 8c4f0000
+    m_LastClickedID: 20364
     m_ExpandedIDs: 00000000584f00005a4f00005c4f00005e4f0000604f0000824f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: SuperClass
+      m_OriginalName: SuperClass
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 20364
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 5}
     m_SearchString: 
@@ -486,7 +486,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 5}
+      m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -872,11 +872,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.23283926, y: 0.0059250705, z: -0.0014182075, w: -0.9724996}
     speed: 2
-    m_Value: {x: -0.23138133, y: 0.0044678985, z: -0.0010622429, w: -0.97285235}
+    m_Value: {x: -0.23283848, y: 0.005925051, z: -0.0014182028, w: -0.9724964}
   m_Size:
-    m_Target: 2.9167316
+    m_Target: 2.7989771
     speed: 2
-    m_Value: 3.0541692
+    m_Value: 2.7989771
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -952,8 +952,8 @@ MonoBehaviour:
     vZoomLockedByDefault: 0
     m_HBaseRangeMin: -236.8889
     m_HBaseRangeMax: 236.8889
-    m_VBaseRangeMin: -103
-    m_VBaseRangeMax: 103
+    m_VBaseRangeMin: -96
+    m_VBaseRangeMax: 96
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -970,11 +970,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 0
+      y: 21
       width: 710.6667
-      height: 309
+      height: 288
     m_Scale: {x: 1.2322271, y: 1.2322272}
-    m_Translation: {x: 355.33334, y: 154.5}
+    m_Translation: {x: 355.33334, y: 144}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -982,9 +982,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -288.36676
-      y: -125.38272
+      y: -116.861565
       width: 576.7335
-      height: 250.76544
+      height: 233.72313
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1066, y: 463.5}
