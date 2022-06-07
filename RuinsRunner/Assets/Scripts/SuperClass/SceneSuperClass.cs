@@ -14,7 +14,7 @@ public class SceneSuperClass : MonoBehaviour
         currentSceneName = SceneDictionary.GetSceneNameEnum(SceneManager.GetActiveScene().name);
     }
 
-    //メモリリーク関連-----------------------------------------------------------------
+    #region ANTI MEMORY LEAK
     private CompositeDisposable compositeDisposable_ = new CompositeDisposable();
 
     public void AddToCompositeDisposable(IDisposable _disposable)
@@ -26,11 +26,13 @@ public class SceneSuperClass : MonoBehaviour
     {
         compositeDisposable_.Clear();
     }
+    #endregion
 
-    //シーン切り替え用ヘルパー-------------------------------------------------------------
+    #region SCENE CHANGE HELPER
     protected SceneName currentSceneName;
     public SceneName GetCurrentSceneName()
     {
         return currentSceneName;
     }
+    #endregion
 }
