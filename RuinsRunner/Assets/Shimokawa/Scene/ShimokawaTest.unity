@@ -458,6 +458,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95327782838202756, guid: 3f27a8f2ca0d1fb4aa9e99c4571f2fee, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform
+        'root'\n\tTransform 'pinky_03_l'\n\tTransform 'neck_01'\n\tTransform 'pinky_03_r'\n\tTransform
+        'clavicle_l'\n\tTransform 'ring_02_l'\n\tTransform 'ball_l'\n\tTransform
+        'B_Jaw'\n\tand more ...\n\tFrom animation clip 'Sit_On_The_Celing_Idle'\n\tFrom
+        animation clip 'Sit_Jump_From_The_Ceiling'\n\tFrom animation clip 'Sit_Out_Of_
+        Ground'\n\tFrom animation clip 'Sit_jump_On_The_Ground'\n\tFrom animation
+        clip 'Sit_Lies_On_The_Ground_Pose'\n\tFrom animation clip 'Sit_Attack_From_Ground'\n\tFrom
+        animation clip 'Sit_Sleep'\n\tFrom animation clip 'Sit_Up_&_Shout'\n\tFrom
+        animation clip 'Sit_Idle_2'\n\tFrom animation clip 'Sit_Jump'\n\tand more
+        ..."
+      objectReference: {fileID: 0}
     - target: {fileID: 1774240271467291621, guid: 3f27a8f2ca0d1fb4aa9e99c4571f2fee, type: 3}
       propertyPath: m_Constraints
       value: 4
@@ -465,6 +480,10 @@ PrefabInstance:
     - target: {fileID: 3757550075253644318, guid: 3f27a8f2ca0d1fb4aa9e99c4571f2fee, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848510364720839694, guid: 3f27a8f2ca0d1fb4aa9e99c4571f2fee, type: 3}
+      propertyPath: MoveSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3848510364720839694, guid: 3f27a8f2ca0d1fb4aa9e99c4571f2fee, type: 3}
       propertyPath: move_speed
@@ -566,7 +585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986985888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.19, y: 0.38, z: 10.2}
+  m_LocalPosition: {x: 0.19, y: 0.38, z: 3.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
