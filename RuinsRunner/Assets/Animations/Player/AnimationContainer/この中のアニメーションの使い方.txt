@@ -1,0 +1,13 @@
+アニメーションの使い方
+・この中からよさげなアニメーションを探す
+・ファイル名をコピーかなんかする
+・mixamoで検索かける
+・見つけたやつのDOWNLOADを押す
+・FormatをFBX for Unity(.fbx) SkinをWithout Skinに設定する
+・ダウンロードしてUnityにぶっこむ
+・ぶっこんだアニメーションを選択して右三角押して黄緑の三角が移動してるみたいなアイコンをクリックする
+・InspectorのEditをクリック
+・Rigをクリック
+・AnimationTypeをHumanoidにする
+
+あとは煮るなり焼くなりしてください

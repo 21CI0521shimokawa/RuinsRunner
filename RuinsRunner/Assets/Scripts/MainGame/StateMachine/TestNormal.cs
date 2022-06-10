@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //テストクラス（Normal）
-public class TestNormal : StateMachine
+public class TestNormal : StateBase
 {
     override protected void StateInitialize()
     {
         Debug.Log("NormalInitialize");
     }
 
-    override protected StateMachine StateUpdate()
+    override protected StateMachine StateUpdate(GameObject gameObject)
     {
         //Debug.Log("NormalUpdate開始");
         StateMachine nextState = this;

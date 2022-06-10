@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestChara : MonoBehaviour
 {
-    StateMachine state;
+    StateBase state;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,6 @@ public class TestChara : MonoBehaviour
     void Update()
     {
         //XVˆ—
-        state = state.Update();
+        state = (StateBase)state.Update(this.gameObject);
     }
 }
