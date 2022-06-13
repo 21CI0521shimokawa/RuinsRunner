@@ -11,7 +11,6 @@ public enum MonsterState
 public class ChaseMoveControll : MonoBehaviour
 {
     public float MoveSpeed;
-
     protected Rigidbody MonstarRigidBody;
     protected Transform FollowTarget;
     protected MonsterState CurrentMoveMode;
