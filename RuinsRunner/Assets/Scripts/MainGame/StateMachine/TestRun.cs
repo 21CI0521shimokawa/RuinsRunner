@@ -5,15 +5,15 @@ using UnityEngine;
 //テストクラス（Run）
 public class TestRun : StateBase
 {
-    override protected void StateInitialize()
+    public override void StateInitialize()
     {
         Debug.Log("RunInitialize");
     }
 
-    override protected StateMachine StateUpdate(GameObject gameObject)
+    public override StateBase StateUpdate(GameObject gameObject)
     {
         //Debug.Log("RunUpdate開始");
-        StateMachine nextState = this;
+        StateBase nextState = this;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -24,15 +24,15 @@ public class TestRun : StateBase
         {
             Debug.Log(this.StateTimeCount);
 
-            Debug.Log("現在のState:" + this.StateName);
-            Debug.Log("一つ前のState:" + this.PreviousStateName);
+            //Debug.Log("現在のState:" + this.StateName);
+            //Debug.Log("一つ前のState:" + this.PreviousStateName);
         }
 
         //Debug.Log("RunUpdate終了");
         return nextState;
     }
 
-    protected override void StateFinalize()
+    public override void StateFinalize()
     {
         Debug.Log("RunFinalize");
     }
