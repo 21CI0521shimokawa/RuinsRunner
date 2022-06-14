@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : ObjectSuperClass
 {
-    StateBase state;
+    StateMachine state;
     public Animator animator;
 
     //RunŠÖ˜A
@@ -20,13 +20,13 @@ public class PlayerController : ObjectSuperClass
     // Start is called before the first frame update
     void Start()
     {
-        state = new PlayerStateRun();
+        state = new StateMachine(new PlayerStateRun());
     }
 
     // Update is called once per frame
     void Update()
     {
-        state = (StateBase)state.Update(this.gameObject);
+        state.Update(gameObject);
     }
 
 

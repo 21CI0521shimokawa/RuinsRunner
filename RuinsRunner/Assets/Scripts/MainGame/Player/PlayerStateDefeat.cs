@@ -6,13 +6,13 @@ public class PlayerStateDefeat : StateBase
 {
     PlayerController playerController;
 
-    protected override void StateInitialize()
+    public override void StateInitialize()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerController.animator.SetTrigger("StateDefeat");
     }
 
-    protected override StateMachine StateUpdate(GameObject gameObject)
+    public override StateBase StateUpdate(GameObject gameObject)
     {
         StateBase nextState = this;
 
@@ -24,7 +24,7 @@ public class PlayerStateDefeat : StateBase
         return nextState;
     }
 
-    protected override void StateFinalize()
+    public override void StateFinalize()
     {
         playerController.Defert_Attack = false;
     }

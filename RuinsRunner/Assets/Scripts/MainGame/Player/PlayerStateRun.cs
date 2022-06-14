@@ -7,7 +7,7 @@ public class PlayerStateRun : StateBase
     PlayerController playerController;
     [SerializeField] float speed;   //ç∂âEà⁄ìÆë¨ìx
 
-    protected override void StateInitialize()
+    public override void StateInitialize()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         speed = 5;
@@ -15,7 +15,7 @@ public class PlayerStateRun : StateBase
         playerController.animator.SetTrigger("StateRun");
     }
 
-    protected override StateMachine StateUpdate(GameObject gameObject)
+    public override StateBase StateUpdate(GameObject gameObject)
     {
         StateBase nextState = this;
 
@@ -31,7 +31,7 @@ public class PlayerStateRun : StateBase
         return nextState;
     }
 
-    protected override void StateFinalize()
+    public override void StateFinalize()
     {
 
     }
