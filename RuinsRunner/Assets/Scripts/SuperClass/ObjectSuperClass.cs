@@ -28,7 +28,7 @@ public abstract class ObjectSuperClass
     /// 現在使用している実装
     /// <summary>
 
-    private bool isDisposed_;
+    protected bool isDisposed_;
     private SceneSuperClass sceneManager_;
 
     private void Start()
@@ -69,7 +69,7 @@ public abstract class ObjectSuperClass
     /*
         protected override void Dispose(bool _disposing)
         {
-            if (this.isDisposed)
+            if (this.isDisposed_)
             {
                 return; // 解放済みなので処理しない
             }
@@ -82,7 +82,7 @@ public abstract class ObjectSuperClass
             // アンマネージリソースの解放処理を記述
 
             // Dispose済みを記録
-            this.isDisposed = true;
+            this.isDisposed_ = true;
 
             // ★★★忘れずに、基底クラスの Dispose を呼び出す【重要】
             base.Dispose(_disposing);
