@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemyStateRun : StateBase
 {
     EnemyController enemyController;
-    protected Rigidbody EnemyRigidBody;
+    public Rigidbody EnemyRigidBody;
     Transform FollowTarget;
     [SerializeField] float MoveSpeed;
 
-    protected override void StateInitialize()
+    public override void StateInitialize()
     {
         enemyController = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyController>();
         EnemyRigidBody = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Rigidbody>();
@@ -17,7 +17,7 @@ public class EnemyStateRun : StateBase
         enemyController.EnemyAnimator.SetTrigger("Run");
         MoveSpeed = 1.5f;
     }
-    protected override StateMachine StateUpdate(GameObject gameObject)
+    public override StateBase StateUpdate(GameObject gameObject)
     {
         StateBase NextState = this;
         #region í«ê’èàóù
@@ -33,10 +33,15 @@ public class EnemyStateRun : StateBase
         return NextState;
     }
 
-    protected void Chase(GameObject gameObject)
+    public void Chase(GameObject gameObject)
     {
         Quaternion move_rotation = Quaternion.LookRotation(FollowTarget.transform.position - gameObject.transform.position, Vector3.up);
         gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, move_rotation, 0.1f);
         EnemyRigidBody.velocity = gameObject.transform.forward * MoveSpeed;
+    }
+
+    //ÉXÉ^Éu
+    public override void StateFinalize()
+    {
     }
 }
