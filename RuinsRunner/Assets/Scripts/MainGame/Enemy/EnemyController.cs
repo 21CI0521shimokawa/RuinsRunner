@@ -5,7 +5,7 @@ using UniRx;
 
 public class EnemyController : ObjectSuperClass
 {
-    StateBase EnemyState;
+    StateMachine EnemyState;
     public Animator EnemyAnimator;
 
 #region KnockBackŠÖ˜A
@@ -22,11 +22,11 @@ public class EnemyController : ObjectSuperClass
 
     void Start()
     {
-        EnemyState = new EnemyStateRun();
+        EnemyState = new StateMachine(new EnemyStateRun());
     }
     void Update()
     {
-        EnemyState = (StateBase)EnemyState.Update(this.gameObject);
+        EnemyState.Update(this.gameObject);
     }
 }
 

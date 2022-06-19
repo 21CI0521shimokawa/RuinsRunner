@@ -6,12 +6,12 @@ public class EnemyStateKnockBack : StateBase
 {
     EnemyController enemyController;
 
-    protected override void StateInitialize()
+    public override void StateInitialize()
     {
         enemyController = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyController>();
         enemyController.EnemyAnimator.SetTrigger("KnockBack");
     }
-    protected override StateMachine StateUpdate(GameObject gameObject)
+    public override StateBase StateUpdate(GameObject gameObject)
     {
         StateBase NextState = this;
         #region Runステート移行
@@ -24,7 +24,7 @@ public class EnemyStateKnockBack : StateBase
         return NextState;
 
     }
-    protected override void StateFinalize()
+    public override void StateFinalize()
     {
         enemyController._IsSqueeze = false;
     }
