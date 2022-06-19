@@ -6,6 +6,12 @@ public class PlayerController : ObjectSuperClass
 {
     StateMachine state;
     public Animator animator;
+    
+    SceneManagerMain sceneManagerMain;
+    public SceneManagerMain GetSceneManagerMain()
+    {
+        return sceneManagerMain;
+    }
 
     //Player関係
     [SerializeField] float[] positionZTables; //プレイヤのZ座標のテーブル
@@ -21,17 +27,15 @@ public class PlayerController : ObjectSuperClass
 
 
     //Defeat関連
-    bool defert_Attack;
-    public bool Defert_Attack
-    {
-        get { return defert_Attack; }
-        set { defert_Attack = value; }
-    }
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         state = new StateMachine(new PlayerStateRun());
+
+        sceneManagerMain = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerMain>();
 
         tablePositionZ = 0;
     }
@@ -68,26 +72,45 @@ public class PlayerController : ObjectSuperClass
     }
 
 
-    //isDisposedがエラーになる
+    private void OnCollisionEnter(Collision collision)
+    {
+        //GetSceneManagerMain().ToFallOverPillar(ref collision.gameObject);
+    }
 
-    //protected override void Dispose(bool _disposing)
-    //{
-    //    if (this.isDisposed)
-    //    {
-    //        return; // 解放済みなので処理しない
-    //    }
 
-    //    if (_disposing)
-    //    {
-    //        // マネージリソースの解放処理を記述
-    //    }
+    /// <summary>
+    /// 継承先Dispose() override テンプレート
+    /// <summary>
+    //継承先では以下のようにoverrideすること
+    //マネージリソース、アンマネージドリソースについては↓のURLを参考に、newしたものかどうかで判断する
+    //https://hilapon.hatenadiary.org/entry/20100904/1283570083
 
-    //    // アンマネージリソースの解放処理を記述
+    protected override void Dispose(bool _disposing)
+    {
+        if (this.isDisposed_)
+        {
+            return; // 解放済みなので処理しない
+        }
 
-    //    // Dispose済みを記録
-    //    this.isDisposed = true;
+        if (_disposing)
+        {
+            // マネージリソースの解放処理を記述
+            state = null;
+            animator = null;
+            sceneManagerMain = null;
+            positionZTables = null;
+        }
 
-    //    // ★★★忘れずに、基底クラスの Dispose を呼び出す【重要】
-    //    base.Dispose(_disposing);
-    //}
+        // アンマネージリソースの解放処理を記述
+
+        //なにかけばいいんだ とりあえず0を代入してみる
+        tablePositionZ = 0;
+
+
+        // Dispose済みを記録
+        this.isDisposed_ = true;
+
+        // ★★★忘れずに、基底クラスの Dispose を呼び出す【重要】
+        base.Dispose(_disposing);
+    }
 }
