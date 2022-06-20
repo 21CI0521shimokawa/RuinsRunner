@@ -14,7 +14,7 @@ public class EnemyStateRun : StateBase
         enemyController = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyController>();
         EnemyRigidBody = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Rigidbody>();
         FollowTarget = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        enemyController.EnemyAnimator.SetTrigger("Run");
+        enemyController.EnemyAnimator.SetTrigger("Chase");
         MoveSpeed = 1.5f;
     }
     public override StateBase StateUpdate(GameObject gameObject)
@@ -29,7 +29,12 @@ public class EnemyStateRun : StateBase
             NextState = new EnemyStateKnockBack();
         }
         #endregion
-
+        #region 捕まえるステート移行(仮) これはどのcsに当たり判定を持たせればいいんだろう...
+        if (enemyController._IsCatch)
+        {
+            NextState = new EnemyStateCatch();
+        }
+        #endregion
         return NextState;
     }
 
