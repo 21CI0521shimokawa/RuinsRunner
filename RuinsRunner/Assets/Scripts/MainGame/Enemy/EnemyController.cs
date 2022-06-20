@@ -16,6 +16,12 @@ public class EnemyController : ObjectSuperClass
         set { _IsSqueeze = value; }
     }
     #endregion
+    public bool _IsCatch;
+    public bool _Iscatch
+    {
+        get { return _IsSqueeze; }
+        set { _Issqueeze = value; }
+    }
 
     #region ChaseŠÖ˜A
     #endregion
@@ -27,6 +33,14 @@ public class EnemyController : ObjectSuperClass
     void Update()
     {
         EnemyState.Update(this.gameObject);
+    }
+
+    protected void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag=="Player")
+        {
+            _IsSqueeze = true;
+        }
     }
 }
 

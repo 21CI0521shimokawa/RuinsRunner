@@ -1485,6 +1485,7 @@ Transform:
   m_Children:
   - {fileID: 4810201844064150}
   - {fileID: 4174695849290256}
+  - {fileID: 1328151397061970361}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1509,12 +1510,12 @@ Animator:
     by Humanoid clips.\n\tTransform 'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform
     'root'\n\tTransform 'pinky_03_l'\n\tTransform 'neck_01'\n\tTransform 'pinky_03_r'\n\tTransform
     'clavicle_l'\n\tTransform 'ring_02_l'\n\tTransform 'ball_l'\n\tTransform 'B_Jaw'\n\tand
-    more ...\n\tFrom animation clip 'Sit_jump_On_The_Ground'\n\tFrom animation clip
-    'Sit_Lies_On_The_Ground_Pose'\n\tFrom animation clip 'Sit_Attack_From_Ground'\n\tFrom
-    animation clip 'Sit_Sleep'\n\tFrom animation clip 'Sit_Up_&_Shout'\n\tFrom animation
-    clip 'Sit_Idle_2'\n\tFrom animation clip 'Sit_Jump'\n\tFrom animation clip 'Sit_Eat'\n\tFrom
-    animation clip 'Sit_Eat_Loop'\n\tFrom animation clip 'Sit_Walk_Back'\n\tand more
-    ..."
+    more ...\n\tFrom animation clip 'Sit_On_The_Celing_Idle'\n\tFrom animation clip
+    'Sit_Jump_From_The_Ceiling'\n\tFrom animation clip 'Sit_Out_Of_ Ground'\n\tFrom
+    animation clip 'Sit_jump_On_The_Ground'\n\tFrom animation clip 'Sit_Lies_On_The_Ground_Pose'\n\tFrom
+    animation clip 'Sit_Attack_From_Ground'\n\tFrom animation clip 'Sit_Sleep'\n\tFrom
+    animation clip 'Sit_Up_&_Shout'\n\tFrom animation clip 'Sit_Idle_2'\n\tFrom animation
+    clip 'Sit_Jump'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -1560,7 +1561,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
 --- !u!1 &1694010872196262
 GameObject:
@@ -2042,3 +2043,48 @@ Transform:
   m_Father: {fileID: 4500673933322314}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7230038593802362460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1328151397061970361}
+  - component: {fileID: 803385054608522346}
+  m_Layer: 0
+  m_Name: CatchCol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1328151397061970361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7230038593802362460}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4800736443630082}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &803385054608522346
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7230038593802362460}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.67
+  m_Center: {x: 0, y: 0.77, z: 1.59}
