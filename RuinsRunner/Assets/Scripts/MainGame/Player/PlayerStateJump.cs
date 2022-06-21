@@ -6,10 +6,14 @@ public class PlayerStateJump : StateBase
 {
     PlayerController playerController;
 
+    float jumpPower_;
+
     public override void StateInitialize()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerController.animator.SetTrigger("StateJump");
+
+        jumpPower_ = 5.0f;
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
@@ -33,20 +37,14 @@ public class PlayerStateJump : StateBase
     {
         Vector3 playerPosition = _gameobject.transform.position;
 
-        //à⁄ìÆÅiñ¢é¿ëïÅj
+        if(StateFlameCount == 1)
+        {
+            Rigidbody rigidbody = _gameobject.GetComponent<Rigidbody>();
+            rigidbody.AddForce(Vector3.up * jumpPower_, ForceMode.Impulse);
+        }
 
         _gameobject.transform.position = playerPosition;
 
         return StateTimeCount >= 1.0;
-    }
-
-    float easeOutQuad(float x)
-    {
-        return 1 - (1 - x) * (1 - x);
-    }
-
-    float easeInQuad(float x)
-    {
-        return x * x;
     }
 }

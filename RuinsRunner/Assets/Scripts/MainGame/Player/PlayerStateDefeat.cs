@@ -6,10 +6,14 @@ public class PlayerStateDefeat : StateBase
 {
     PlayerController playerController;
 
+    bool falloutPillarSucsess_;
+
     public override void StateInitialize()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerController.animator.SetTrigger("StateDefeat");
+
+        falloutPillarSucsess_ = false;
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
@@ -31,42 +35,44 @@ public class PlayerStateDefeat : StateBase
 
     bool Action()
     {
-        if(StateTimeCount >= 0.2f)
+        if(StateTimeCount >= 0.2f && !falloutPillarSucsess_)
         {
-            FallOverPillar();
+            falloutPillarSucsess_ = FallOverPillar();
         }
 
         return StateTimeCount >= 1.0f;
     }
 
-    void FallOverPillar()
+    bool FallOverPillar()
     {
-        //PillariÀ‘Ìj‚ğæ“¾
+        //Pillarï¼ˆå®Ÿä½“ï¼‰ã‚’å–å¾—
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Pillar");
 
         Vector3[] rayVecs = new Vector3[] { new Vector3(0, 0, 1), new Vector3(0, 0, -1), new Vector3(1, 0, 0), new Vector3(-1, 0, 0) };
 
         for (int i = 0; i < rayVecs.Length; ++i)
         {
-            Vector3 origin = playerController.gameObject.transform.position; // Œ´“_
-            Vector3 direction = rayVecs[i]; // ƒxƒNƒgƒ‹
-            Ray ray = new Ray(origin, direction); // Ray‚ğ¶¬;
-            Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.red, 1.0f); // ÔF‚Å‰Â‹‰»
+            Vector3 origin = playerController.gameObject.transform.position; // åŸç‚¹
+            Vector3 direction = rayVecs[i]; // ãƒ™ã‚¯ãƒˆãƒ«
+            Ray ray = new Ray(origin, direction); // Rayã‚’ç”Ÿæˆ;
+            Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.red, 1.0f); // èµ¤è‰²ã§å¯è¦–åŒ–
 
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 0.1f)) // ‚à‚µRay‚ğ“ŠË‚µ‚Ä‰½‚ç‚©‚ÌƒRƒ‰ƒCƒ_[‚ÉÕ“Ë‚µ‚½‚ç
+            if (Physics.Raycast(ray, out hit, 0.1f)) // ã‚‚ã—Rayã‚’æŠ•å°„ã—ã¦ä½•ã‚‰ã‹ã®ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã«è¡çªã—ãŸã‚‰
             {
                 for (int g = 0; g < gameObjects.Length; ++g)
                 {
-                    //Ray‚ª“–‚½‚Á‚½gameobject‚Ææ“¾‚µ‚½gameobject‚ªˆê’v‚µ‚½‚ç
+                    //RayãŒå½“ãŸã£ãŸgameobjectã¨å–å¾—ã—ãŸgameobjectãŒä¸€è‡´ã—ãŸã‚‰
                     if (hit.collider.gameObject == gameObjects[g])
                     {
-                        //À‘Ì‚ğˆø”‚É“n‚·
+                        //å®Ÿä½“ã‚’å¼•æ•°ã«æ¸¡ã™
                         playerController.GetInterfaceManager().ToFallOverPillar(ref gameObjects[g]);
+                        return true;
                     }
                 }
             }
         }
 
+        return false;
     }
 }
