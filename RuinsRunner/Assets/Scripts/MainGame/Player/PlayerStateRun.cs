@@ -21,7 +21,7 @@ public class PlayerStateRun : StateBase
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         rigidbody_ = playerController_.gameObject.GetComponent<Rigidbody>();
-        speed_ = 8;
+        speed_ = 30;
 
         moveZStartTime_ = 0.0;
         moveZStartPositionZ_ = playerController_.gameObject.transform.position.z;

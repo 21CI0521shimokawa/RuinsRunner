@@ -26,4 +26,11 @@ public class InterfaceManager : MonoBehaviour
         if (obj == null) return;
         obj.Damaged();
     }
+
+    public void MoveCamera(Vector3 _destination, GameObject _newTarget = null)
+    {
+        ICameraMoveTest obj = Camera.main.GetComponent(typeof(ICameraMoveTest)) as ICameraMoveTest;
+        if (obj == null) return;
+        obj.CallCameraMove(_destination, _newTarget);
+    }
 }

@@ -15,7 +15,7 @@ public class Pillar
         gameObject.tag = "Pillar";
     }
 
-    //この柱を倒したいときは、この関数をSceneManage経由で呼び出す
+    //この柱を倒したいときは、この関数をinterfaceManager経由で呼び出す
     public void CallToFallOver()
     {
         StartCoroutine("ToFallOver");
