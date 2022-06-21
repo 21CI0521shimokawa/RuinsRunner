@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneManagerMain : MonoBehaviour
+public class InterfaceManager : MonoBehaviour
 {
     /// <summary>
     /// ’Œ‚ğ“|‚·—v¿‚ğó‚¯–½—ß‚·‚é
@@ -22,8 +22,8 @@ public class SceneManagerMain : MonoBehaviour
     /// </summary>
     public void CauseDamage(ref GameObject _object)
     {
-        IDamaged obj = _object.GetComponent<IDamaged>() as IDamaged;
-        if(obj == null) return;
+        IDamaged obj = _object.GetComponent(typeof(IDamaged)) as IDamaged;
+        if (obj == null) return;
         obj.Damaged();
     }
 }

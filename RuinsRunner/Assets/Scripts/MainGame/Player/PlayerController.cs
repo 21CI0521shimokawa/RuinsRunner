@@ -7,10 +7,10 @@ public class PlayerController : ObjectSuperClass
     StateMachine state;
     public Animator animator;
     
-    SceneManagerMain sceneManagerMain;
-    public SceneManagerMain GetSceneManagerMain()
+    InterfaceManager interfaceManager;
+    public InterfaceManager GetInterfaceManager()
     {
-        return sceneManagerMain;
+        return interfaceManager;
     }
 
     //Player関係
@@ -44,7 +44,7 @@ public class PlayerController : ObjectSuperClass
     {
         state = new StateMachine(new PlayerStateRun());
 
-        sceneManagerMain = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerMain>();
+        interfaceManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<InterfaceManager>();
 
         tablePositionZ = 0;
     }
@@ -131,7 +131,7 @@ public class PlayerController : ObjectSuperClass
             // マネージリソースの解放処理を記述
             state = null;
             animator = null;
-            sceneManagerMain = null;
+            interfaceManager = null;
             positionZTables = null;
         }
 

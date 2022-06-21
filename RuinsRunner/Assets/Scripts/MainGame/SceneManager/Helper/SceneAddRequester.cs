@@ -2,7 +2,6 @@ using SceneDefine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(SceneManage))]
 public class SceneAddRequester : MonoBehaviour
 {
     Scene scene_;
@@ -13,7 +12,7 @@ public class SceneAddRequester : MonoBehaviour
     void Awake()
     {
         scene_ = SceneManager.GetSceneByName("Manager");
-        currentSceneName_ = GetComponent<SceneManage>().GetCurrentSceneName();
+        currentSceneName_ = GetComponent<SceneManagerMain>().GetCurrentSceneName();
     }
 
     //シーンを追加、切り替えしたいときに呼び出す
