@@ -18,3 +18,11 @@ public interface IDamaged
 {
     void Damaged();
 }
+
+/// <summary>
+/// カメラ仮テスト
+/// </summary>
+public interface ICameraMoveTest
+{
+    void CallCameraMove(Vector3 _destination, GameObject _newTarget);
+}

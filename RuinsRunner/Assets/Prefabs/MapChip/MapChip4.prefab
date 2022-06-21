@@ -416,6 +416,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7090638478505662724}
     m_Modifications:
+    - target: {fileID: 341278083, guid: 684b211c8c8186b4b85c48c2731a5d4c, type: 3}
+      propertyPath: m_Size.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 341278083, guid: 684b211c8c8186b4b85c48c2731a5d4c, type: 3}
+      propertyPath: m_Size.z
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 341278087, guid: 684b211c8c8186b4b85c48c2731a5d4c, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1040,6 +1048,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7090638478505662724}
     m_Modifications:
+    - target: {fileID: 341278083, guid: 684b211c8c8186b4b85c48c2731a5d4c, type: 3}
+      propertyPath: m_Size.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 341278083, guid: 684b211c8c8186b4b85c48c2731a5d4c, type: 3}
+      propertyPath: m_Size.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 341278083, guid: 684b211c8c8186b4b85c48c2731a5d4c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 341278087, guid: 684b211c8c8186b4b85c48c2731a5d4c, type: 3}
       propertyPath: m_Enabled
       value: 0

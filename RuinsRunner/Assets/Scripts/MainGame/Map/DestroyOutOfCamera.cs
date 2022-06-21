@@ -6,10 +6,17 @@ public class DestroyOutOfCamera : MonoBehaviour
 {
     private void Awake()
     {
-        //TODO:本来ならば時間ではなく位置で判断すべき（テスト実装のためこのような形をとっただけ）
-
         //☆仮で10秒に変更したよ(2022/06/21 細谷)☆
-        Invoke("DestroyMe", /*15 * 60 * Time.deltaTime*/ 10);
+        //Invoke(nameof(DestroyMe), /*15 * 60 * Time.deltaTime*/ 10);
+    }
+
+    private void Update()
+    {
+        //空のオブジェクトmapEaterにぶつかったら消す方法もいいのではと感じる
+        if (transform.position.z <= -10)
+        {
+            DestroyMe();
+        }
     }
 
     void DestroyMe()
