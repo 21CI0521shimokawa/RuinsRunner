@@ -23,6 +23,15 @@ public class PlayerController : ObjectSuperClass
         return positionZTables[tablePositionZ];
     }
 
+    //ダメージ
+    public void Damage()
+    {
+        if (positionZTables.Length - 1 > tablePositionZ)
+        {
+            ++tablePositionZ;
+        }
+    }
+
     //Run関連
 
 
@@ -71,6 +80,31 @@ public class PlayerController : ObjectSuperClass
         return false;
     }
 
+    //トラップを踏んだかどうか
+    public bool OnTrap()
+    {
+        Vector3 origin = gameObject.transform.position; // 原点
+        origin += new Vector3(0, 0, 0.25f);
+
+        Vector3 direction = new Vector3(0, 0, 1); // Z軸方向を表すベクトル
+        Ray ray = new Ray(origin, direction); // Rayを生成;
+        Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.red, 0.01f); // 赤色で可視化
+
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 0.1f)) // もしRayを投射して何らかのコライダーに衝突したら
+        {
+            //string name = hit.collider.gameObject.name; // 衝突した相手オブジェクトの名前を取得
+            //Debug.Log(name); // コンソールに表示
+
+            //トラップだったら
+            if (hit.collider.gameObject.tag == "Trap")
+            {
+
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
