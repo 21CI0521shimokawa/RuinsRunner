@@ -62,7 +62,7 @@ public class PlayerStateDefeat : StateBase
                     if (hit.collider.gameObject == gameObjects[g])
                     {
                         //À‘Ì‚ğˆø”‚É“n‚·
-                        playerController.GetSceneManagerMain().ToFallOverPillar(ref gameObjects[g]);
+                        playerController.GetInterfaceManager().ToFallOverPillar(ref gameObjects[g]);
                     }
                 }
             }

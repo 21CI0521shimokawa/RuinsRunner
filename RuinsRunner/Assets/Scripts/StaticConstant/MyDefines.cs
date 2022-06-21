@@ -60,3 +60,16 @@ namespace SceneDefine
         };
     }
 }
+
+///
+/// MainGameScene‚ÌGameState‚ð•\‚·enum
+///
+namespace GameStateDefine
+{
+    public enum GameState
+    { 
+        Run, 
+        MiniGame1, 
+        GameOver
+    }
+}
