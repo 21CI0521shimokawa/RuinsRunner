@@ -6,10 +6,14 @@ public class PlayerStateDefeat : StateBase
 {
     PlayerController playerController;
 
+    bool falloutPillarSucsess_;
+
     public override void StateInitialize()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerController.animator.SetTrigger("StateDefeat");
+
+        falloutPillarSucsess_ = false;
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
@@ -31,15 +35,15 @@ public class PlayerStateDefeat : StateBase
 
     bool Action()
     {
-        if(StateTimeCount >= 0.2f)
+        if(StateTimeCount >= 0.2f && !falloutPillarSucsess_)
         {
-            FallOverPillar();
+            falloutPillarSucsess_ = FallOverPillar();
         }
 
         return StateTimeCount >= 1.0f;
     }
 
-    void FallOverPillar()
+    bool FallOverPillar()
     {
         //PillariÀ‘Ìj‚ğæ“¾
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Pillar");
@@ -63,10 +67,13 @@ public class PlayerStateDefeat : StateBase
                     {
                         //À‘Ì‚ğˆø”‚É“n‚·
                         playerController.GetSceneManagerMain().ToFallOverPillar(ref gameObjects[g]);
+
+                        return true;
                     }
                 }
             }
         }
 
+        return false;
     }
 }

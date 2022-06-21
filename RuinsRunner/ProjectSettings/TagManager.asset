@@ -7,6 +7,7 @@ TagManager:
   - SceneManager
   - Enemy
   - Pillar
+  - Trap
   layers:
   - Default
   - TransparentFX

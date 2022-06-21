@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerStateRun : StateBase
 {
     PlayerController playerController_;
+    Rigidbody rigidbody_;
+
     [SerializeField] float speed_;   //左右移動速度
 
     //前後移動関係
@@ -18,7 +20,8 @@ public class PlayerStateRun : StateBase
     public override void StateInitialize()
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        speed_ = 5;
+        rigidbody_ = playerController_.gameObject.GetComponent<Rigidbody>();
+        speed_ = 8;
 
         moveZStartTime_ = 0.0;
         moveZStartPositionZ_ = playerController_.gameObject.transform.position.z;
@@ -53,12 +56,17 @@ public class PlayerStateRun : StateBase
             FrontMove(gameObject);
         }
 
+        //トラップを踏んだら
+        if(playerController_.OnTrap())
+        {
+            playerController_.Damage();
+        }
+
         //現在のZ座標よりプレイヤがいる予定の場所の方が敵に近かったら
         if (gameObject.transform.position.z > playerController_.GetPositionZ())
         {
             nextState = new PlayerStateStumble();
         }
-
 
         //敵に近づきすぎたら（仮）
         if (playerController_.IsBeCaught())
@@ -66,7 +74,7 @@ public class PlayerStateRun : StateBase
             nextState = new PlayerStateBeCaught();
         }
 
-        playerController_.OnGround();
+        //playerController_.OnGround();
 
 
         return nextState;
@@ -74,7 +82,7 @@ public class PlayerStateRun : StateBase
 
     public override void StateFinalize()
     {
-
+        rigidbody_.velocity = new Vector3(0, rigidbody_.velocity.y, rigidbody_.velocity.z); //X軸方向の移動を消す
     }
 
     //左右移動
@@ -84,18 +92,23 @@ public class PlayerStateRun : StateBase
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            moveVec.x = speed_ * Time.deltaTime;
+            moveVec.x = speed_/* * Time.deltaTime*/;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            moveVec.x = -speed_ * Time.deltaTime;
+            moveVec.x = -speed_/* * Time.deltaTime*/;
         }
         else
         {
             moveVec.x = 0;
         }
 
-        _gameObject.transform.position += moveVec;
+        //指定したスピードから現在の速度を引いて加速力を求める
+        float currentSpeed = moveVec.x - rigidbody_.velocity.x;
+        //調整された加速力で力を加える
+        rigidbody_.AddForce(new Vector3(currentSpeed, 0, 0));
+
+        //_gameObject.transform.position += moveVec;
     }
 
     //前後移動
