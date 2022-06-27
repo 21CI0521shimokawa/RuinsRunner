@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PlayerController : ObjectSuperClass
 {
-    StateMachine state;
-    public Animator animator;
+    StateMachine state_;
+    public Animator animator_;
     
-    InterfaceManager interfaceManager;
+    InterfaceManager interfaceManager_;
     public InterfaceManager GetInterfaceManager()
     {
-        return interfaceManager;
+        return interfaceManager_;
     }
+
+    Rigidbody rigidbody_;
 
     //Player関係
     [SerializeField] float[] positionZTables; //プレイヤのZ座標のテーブル
@@ -32,39 +34,60 @@ public class PlayerController : ObjectSuperClass
         }
     }
 
+    //回復
+    public void Recovery()
+    {
+        if (0 < tablePositionZ)
+        {
+            --tablePositionZ;
+        }
+    }
+
+
     //Run関連
 
 
     //Defeat関連
 
 
+    //Fall関係
+
 
     // Start is called before the first frame update
     void Start()
     {
-        state = new StateMachine(new PlayerStateRun());
+        MoveLooksLikeRunning.Set_isRunning(true);   //移動開始
 
-        interfaceManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<InterfaceManager>();
+        state_ = new StateMachine(new PlayerStateRun());
 
-        tablePositionZ = 0;
+        interfaceManager_ = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<InterfaceManager>();
+
+        rigidbody_ = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        state.Update(gameObject);
+        state_.Update(gameObject);
     }
 
 
     //捕まったかどうか
     public bool IsBeCaught()
     {
-        return gameObject.transform.position.z <= tablePositionZ;
+        return gameObject.transform.position.z <= positionZTables[positionZTables.Length - 1];
     }
 
     //地面に立ってるかどうか
     public bool OnGround()
     {
+        //下方向に移動していなければ立ってることにする
+        if(rigidbody_.velocity.y >= 0)
+        {
+            return true;
+        }
+
+
         Vector3 origin = gameObject.transform.position; // 原点
         origin += new Vector3(0, 0.05f, 0);
         Vector3 direction = new Vector3(0, -1, 0); // Y軸方向を表すベクトル
@@ -74,11 +97,71 @@ public class PlayerController : ObjectSuperClass
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 0.1f)) // もしRayを投射して何らかのコライダーに衝突したら
         {
-            string name = hit.collider.gameObject.name; // 衝突した相手オブジェクトの名前を取得
-            Debug.Log(name); // コンソールに表示
+            //トリガーだったら除外する
+            if (hit.collider.isTrigger == true) { return false; }
+
+            //一部のTagがついてるゲームオブジェクトは除外する
+            string hitGameObjectTagName = hit.collider.gameObject.tag;
+            if (hitGameObjectTagName == "") { return false; }
+            //必要に応じて追加
+
+
+            return true;
         }
+
         return false;
     }
+
+    //Playerが移動できるかどうか
+    //移動できるか確認
+    public bool PlayerMoveChack(Vector3 _checkRayVector)
+    {
+        //移動量が0なら処理しない(する必要がない)
+        if(_checkRayVector.magnitude == 0)
+        {
+            return false;
+        }
+
+        Vector3 origin = this.transform.position; // 原点
+        Vector3 direction = _checkRayVector.normalized; // ベクトル
+
+        origin.y += 1;
+
+        //移動する軸に応じてRayの原点を移動
+        if (origin.x != 0)
+        {
+            origin.x += 0.15f * Mathf.Sign(_checkRayVector.x);
+            _checkRayVector.x += 0.1f;
+        }
+        if (origin.z != 0)
+        {
+            origin.z += 0.15f * Mathf.Sign(_checkRayVector.z);
+            _checkRayVector.z += 0.1f;
+        }
+
+        float length = _checkRayVector.magnitude;
+
+
+        Ray ray = new Ray(origin, direction); // Rayを生成;
+        Debug.DrawRay(ray.origin, ray.direction * length, Color.green, 0.01f); // 緑色で可視化
+
+        RaycastHit[] hits = Physics.RaycastAll(ray, length);
+
+        foreach (RaycastHit hit in hits) // もしRayを投射して何らかのコライダーに衝突したら
+        {
+            //トリガーだったら除外する
+            if(hit.collider.isTrigger == true) { continue; }
+
+            //一部のTagがついてるゲームオブジェクトは除外する
+            string hitGameObjectTagName = hit.collider.gameObject.tag;
+            if (hitGameObjectTagName == "") { continue; }
+            //必要に応じて追加
+
+            return false;
+        }
+        return true;
+    }
+
 
     //トラップを踏んだかどうか
     public bool OnTrap()
@@ -106,11 +189,26 @@ public class PlayerController : ObjectSuperClass
         return false;
     }
 
+    //穴に落下したかどうか
+    public bool FallIntoHole()
+    {
+        return gameObject.transform.position.y <= -5.0f;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         //GetSceneManagerMain().ToFallOverPillar(ref collision.gameObject);
     }
 
+
+    private void OnDrawGizmos()
+    {
+        Vector3 origin = gameObject.transform.position; // 原点
+
+        float radius = 2.0f;
+        Gizmos.color = new Color(1f, 0, 0, 0.5f);
+        Gizmos.DrawSphere(origin, radius);
+    }
 
     /// <summary>
     /// 継承先Dispose() override テンプレート
@@ -129,9 +227,9 @@ public class PlayerController : ObjectSuperClass
         if (_disposing)
         {
             // マネージリソースの解放処理を記述
-            state = null;
-            animator = null;
-            interfaceManager = null;
+            state_ = null;
+            animator_ = null;
+            interfaceManager_ = null;
             positionZTables = null;
         }
 

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerStateDefeat : StateBase
 {
-    PlayerController playerController;
+    PlayerController playerController_;
 
     bool falloutPillarSucsess_;
 
     public override void StateInitialize()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        playerController.animator.SetTrigger("StateDefeat");
+        playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerController_.animator_.SetTrigger("StateDefeat");
 
         falloutPillarSucsess_ = false;
     }
@@ -23,6 +23,13 @@ public class PlayerStateDefeat : StateBase
         if(Action())
         {
             nextState = new PlayerStateRun();
+        }
+
+        //トラップを踏んだら
+        if (playerController_.OnTrap())
+        {
+            playerController_.Damage();
+            nextState = new PlayerStateStumble();
         }
 
         return nextState;
@@ -45,34 +52,61 @@ public class PlayerStateDefeat : StateBase
 
     bool FallOverPillar()
     {
+        #region 旧
+        ////Pillar（実体）を取得
+        //GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Pillar");
+
+        //Vector3[] rayVecs = new Vector3[] { new Vector3(0, 0, 1), new Vector3(0, 0, -1), new Vector3(1, 0, 0), new Vector3(-1, 0, 0) };
+
+        //for (int i = 0; i < rayVecs.Length; ++i)
+        //{
+        //    Vector3 origin = playerController_.gameObject.transform.position; // 原点
+        //    Vector3 direction = rayVecs[i]; // ベクトル
+        //    Ray ray = new Ray(origin, direction); // Rayを生成;
+        //    Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.red, 1.0f); // 赤色で可視化
+
+        //    RaycastHit hit;
+
+        //    if (Physics.Raycast(ray, out hit, 0.1f)) // もしRayを投射して何らかのコライダーに衝突したら
+        //    {
+        //        for (int g = 0; g < gameObjects.Length; ++g)
+        //        {
+        //            //Rayが当たったgameobjectと取得したgameobjectが一致したら
+        //            if (hit.collider.gameObject == gameObjects[g])
+        //            {
+        //                //実体を引数に渡す
+        //                playerController_.GetInterfaceManager().ToFallOverPillar(ref gameObjects[g]);
+        //                return true;
+        //            }
+        //        }
+        //    }
+        //}
+
+        //return false;
+        #endregion
+
         //Pillar（実体）を取得
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Pillar");
 
-        Vector3[] rayVecs = new Vector3[] { new Vector3(0, 0, 1), new Vector3(0, 0, -1), new Vector3(1, 0, 0), new Vector3(-1, 0, 0) };
+        Vector3 origin = playerController_.gameObject.transform.position; // 原点
+        float radius = 2.0f;
 
-        for (int i = 0; i < rayVecs.Length; ++i)
+        //範囲内のcolliderを検知
+        Collider[] hitColliders = Physics.OverlapSphere(origin, radius);
+
+        foreach (Collider hit in hitColliders)
         {
-            Vector3 origin = playerController.gameObject.transform.position; // 原点
-            Vector3 direction = rayVecs[i]; // ベクトル
-            Ray ray = new Ray(origin, direction); // Rayを生成;
-            Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.red, 1.0f); // 赤色で可視化
-
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 0.1f)) // もしRayを投射して何らかのコライダーに衝突したら
+            for (int g = 0; g < gameObjects.Length; ++g)
             {
-                for (int g = 0; g < gameObjects.Length; ++g)
+                //Rayが当たったgameobjectと取得したgameobjectが一致したら
+                if (hit.gameObject == gameObjects[g])
                 {
-                    //Rayが当たったgameobjectと取得したgameobjectが一致したら
-                    if (hit.collider.gameObject == gameObjects[g])
-                    {
-                        //実体を引数に渡す
-                        playerController.GetInterfaceManager().ToFallOverPillar(ref gameObjects[g]);
-                        return true;
-                    }
+                    //実体を引数に渡す
+                    playerController_.GetInterfaceManager().ToFallOverPillar(ref gameObjects[g]);
+                    return true;
                 }
             }
         }
-
         return false;
     }
 }
