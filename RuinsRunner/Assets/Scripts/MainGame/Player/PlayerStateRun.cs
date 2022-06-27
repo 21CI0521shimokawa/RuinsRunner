@@ -21,13 +21,13 @@ public class PlayerStateRun : StateBase
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         rigidbody_ = playerController_.gameObject.GetComponent<Rigidbody>();
-        speed_ = 30;
+        speed_ = 8;
 
         moveZStartTime_ = 0.0;
         moveZStartPositionZ_ = playerController_.gameObject.transform.position.z;
         moveZTime_ = 1.0f;
 
-        playerController_.animator.SetTrigger("StateRun");
+        playerController_.animator_.SetTrigger("StateRun");
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
@@ -53,36 +53,42 @@ public class PlayerStateRun : StateBase
         //現在のZ座標よりプレイヤがいる予定の場所の方が敵に遠かったら（仮）
         if (gameObject.transform.position.z < playerController_.GetPositionZ())
         {
-            FrontMove(gameObject);
+            FrontMove(gameObject);    //こいつのせいで柱すり抜ける
         }
 
         //トラップを踏んだら
         if(playerController_.OnTrap())
         {
             playerController_.Damage();
+            nextState = new PlayerStateStumble();
         }
 
         //現在のZ座標よりプレイヤがいる予定の場所の方が敵に近かったら
-        if (gameObject.transform.position.z > playerController_.GetPositionZ())
-        {
-            nextState = new PlayerStateStumble();
-        }
+        //if (gameObject.transform.position.z > playerController_.GetPositionZ())
+        //{
+        //    nextState = new PlayerStateStumble();
+        //}
 
         //敵に近づきすぎたら（仮）
         if (playerController_.IsBeCaught())
         {
-            nextState = new PlayerStateBeCaught();
+            //nextState = new PlayerStateBeCaught();
+
+            nextState = new PlayerStateDeath(); //仮 とりあえず殺しとく
         }
 
-        //playerController_.OnGround();
-
+        //落下していたら
+        if(!playerController_.OnGround())
+        {
+            nextState = new PlayerStateFall();
+        }
 
         return nextState;
     }
 
     public override void StateFinalize()
     {
-        rigidbody_.velocity = new Vector3(0, rigidbody_.velocity.y, rigidbody_.velocity.z); //X軸方向の移動を消す
+        //rigidbody_.velocity = new Vector3(0, rigidbody_.velocity.y, rigidbody_.velocity.z); //X軸方向の移動を消す
     }
 
     //左右移動
@@ -103,12 +109,22 @@ public class PlayerStateRun : StateBase
             moveVec.x = 0;
         }
 
-        //指定したスピードから現在の速度を引いて加速力を求める
-        float currentSpeed = moveVec.x - rigidbody_.velocity.x;
-        //調整された加速力で力を加える
-        rigidbody_.AddForce(new Vector3(currentSpeed, 0, 0));
+        if (moveVec.x != 0)
+        {
+            if (playerController_.PlayerMoveChack(moveVec.normalized * 0.05f))
+            {
+                //指定したスピードから現在の速度を引いて加速力を求める
+                float currentSpeed = moveVec.x - rigidbody_.velocity.x;
+                //調整された加速力で力を加える
+                rigidbody_.AddForce(new Vector3(currentSpeed, 0, 0));
 
-        //_gameObject.transform.position += moveVec;
+                //_gameObject.transform.position += moveVec;
+            }
+            else
+            {
+                rigidbody_.velocity = new Vector3(0, rigidbody_.velocity.y, rigidbody_.velocity.z);
+            }
+        }
     }
 
     //前後移動
@@ -142,7 +158,8 @@ public class PlayerStateRun : StateBase
                 isMoveZ = false;
             }
 
-            _gameObject.transform.position = newVec;
+            //_gameObject.transform.position = newVec;
+            rigidbody_.MovePosition(newVec);
         }
     }
 }

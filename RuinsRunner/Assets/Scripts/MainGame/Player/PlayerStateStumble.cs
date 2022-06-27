@@ -15,7 +15,7 @@ public class PlayerStateStumble : StateBase
     public override void StateInitialize()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        playerController.animator.SetTrigger("StateStumble");
+        playerController.animator_.SetTrigger("StateStumble");
 
         moveStartPositionZ_ = playerController.gameObject.transform.position.z;
         moveEndPositionZ_ = playerController.GetPositionZ();
@@ -40,7 +40,7 @@ public class PlayerStateStumble : StateBase
 
     bool Action(GameObject _gameObject)
     {
-        AnimatorStateInfo stateInfo = playerController.animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo stateInfo = playerController.animator_.GetCurrentAnimatorStateInfo(0);
 
         //アニメーションがこけるモーションか
         if (stateInfo.shortNameHash == hashStateStumble)
