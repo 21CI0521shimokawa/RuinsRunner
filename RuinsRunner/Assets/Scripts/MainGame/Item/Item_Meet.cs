@@ -18,7 +18,8 @@ public class Item_Meet : ItemBase
 
     protected override void TakenItem(GameObject _player)
     {
-        _player.GetComponent<PlayerController>().Recovery();
+        //_player.GetComponent<PlayerController>().Recovery();
+        StaticInterfaceManager.MovePlayerZ(-1, _player.GetComponent<PlayerController>());
     }
 
     protected override void ReleaseProcess_ManagedResource()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
+    //マップチップの生成フォルダ（親）
+    [SerializeField] GameObject mapFolder_;
     //マップチップの生成位置
     [SerializeField] Vector3 createPosition_;
     //マップチップprefabの保存場所
@@ -53,7 +55,7 @@ public class MapGenerator : MonoBehaviour
 
                 //prefabの生成
                 int randomIndex = Random.Range(0, candidateMapPrefab.Count);
-                Instantiate(candidateMapPrefab[randomIndex], createPosition_, Quaternion.identity);
+                Instantiate(candidateMapPrefab[randomIndex], createPosition_, Quaternion.identity, mapFolder_.transform);
 
                 //latestに情報を更新
                 latestMapInfo_ = candidateMapPrefab[randomIndex].GetComponent<MapChip>().GetMapInformation();
