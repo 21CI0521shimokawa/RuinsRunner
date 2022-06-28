@@ -15,7 +15,6 @@ public class GameStateController : ObjectSuperClass
     {
         gameState_.Update(gameObject);
     }
-
     protected override void Dispose(bool _disposing)
     {
         if (this.isDisposed_)

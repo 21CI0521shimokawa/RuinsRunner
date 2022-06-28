@@ -16,7 +16,7 @@ public interface IToFallenOver
 //TODO:Enemyの怯み処理のエントリー、プレイヤーの後退処理のエントリーに実装する
 public interface IDamaged
 {
-    void Damaged();
+    void CallReceiveDamage();
 }
 
 /// <summary>
@@ -25,4 +25,12 @@ public interface IDamaged
 public interface ICameraMoveTest
 {
     void CallCameraMove(Vector3 _destination, GameObject _newTarget);
+}
+
+/// <summary>
+/// プレイヤーのZtableを更新する
+/// </summary>
+public interface IMovePlayer
+{
+    void MovePlayer(int _moveAmount);
 }

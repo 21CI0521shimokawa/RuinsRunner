@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-public class EnemyController : ObjectSuperClass
+public class EnemyController 
+    : ObjectSuperClass
+    , IDamaged
 {
     StateMachine EnemyState;
     public Animator EnemyAnimator;
@@ -41,6 +43,11 @@ public class EnemyController : ObjectSuperClass
         {
             _IsSqueeze = true;
         }
+    }
+
+    public void CallReceiveDamage()
+    {
+        EnemyState.CallReceiveDamage();
     }
 }
 

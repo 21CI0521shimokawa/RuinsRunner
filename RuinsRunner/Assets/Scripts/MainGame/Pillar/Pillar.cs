@@ -10,9 +10,11 @@ public class Pillar
     : MonoBehaviour
     , IToFallenOver
 {
+    bool isFalleing_;
     private void Awake()
     {
         gameObject.tag = "Pillar";
+        isFalleing_ = false;
     }
 
     //この柱を倒したいときは、この関数をinterfaceManager経由で呼び出す
@@ -23,6 +25,8 @@ public class Pillar
 
     IEnumerator ToFallOver()
     {
+        gameObject.GetComponent<BoxCollider>().isTrigger = true;
+        isFalleing_ = true;
         float accel = 0f;
         while(transform.localEulerAngles.z < 90)
         {
@@ -34,7 +38,19 @@ public class Pillar
                 transform.Rotate(0f, 0f, -(transform.localEulerAngles.z - 90));
             }
         }
+        isFalleing_ = false;
         Debug.Log("柱コルーチンを終了しました");
+
         yield break;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isFalleing_) return;
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            StaticInterfaceManager.CauseDamage(other.gameObject);
+            StaticInterfaceManager.MovePlayerZ(-1, FindObjectOfType<PlayerController>());
+        }
     }
 }

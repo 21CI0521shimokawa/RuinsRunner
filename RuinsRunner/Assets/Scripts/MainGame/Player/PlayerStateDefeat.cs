@@ -102,7 +102,7 @@ public class PlayerStateDefeat : StateBase
                 if (hit.gameObject == gameObjects[g])
                 {
                     //実体を引数に渡す
-                    playerController_.GetInterfaceManager().ToFallOverPillar(ref gameObjects[g]);
+                    StaticInterfaceManager.ToFallOverPillar(ref gameObjects[g]);
                     return true;
                 }
             }

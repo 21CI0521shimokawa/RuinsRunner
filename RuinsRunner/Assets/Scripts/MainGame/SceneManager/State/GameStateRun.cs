@@ -5,9 +5,11 @@ using GameStateDefine;
 
 public class GameStateRun : StateBase
 {
+    StateBase nextState;
 
-    public override void StateInitialize() 
+    public override void StateInitialize()
     {
+        nextState = this;
         //TODO:Cameraの移動を伝えるインターフェースの実装、呼び出し
         //仮実装
         StaticInterfaceManager.MoveCamera(new Vector3(0, 5, 5));
@@ -16,7 +18,6 @@ public class GameStateRun : StateBase
 
     public override StateBase StateUpdate(GameObject gameObject)
     {
-        StateBase nextState = this;
         gameObject.GetComponent<SceneManagerMain>().SwitchState(GameState.Run);
 
         if (this.StateTimeCount >= 10)
@@ -25,6 +26,13 @@ public class GameStateRun : StateBase
         }
 
         return nextState;
+    }
+    /// <summary>
+    /// 外からステートを変えたいときに使用する（急ぎで作ったため、もっと安全に清書できるハズ）
+    /// </summary>
+    public void ChangeState(StateBase _NextState)
+    {
+        nextState = _NextState;
     }
 
     public override void StateFinalize()

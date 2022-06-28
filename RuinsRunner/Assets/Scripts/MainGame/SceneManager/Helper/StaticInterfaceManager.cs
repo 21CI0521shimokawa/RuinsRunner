@@ -18,19 +18,32 @@ public static class StaticInterfaceManager
 
     /// <summary>
     /// UŒ‚—v¿‚ğó‚¯–½—ß‚·‚é
-    /// UŒ‚‚·‚é‘¤‚ªUŒ‚‘ÎÛ‚ÌgameObject‚ğQÆ“n‚µ‚µ‚Äg‚¤
+    /// UŒ‚‚·‚é‘¤‚ªUŒ‚‘ÎÛ‚ÌgameObject‚ğ“n‚µ‚Äg‚¤
     /// </summary>
-    static public void CauseDamage(ref GameObject _object)
+    static public void CauseDamage(GameObject _object)
     {
         IDamaged obj = _object.GetComponent(typeof(IDamaged)) as IDamaged;
         if (obj == null) return;
-        obj.Damaged();
+        obj.CallReceiveDamage();
     }
 
+    /// <summary>
+    /// ƒJƒƒ‰‚ÌˆÚ“®‚ğ–½—ß‚·‚é
+    /// –Ú“I’n‚ğ“n‚µ‚Äg‚¤
+    /// </summary>
+    /// <param name="_destination"></param>
+    /// <param name="_newTarget"></param>
     static public void MoveCamera(Vector3 _destination, GameObject _newTarget = null)
     {
         ICameraMoveTest obj = Camera.main.GetComponent(typeof(ICameraMoveTest)) as ICameraMoveTest;
         if (obj == null) return;
         obj.CallCameraMove(_destination, _newTarget);
+    }
+
+    static public void MovePlayerZ(int _moveAmount, PlayerController _player)
+    {
+        IMovePlayer obj = _player.GetComponent(typeof(IMovePlayer)) as IMovePlayer;
+        if (obj == null) return;
+        obj.MovePlayer(_moveAmount);
     }
 }

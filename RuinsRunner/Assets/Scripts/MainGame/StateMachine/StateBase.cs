@@ -64,4 +64,6 @@ public abstract class StateBase
     /// <para>ššŒÄ‚Ño‚µ‚¿‚á‚¾‚ß‚¾‚æšš</para>
     /// </summary>
     abstract public void StateFinalize();
+
+    virtual public void ReceiveDamage() { }
 }

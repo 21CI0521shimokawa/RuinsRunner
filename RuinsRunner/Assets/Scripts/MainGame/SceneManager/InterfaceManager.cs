@@ -16,16 +16,7 @@ public class InterfaceManager : MonoBehaviour
         obj.CallToFallOver();
     }
 
-    /// <summary>
-    /// UŒ‚—v¿‚ğó‚¯–½—ß‚·‚é
-    /// UŒ‚‚·‚é‘¤‚ªUŒ‚‘ÎÛ‚ÌgameObject‚ğQÆ“n‚µ‚µ‚Äg‚¤
-    /// </summary>
-    public void CauseDamage(ref GameObject _object)
-    {
-        IDamaged obj = _object.GetComponent(typeof(IDamaged)) as IDamaged;
-        if (obj == null) return;
-        obj.Damaged();
-    }
+
 
     public void MoveCamera(Vector3 _destination, GameObject _newTarget = null)
     {

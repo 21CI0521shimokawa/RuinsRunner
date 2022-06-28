@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : ObjectSuperClass
+public class PlayerController 
+    : ObjectSuperClass
+    , IMovePlayer
 {
     StateMachine state_;
     public Animator animator_;
-    
-    InterfaceManager interfaceManager_;
-    public InterfaceManager GetInterfaceManager()
-    {
-        return interfaceManager_;
-    }
 
     Rigidbody rigidbody_;
 
@@ -59,8 +55,6 @@ public class PlayerController : ObjectSuperClass
         MoveLooksLikeRunning.Set_isRunning(true);   //移動開始
 
         state_ = new StateMachine(new PlayerStateRun());
-
-        interfaceManager_ = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<InterfaceManager>();
 
         rigidbody_ = gameObject.GetComponent<Rigidbody>();
     }
@@ -195,12 +189,6 @@ public class PlayerController : ObjectSuperClass
         return gameObject.transform.position.y <= -5.0f;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        //GetSceneManagerMain().ToFallOverPillar(ref collision.gameObject);
-    }
-
-
     private void OnDrawGizmos()
     {
         Vector3 origin = gameObject.transform.position; // 原点
@@ -229,7 +217,6 @@ public class PlayerController : ObjectSuperClass
             // マネージリソースの解放処理を記述
             state_ = null;
             animator_ = null;
-            interfaceManager_ = null;
             positionZTables = null;
         }
 
@@ -244,5 +231,12 @@ public class PlayerController : ObjectSuperClass
 
         // ★★★忘れずに、基底クラスの Dispose を呼び出す【重要】
         base.Dispose(_disposing);
+    }
+
+    public void MovePlayer(int _moveAmount)
+    {
+        tablePositionZ += _moveAmount;
+        tablePositionZ = Mathf.Clamp(tablePositionZ, 0, positionZTables.Length - 1);
+        Debug.Log(_moveAmount + " 移動しました");
     }
 }

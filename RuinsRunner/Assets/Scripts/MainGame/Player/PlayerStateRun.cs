@@ -21,7 +21,7 @@ public class PlayerStateRun : StateBase
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         rigidbody_ = playerController_.gameObject.GetComponent<Rigidbody>();
-        speed_ = 8;
+        speed_ = 30;
 
         moveZStartTime_ = 0.0;
         moveZStartPositionZ_ = playerController_.gameObject.transform.position.z;
@@ -51,7 +51,8 @@ public class PlayerStateRun : StateBase
         }
 
         //現在のZ座標よりプレイヤがいる予定の場所の方が敵に遠かったら（仮）
-        if (gameObject.transform.position.z < playerController_.GetPositionZ())
+        //if分条件を '<' から　'!=' にしました（前後の移動を確認したかったため） 工藤 6/29
+        if (gameObject.transform.position.z != playerController_.GetPositionZ())
         {
             FrontMove(gameObject);    //こいつのせいで柱すり抜ける
         }

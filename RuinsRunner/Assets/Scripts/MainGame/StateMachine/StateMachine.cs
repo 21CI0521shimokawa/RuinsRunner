@@ -73,4 +73,9 @@ public class StateMachine
             nowState_ = nextState;
         }
     }
+
+    public void CallReceiveDamage()
+    {
+        nowState_.ReceiveDamage();
+    }
 }
