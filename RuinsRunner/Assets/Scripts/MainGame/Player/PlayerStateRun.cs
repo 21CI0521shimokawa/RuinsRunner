@@ -27,7 +27,11 @@ public class PlayerStateRun : StateBase
         moveZStartPositionZ_ = playerController_.gameObject.transform.position.z;
         moveZTime_ = 1.0f;
 
-        playerController_.animator_.SetTrigger("StateRun");
+        //走るモーションじゃなかったらSetTriggerする
+        if (!playerController_.animator_.GetCurrentAnimatorStateInfo(0).IsName("Sprint"))
+        {
+            playerController_.animator_.SetTrigger("StateRun");
+        }
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
@@ -39,6 +43,12 @@ public class PlayerStateRun : StateBase
 
         //横移動
         SideMove(gameObject);
+
+        //ミニゲーム呼び出し（仮）
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            nextState = new PlayerState_Test(); //仮
+        }
 
         //仮
         if (Input.GetKeyDown(KeyCode.Q))
@@ -79,7 +89,7 @@ public class PlayerStateRun : StateBase
         }
 
         //落下していたら
-        if(!playerController_.OnGround())
+        if (!playerController_.OnGround())
         {
             nextState = new PlayerStateFall();
         }
