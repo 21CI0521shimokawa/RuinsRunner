@@ -54,7 +54,7 @@ public class PlayerController
     {
         MoveLooksLikeRunning.Set_isRunning(true);   //移動開始
 
-        state_ = new StateMachine(new PlayerStateRun());
+        state_ = new StateMachine(new PlayerStateMG1Idle());
 
         rigidbody_ = gameObject.GetComponent<Rigidbody>();
     }
@@ -75,8 +75,9 @@ public class PlayerController
     //地面に立ってるかどうか
     public bool OnGround()
     {
+        //細かい判定を甘くするために条件を >=0 からゆるくしました。 -工藤 7/3
         //下方向に移動していなければ立ってることにする
-        if(rigidbody_.velocity.y >= 0)
+        if(rigidbody_.velocity.y >= -0.01f)
         {
             return true;
         }
