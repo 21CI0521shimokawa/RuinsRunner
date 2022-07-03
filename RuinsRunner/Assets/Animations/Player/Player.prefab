@@ -1304,12 +1304,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator_: {fileID: 8974966998255434141}
   positionZTables:
+  - 16
   - 15
   - 14
   - 13
   - 12
   - 11
-  - 10
   tablePositionZ: 2
 --- !u!54 &6370976755406379147
 Rigidbody:
