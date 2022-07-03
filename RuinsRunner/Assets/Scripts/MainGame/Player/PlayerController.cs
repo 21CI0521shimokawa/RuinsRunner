@@ -54,7 +54,7 @@ public class PlayerController
     {
         MoveLooksLikeRunning.Set_isRunning(true);   //ˆÚ“®ŠJŽn
 
-        state_ = new StateMachine(new PlayerStateMG1Idle());
+        state_ = new StateMachine(new PlayerStateRun());
 
         rigidbody_ = gameObject.GetComponent<Rigidbody>();
     }
