@@ -63,6 +63,17 @@ public class PlayerController
     void Update()
     {
         state_.Update(gameObject);
+
+        //わざと重くする装置 低スペックシミュレーション用
+        //{
+        //    for (int i = 0; i < 1000000; ++i)
+        //    {
+        //        string d = new string("test");
+        //        d = null;
+        //    }
+        //}
+
+        Debug.Log(state_.StateName);
     }
 
 

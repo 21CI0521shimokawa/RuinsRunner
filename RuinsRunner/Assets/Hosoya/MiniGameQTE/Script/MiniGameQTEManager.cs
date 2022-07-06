@@ -5,15 +5,48 @@ using UnityEngine;
 public class MiniGameQTEManager : ObjectSuperClass
 {
     //成功失敗を返す
-    public static bool isGameClear;
-    public static bool isFailure;
 
-    ~MiniGameQTEManager()
+    static bool isGameClear_;
+    public static bool isGameClear
     {
-        isGameClear = false;
-        isFailure = false;
+        //一度でも参照されたらfalseにする
+        get
+        {
+            bool rtv = isGameClear_;
+
+            isGameClear_ = false;
+
+            return rtv;
+        }
+
+        //クリアと失敗が共存することはない
+        set
+        {
+            isFailure_ = false;
+            isGameClear_ = value;
+        }
     }
 
+    static bool isFailure_;
+    public static bool isFailure
+    {
+        //一度でも参照されたらfalseにする
+        get
+        {
+            bool rtv = isFailure_;
+
+            isFailure = false;
+
+            return rtv;
+        }
+
+        //クリアと失敗が共存することはない
+        set
+        {
+            isFailure_ = value;
+            isGameClear_ = false;
+        }
+    }
 
 
     MiniGameQTE_ImageRender render_;
@@ -56,8 +89,9 @@ public class MiniGameQTEManager : ObjectSuperClass
         }
     }
 
-    [SerializeField] int buttonQuantity_;    //押さなければいけないボタンの個数
-    public int buttonQuantity
+    //できればstaticにしたくない
+    [SerializeField] static int buttonQuantity_;    //押さなければいけないボタンの個数
+    public static int buttonQuantity
     {
         get
         {
@@ -69,8 +103,9 @@ public class MiniGameQTEManager : ObjectSuperClass
         }
     }
 
-    [SerializeField] float timeLinitMax_;    //制限時間
-    public float timeLinitMax
+    //できればstaticにしたくない
+    [SerializeField] static float timeLinitMax_;    //制限時間
+    public static float timeLinitMax
     {
         get
         {
@@ -108,6 +143,10 @@ public class MiniGameQTEManager : ObjectSuperClass
         buttons_ = new List<ButtonType>();
         buttonNumber_ = 0;
         isInitializeProcessing_ = false;
+
+        isGameClear = false;
+        isFailure = false;
+        unscaledTimeCount_ = 0.0f;
     }
 
     // Start is called before the first frame update
@@ -143,7 +182,6 @@ public class MiniGameQTEManager : ObjectSuperClass
         ++buttonNumber_;
         render_.ArrowSymbolPotisionChange();
     }
- 
 
     //継承先では以下のようにoverrideすること
     //マネージリソース、アンマネージドリソースについては↓のURLを参考に、newしたものかどうかで判断する
@@ -168,6 +206,9 @@ public class MiniGameQTEManager : ObjectSuperClass
         // アンマネージリソースの解放処理を記述
         buttonQuantity_ = 0;
         timeLinitMax_ = 0;
+        buttonNumber_ = 0;
+        isInitializeProcessing_ = false;
+        unscaledTimeCount_ = 0.0f;
 
         // Dispose済みを記録
         this.isDisposed_ = true;

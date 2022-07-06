@@ -8,6 +8,16 @@ public class PlayerStateDefeat : StateBase
 
     bool falloutPillarSucsess_;
 
+    //倒す柱
+    GameObject pillar_;
+    public GameObject pillar
+    {
+        set
+        {
+            pillar_ = value;
+        }
+    }
+
     public override void StateInitialize()
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -26,11 +36,11 @@ public class PlayerStateDefeat : StateBase
         }
 
         //トラップを踏んだら
-        if (playerController_.OnTrap())
-        {
-            playerController_.Damage();
-            nextState = new PlayerStateStumble();
-        }
+        //if (playerController_.OnTrap())
+        //{
+        //    playerController_.Damage();
+        //    nextState = new PlayerStateStumble();
+        //}
 
         return nextState;
     }
@@ -44,12 +54,19 @@ public class PlayerStateDefeat : StateBase
     {
         if(StateTimeCount >= 0.2f && !falloutPillarSucsess_)
         {
-            falloutPillarSucsess_ = FallOverPillar();
+            PillarDefeat();
+            falloutPillarSucsess_ = true;
         }
 
         return StateTimeCount >= 1.0f;
     }
 
+    void PillarDefeat()
+    {
+        StaticInterfaceManager.ToFallOverPillar(ref pillar_);
+    }
+
+    #region 使用しなくなった関数
     bool FallOverPillar()
     {
         #region 旧
@@ -109,4 +126,5 @@ public class PlayerStateDefeat : StateBase
         }
         return false;
     }
+    #endregion
 }

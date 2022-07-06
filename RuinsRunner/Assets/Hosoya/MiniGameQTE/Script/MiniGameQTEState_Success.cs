@@ -17,7 +17,7 @@ public class MiniGameQTEState_Success : StateBase
     public override StateBase StateUpdate(GameObject gameObject)
     {
         //最後のボタンまで終わっていないなら
-        if(manager_.buttonNumber < manager_.buttonQuantity - 1)
+        if(manager_.buttonNumber < MiniGameQTEManager.buttonQuantity - 1)
         {
             //ボタンを進めて続行
             manager_.NextButton();

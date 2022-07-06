@@ -47,7 +47,7 @@ public class MiniGameQTE_ImageRender : ObjectSuperClass
         }
 
         //XV
-        timeGauge_.value = Mathf.InverseLerp(manager_.timeLinitMax, 0, manager_.unscaledTimeCount);
+        timeGauge_.value = Mathf.InverseLerp(MiniGameQTEManager.timeLinitMax, 0, manager_.unscaledTimeCount);
     }
 
     //‰Šú‰»ˆ—
