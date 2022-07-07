@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 249832289}
   - component: {fileID: 249832294}
   - component: {fileID: 249832293}
+  - component: {fileID: 249832295}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: SceneManager
@@ -555,7 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   remainTime_: 0
-  stateText: {fileID: 2088021770}
+  stateText_: {fileID: 0}
 --- !u!114 &249832294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,6 +567,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c61f959a46784644488a29ebf2fffcc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &249832295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249832288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44516d94ee8c93f47a3341e2ca20ba3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &331291577
@@ -2879,7 +2892,7 @@ MonoBehaviour:
   - {fileID: 4836011828069624081, guid: 72164e76f0a108a4f9348ea55344b383, type: 3}
   - {fileID: 526515022502195483, guid: a8ae6af6745606b428c2d83d0f6ef683, type: 3}
   goalMapPrefab_: {fileID: 3839287147619380478, guid: ae4bcca76935642458b5423f0dbaf27a, type: 3}
-  remainTime_: 30
+  remainTime_: 5
 --- !u!4 &1748917931
 Transform:
   m_ObjectHideFlags: 0
@@ -3307,7 +3320,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014777447}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc2023367bbab3942a82bbcd1fb19457, type: 3}
   m_Name: 

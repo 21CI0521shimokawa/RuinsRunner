@@ -63,7 +63,7 @@ public class PlayerStateMG1Jump : StateBase
     }
     public override void StateFinalize()
     {
-
+        playerController_.animator_.ResetTrigger("StateMG1Jump");
     }
     void Jump(GameObject _gameobject)
     {

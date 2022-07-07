@@ -8,12 +8,6 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class SceneSuperClass : MonoBehaviour
 {
-    private void Awake()
-    {
-        //シーンの名前から、自身のシーンを判断させる
-        currentSceneName = SceneDictionary.GetSceneNameEnum(SceneManager.GetActiveScene().name);
-    }
-
     #region ANTI MEMORY LEAK
     private CompositeDisposable compositeDisposable_ = new CompositeDisposable();
 
@@ -30,6 +24,13 @@ public class SceneSuperClass : MonoBehaviour
 
     #region SCENE CHANGE HELPER
     protected SceneName currentSceneName;
+
+    protected void SSCInitialize()
+    {
+        //シーンの名前から、自身のシーンを判断させる
+        currentSceneName = SceneDictionary.GetSceneNameEnum(SceneManager.GetActiveScene().name);
+    }
+
     public SceneName GetCurrentSceneName()
     {
         return currentSceneName;

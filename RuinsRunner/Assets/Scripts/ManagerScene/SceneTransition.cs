@@ -8,13 +8,13 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class SceneTransition : MonoBehaviour
 {
-    public void AddScene(SceneName _sName)
+    static public void AddScene(SceneName _sName)
     {
         SceneManager.LoadScene(SceneDictionary.GetSceneNameString(_sName), LoadSceneMode.Additive);
     }
 
     //新しいシーンを追加した後、呼び出したシーン自身を破棄する
-    public void AddSceneUnloadMyself(SceneName _sName, SceneName _calledScene)
+    static public void AddSceneUnloadMyself(SceneName _sName, SceneName _calledScene)
     {
         //シーンを追加
         AddScene(_sName);
@@ -23,12 +23,13 @@ public class SceneTransition : MonoBehaviour
         UnloadScene(_calledScene);
     }
 
-    public void UnloadScene(SceneName _sName)
+    static public void UnloadScene(SceneName _sName)
     {
-        StartCoroutine(CoroutineUnloadScene(_sName));
+        MonoBehaviour mono = new MonoBehaviour();
+        mono.StartCoroutine(CoroutineUnloadScene(_sName));
     }
 
-    IEnumerator CoroutineUnloadScene(SceneName _sName)
+    static IEnumerator CoroutineUnloadScene(SceneName _sName)
     {
         SceneManager.UnloadSceneAsync(SceneDictionary.GetSceneNameString(_sName));
         yield return null;

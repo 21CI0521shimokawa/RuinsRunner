@@ -14,7 +14,8 @@ namespace SceneDefine
         JEC,
         TITLE,
         DEMO,
-        INGAME,
+        RUNGAME,
+        MINIGAME1,
         GAMEOVER,
         RESULT,
         ENDING,
@@ -39,12 +40,12 @@ namespace SceneDefine
                     {
                         return key;
                     }
-                    throw new KeyNotFoundException();
                 }
+                throw new KeyNotFoundException();
             }
             catch(Exception e)
             {
-                Debug.Log(e.Message);
+                Debug.LogError(e.Message);
             }
             return SceneName.NULL;
         }
@@ -53,7 +54,8 @@ namespace SceneDefine
                 { SceneName.JEC,        "Scene_Jec"      },
                 { SceneName.TITLE,      "Scene_Title"    },
                 { SceneName.DEMO,       "Scene_Demo"     },
-                { SceneName.INGAME,     "Scene_MainGame" },
+                { SceneName.RUNGAME,    "Scene_MainGame" },
+                { SceneName.MINIGAME1,  "Test_MiniGame1" },
                 { SceneName.GAMEOVER,   "Scene_GameOver" },
                 { SceneName.RESULT,     "Scene_Result"   },
                 { SceneName.ENDING,     "Scene_Ending"   },

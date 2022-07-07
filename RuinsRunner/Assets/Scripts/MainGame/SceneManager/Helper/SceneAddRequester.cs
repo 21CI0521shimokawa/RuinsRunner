@@ -9,30 +9,28 @@ public class SceneAddRequester : MonoBehaviour
 
     //GameManagerが既に作成されたことがある前提の書き方なので、
     //テスト用にこのシーンから始めるときはStartにしたほうがいいかもしれない
-    void Awake()
+    void Start()
     {
-        scene_ = SceneManager.GetSceneByName("Manager");
-        currentSceneName_ = GetComponent<SceneManagerMain>().GetCurrentSceneName();
+        currentSceneName_ = GetComponent<SceneSuperClass>().GetCurrentSceneName();
     }
 
     //シーンを追加、切り替えしたいときに呼び出す
     //現在のシーンを保持しておきたい場合は第二引数にfalseを入れる
-    void RequestAddScene(SceneName _sName, bool wouldUnloadThisScene = true)
+    public void RequestAddScene(SceneName _sName, bool wouldUnloadThisScene = true)
     {
-        foreach (var rootGameObject in scene_.GetRootGameObjects())
-        {
-            SceneTransition sceneTransition = rootGameObject.GetComponent<SceneTransition>();
-            if (sceneTransition)
-            {
-                if (wouldUnloadThisScene)
-                {
-                    sceneTransition.AddSceneUnloadMyself(_sName, currentSceneName_);
-                }
-                else
-                {
-                    sceneTransition.AddScene(_sName);
-                }
-            }
-        }
+        //ロードしたいシーン名を保存
+        string loadSceneName = SceneDictionary.GetSceneNameString(_sName);
+
+        //とりあえずシーンのロード
+        SceneManager.LoadScene(loadSceneName, LoadSceneMode.Additive);
+        scene_ = SceneManager.GetSceneByName(loadSceneName);
+
+        //今までのメインシーンの削除要請があったら消す
+        SceneManager.UnloadSceneAsync(SceneDictionary.GetSceneNameString(currentSceneName_));
+
+            //if (wouldUnloadThisScene)
+            //{
+            //    SceneTransition.UnloadScene(currentSceneName_);
+            //}
     }
 }

@@ -6,7 +6,7 @@ public class PlayerController
     : ObjectSuperClass
     , IMovePlayer
 {
-    StateMachine state_;
+    public StateMachine state_;
     public Animator animator_;
 
     Rigidbody rigidbody_;
