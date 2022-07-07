@@ -52,7 +52,8 @@ public class MiniGameQTEState_Game : StateBase
 
     public override void StateFinalize()
     {
-
+        manager_ = null;
+        isPressedButtons_ = null;
     }
 
 
@@ -112,6 +113,6 @@ public class MiniGameQTEState_Game : StateBase
     //§ŒÀŽžŠÔ‚ª—ˆ‚½‚ç
     bool IsTimeUp()
     {
-        return manager_.unscaledTimeCount >= manager_.timeLinitMax;
+        return manager_.unscaledTimeCount >= MiniGameQTEManager.timeLinitMax;
     }
 }
