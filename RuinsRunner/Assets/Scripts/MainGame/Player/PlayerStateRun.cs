@@ -21,7 +21,7 @@ public class PlayerStateRun : StateBase
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         rigidbody_ = playerController_.gameObject.GetComponent<Rigidbody>();
-        speed_ = 8;
+        speed_ = 30;
 
         moveZStartTime_ = 0.0;
         moveZStartPositionZ_ = playerController_.gameObject.transform.position.z;
@@ -32,9 +32,6 @@ public class PlayerStateRun : StateBase
         {
             playerController_.animator_.SetTrigger("StateRun");
         }
-
-        ////1フレームだけトリガーをセットする
-        //playerController_.animator_.SetTriggerOneFrame("StateRun");
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
@@ -52,26 +49,18 @@ public class PlayerStateRun : StateBase
         {
             nextState = new PlayerState_Test(); //仮
         }
+        
+        //7月7日下川追加 クイズミニゲーム呼び出し(仮)
+        if(Input.GetKeyDown(KeyCode.Backspace))
+        {
+            nextState = new PlayerStateQuizGame();
+        }
 
         //仮
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            GameObject pillar = PillarChack();
-            if(pillar != null)
-            {
-                PlayerStatePillarDefeatMiniGame state = new PlayerStatePillarDefeatMiniGame();
-                state.pillar = pillar;
-                nextState = state;
-
-                //StateBase buf3 = new PlayerStatePillarDefeatMiniGame();
-                //((PlayerStatePillarDefeatMiniGame)buf3).pillar = pillar;
-
-                //StateBase buf3 = new PlayerStatePillarDefeatMiniGame();
-                //(buf3 as PlayerStatePillarDefeatMiniGame).pillar = pillar;
-            }
+            nextState = new PlayerStateDefeat();
         }
-
-        //ジャンプ
         if (Input.GetKeyDown(KeyCode.W))
         {
             nextState = new PlayerStateJump();
@@ -126,11 +115,11 @@ public class PlayerStateRun : StateBase
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            moveVec.x = speed_;
+            moveVec.x = speed_/* * Time.deltaTime*/;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            moveVec.x = -speed_;
+            moveVec.x = -speed_/* * Time.deltaTime*/;
         }
         else
         {
@@ -189,32 +178,5 @@ public class PlayerStateRun : StateBase
             //_gameObject.transform.position = newVec;
             rigidbody_.MovePosition(newVec);
         }
-    }
-
-
-    //柱検知
-    GameObject PillarChack()
-    {
-        //Pillar（実体）を取得
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Pillar");
-
-        Vector3 origin = playerController_.gameObject.transform.position; // 原点
-        float radius = 2.0f;
-
-        //範囲内のcolliderを検知
-        Collider[] hitColliders = Physics.OverlapSphere(origin, radius);
-
-        foreach (Collider hit in hitColliders)
-        {
-            for (int g = 0; g < gameObjects.Length; ++g)
-            {
-                //Rayが当たったgameobjectと取得したgameobjectが一致したら
-                if (hit.gameObject == gameObjects[g])
-                {
-                    return gameObjects[g];
-                }
-            }
-        }
-        return null;
     }
 }
