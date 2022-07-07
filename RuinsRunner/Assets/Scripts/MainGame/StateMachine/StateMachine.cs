@@ -57,7 +57,7 @@ public class StateMachine
 
 
     //State‚Ì•ÏXˆ—
-    private void ChangeState(StateBase nextState)
+    public void ChangeState(StateBase nextState)
     {
         string stateName = nowState_.GetType().Name;  //State(Class)–¼‚Ìæ“¾
         string nextStateName = nextState.GetType().Name;  //State(Class)–¼‚Ìæ“¾

@@ -6,7 +6,7 @@ public class PlayerController
     : ObjectSuperClass
     , IMovePlayer
 {
-    StateMachine state_;
+    public StateMachine state_;
     public Animator animator_;
 
     Rigidbody rigidbody_;
@@ -54,7 +54,7 @@ public class PlayerController
     {
         MoveLooksLikeRunning.Set_isRunning(true);   //ˆÚ“®ŠJŽn
 
-        state_ = new StateMachine(new PlayerStateMG1Idle());
+        state_ = new StateMachine(new PlayerStateRun());
 
         rigidbody_ = gameObject.GetComponent<Rigidbody>();
     }

@@ -6,17 +6,22 @@ using UnityEngine;
 
 public class CameraMG1 : MonoBehaviour
 {
-    [SerializeField] GameObject Target;
+    [SerializeField] float CameramoveAdjust = 2f;
+    //[SerializeField] GameObject Target;
     [SerializeField] GameObject Camera;
-    [SerializeField] GameObject[] NextPositions;
-    [SerializeField] PathType PathType;
-    [SerializeField] Ease EaseType;
-    [SerializeField] float MoveTime;
-    Tweener tweenerMain;
-    Tweener tweenerSub = null;
+    //[SerializeField] GameObject[] NextPositions;
+    //[SerializeField] PathType PathType;
+    //[SerializeField] Ease EaseType;
+    //[SerializeField] float MoveTime;
+    //Tweener tweenerMain;
+    //Tweener tweenerSub = null;
     private void Update()
     {
-        Vector3[] path = NextPositions.Select(x => x.transform.position).ToArray();
+        if(Camera.transform.position.y > 11)
+        {
+            Camera.transform.position -= new Vector3(0, Time.deltaTime * CameramoveAdjust, 0);
+        }
+/*        Vector3[] path = NextPositions.Select(x => x.transform.position).ToArray();
         Camera.transform.position = path[0];
         tweenerMain = Camera.transform.DOMoveY(path[1].y, MoveTime)
     .OnStart(() =>
@@ -24,7 +29,7 @@ public class CameraMG1 : MonoBehaviour
         Camera.transform.DORotate(Vector3.right * 15f, 1f);
     });
 
-/*        if (Camera.transform.position.y > Target.transform.position.y + 5)
+        if (Camera.transform.position.y > Target.transform.position.y + 5)
         {
             tweenerMain.Pause();
 

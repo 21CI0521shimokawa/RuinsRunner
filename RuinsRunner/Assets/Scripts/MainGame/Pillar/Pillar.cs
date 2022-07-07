@@ -11,9 +11,10 @@ public class Pillar
     , IToFallenOver
 {
     bool isFalleing_;
-    private void Awake()
+    private void Start()
     {
-        gameObject.tag = "Pillar";
+        if(gameObject.CompareTag("Untagged"))
+            gameObject.tag = "Pillar";
         isFalleing_ = false;
     }
 
@@ -25,7 +26,9 @@ public class Pillar
 
     IEnumerator ToFallOver()
     {
-        gameObject.GetComponent<BoxCollider>().isTrigger = true;
+        BoxCollider bCollider = gameObject.GetComponent<BoxCollider>();
+        if(bCollider != null)
+            bCollider.isTrigger = true;
         isFalleing_ = true;
         float accel = 0f;
         while(transform.localEulerAngles.z < 90)

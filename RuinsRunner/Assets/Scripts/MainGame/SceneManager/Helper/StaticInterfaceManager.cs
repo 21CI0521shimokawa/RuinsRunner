@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameStateDefine;
 
 public static class StaticInterfaceManager
 {
@@ -9,7 +10,7 @@ public static class StaticInterfaceManager
     /// プレイヤーが接触したgameObjectを参照渡しして使う
     /// </summary>
     /// <param name="_pillar"></param>
-    static public void ToFallOverPillar(ref GameObject _pillar)
+    static public void ToFallOverPillar(GameObject _pillar)
     {
         IToFallenOver obj = _pillar.GetComponent(typeof(IToFallenOver)) as IToFallenOver;
         if (obj == null) return;
@@ -40,10 +41,22 @@ public static class StaticInterfaceManager
         obj.CallCameraMove(_destination, _newTarget);
     }
 
+    /// <summary>
+    /// プレイヤーのZ座標テーブルを移動させる
+    /// </summary>
+    /// <param name="_moveAmount"></param>
+    /// <param name="_player"></param>
     static public void MovePlayerZ(int _moveAmount, PlayerController _player)
     {
         IMovePlayer obj = _player.GetComponent(typeof(IMovePlayer)) as IMovePlayer;
         if (obj == null) return;
         obj.MovePlayer(_moveAmount);
+    }
+
+    static public void SwitchRunToMG(GameState _gameState, SceneManagerMain _sceneManagerMain)
+    {
+        ISwitchRunToMG obj = _sceneManagerMain.GetComponent(typeof(ISwitchRunToMG)) as ISwitchRunToMG;
+        if (obj == null) return;
+        obj.SwitchMiniGame(_gameState);
     }
 }
