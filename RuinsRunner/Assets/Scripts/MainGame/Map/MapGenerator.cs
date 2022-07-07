@@ -35,10 +35,17 @@ public class MapGenerator : MonoBehaviour
         {
             remainTime_ = 0f;
         }
-            movedDistance_ += MainGameConst.moveSpeed * Time.deltaTime;
+
+        movedDistance_ += MainGameConst.moveSpeed * Time.deltaTime;
+
         //todo:アタッチして試運転が終わったら4.0fをgameObject.GetComponetn<RectTransform>().sizeDelta.zで取得したい
         if (movedDistance_ >= 4.0f)
         {
+            //マップチップの位置に応じて生成位置を微調整する
+            //　2022/07/06 細谷 
+            Vector3 createPosition = createPosition_;
+            createPosition.z -= movedDistance_ - 4.0f;
+
             if (remainTime_ > 0)
             {
                 //生成可能なマップチップを保持しておく器
@@ -55,16 +62,20 @@ public class MapGenerator : MonoBehaviour
 
                 //prefabの生成
                 int randomIndex = Random.Range(0, candidateMapPrefab.Count);
-                Instantiate(candidateMapPrefab[randomIndex], createPosition_, Quaternion.identity, mapFolder_.transform);
+
+                //Instantiate(candidateMapPrefab[randomIndex], createPosition_, Quaternion.identity, mapFolder_.transform);
+                Instantiate(candidateMapPrefab[randomIndex], createPosition, Quaternion.identity, mapFolder_.transform);
 
                 //latestに情報を更新
                 latestMapInfo_ = candidateMapPrefab[randomIndex].GetComponent<MapChip>().GetMapInformation();
 
-                movedDistance_ = 0;
+                //movedDistance_ = 0;
+                movedDistance_ -= 4.0f;
             }
             else
             {
-                Instantiate(goalMapPrefab_, createPosition_, Quaternion.identity);
+                //Instantiate(goalMapPrefab_, createPosition_, Quaternion.identity);
+                Instantiate(goalMapPrefab_, createPosition, Quaternion.identity);
                 enabled = false;
             }
         }

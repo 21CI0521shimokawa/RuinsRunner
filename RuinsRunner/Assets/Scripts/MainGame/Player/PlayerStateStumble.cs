@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStateStumble : StateBase
 {
-    PlayerController playerController;
+    PlayerController playerController_;
 
     float moveStartPositionZ_;
     float moveEndPositionZ_;
@@ -14,11 +14,16 @@ public class PlayerStateStumble : StateBase
 
     public override void StateInitialize()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        playerController.animator_.SetTrigger("StateStumble");
+        playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
-        moveStartPositionZ_ = playerController.gameObject.transform.position.z;
-        moveEndPositionZ_ = playerController.GetPositionZ();
+        //こけるモーションじゃなかったらSetTriggerする
+        if (!playerController_.animator_.GetCurrentAnimatorStateInfo(0).IsName("Stumble"))
+        {
+            playerController_.animator_.SetTrigger("StateStumble");
+        }
+
+        moveStartPositionZ_ = playerController_.gameObject.transform.position.z;
+        moveEndPositionZ_ = playerController_.GetPositionZ();
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
@@ -40,7 +45,7 @@ public class PlayerStateStumble : StateBase
 
     bool Action(GameObject _gameObject)
     {
-        AnimatorStateInfo stateInfo = playerController.animator_.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo stateInfo = playerController_.animator_.GetCurrentAnimatorStateInfo(0);
 
         //アニメーションがこけるモーションか
         if (stateInfo.shortNameHash == hashStateStumble)
@@ -65,6 +70,7 @@ public class PlayerStateStumble : StateBase
         }
         else
         {
+            Debug.Log("あああ");
             return false;
         }
     }
