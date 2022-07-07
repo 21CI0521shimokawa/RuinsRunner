@@ -10,7 +10,7 @@ public static class StaticInterfaceManager
     /// プレイヤーが接触したgameObjectを参照渡しして使う
     /// </summary>
     /// <param name="_pillar"></param>
-    static public void ToFallOverPillar(GameObject _pillar)
+    static public void ToFallOverPillar(ref GameObject _pillar)
     {
         IToFallenOver obj = _pillar.GetComponent(typeof(IToFallenOver)) as IToFallenOver;
         if (obj == null) return;

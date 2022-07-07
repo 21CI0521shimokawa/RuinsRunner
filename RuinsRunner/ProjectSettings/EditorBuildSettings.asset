@@ -18,8 +18,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene_Demo.unity
     guid: e982765584defa24e8121cb1eb2c5b7b
   - enabled: 1
+    path: Assets/Hosoya/MiniGameQTE/Scene_MiniGameQTE.unity
+    guid: d67b692d312861a4e9563db1160d4c6f
+  - enabled: 1
     path: Assets/Scenes/Scene_MainGame.unity
     guid: f55264e13eec94743a1bbd473435a402
+  - enabled: 1
+    path: Assets/Scenes/Test_MiniGame1.unity
+    guid: 8fe4a922b5757b3409b169c7fead99f1
   - enabled: 1
     path: Assets/Scenes/Scene_GameOver.unity
     guid: 7714be17ebef8a44cbbd3150f546cd47

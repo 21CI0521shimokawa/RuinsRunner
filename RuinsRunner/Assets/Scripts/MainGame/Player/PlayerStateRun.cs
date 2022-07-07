@@ -53,7 +53,7 @@ public class PlayerStateRun : StateBase
         //7月7日下川追加 クイズミニゲーム呼び出し(仮)
         if(Input.GetKeyDown(KeyCode.Backspace))
         {
-            nextState = new PlayerStateQuizGame();
+            //nextState = new PlayerStateQuizGame();
         }
 
         //仮

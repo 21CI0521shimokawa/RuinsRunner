@@ -17,7 +17,7 @@ public class CheckReachEnd : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StaticInterfaceManager.ToFallOverPillar(pillar_);
+            StaticInterfaceManager.ToFallOverPillar(ref pillar_);
             StaticInterfaceManager.SwitchRunToMG(GameState.MiniGame1, sceneManager_);
         }
     }
