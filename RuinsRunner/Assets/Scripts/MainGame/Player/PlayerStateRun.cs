@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerStateRun : StateBase
 {
@@ -53,28 +54,61 @@ public class PlayerStateRun : StateBase
             nextState = new PlayerState_Test(); //仮
         }
 
-        //仮
-        if (Input.GetKeyDown(KeyCode.Q))
+        //仮 黄色ボタン
+
+        Gamepad gamepad = Gamepad.current;
+
+        if (gamepad != null)
         {
-            GameObject pillar = PillarChack();
-            if(pillar != null)
+            //殴る 青ボタン
+            if (Keyboard.current.rKey.wasPressedThisFrame || Gamepad.current.buttonWest.wasPressedThisFrame)
             {
-                PlayerStatePillarDefeatMiniGame state = new PlayerStatePillarDefeatMiniGame();
-                state.pillar = pillar;
-                nextState = state;
+                GameObject pillar = PillarChack();
+                if (pillar != null)
+                {
+                    PlayerStatePillarDefeatMiniGame state = new PlayerStatePillarDefeatMiniGame();
+                    state.pillar = pillar;
+                    nextState = state;
 
-                //StateBase buf3 = new PlayerStatePillarDefeatMiniGame();
-                //((PlayerStatePillarDefeatMiniGame)buf3).pillar = pillar;
+                    //StateBase buf3 = new PlayerStatePillarDefeatMiniGame();
+                    //((PlayerStatePillarDefeatMiniGame)buf3).pillar = pillar;
 
-                //StateBase buf3 = new PlayerStatePillarDefeatMiniGame();
-                //(buf3 as PlayerStatePillarDefeatMiniGame).pillar = pillar;
+                    //StateBase buf3 = new PlayerStatePillarDefeatMiniGame();
+                    //(buf3 as PlayerStatePillarDefeatMiniGame).pillar = pillar;
+                }
+            }
+
+            //ジャンプ 赤ボタン
+            if (Keyboard.current.qKey.wasPressedThisFrame || Gamepad.current.buttonEast.wasPressedThisFrame)
+            {
+                nextState = new PlayerStateJump();
             }
         }
-
-        //ジャンプ
-        if (Input.GetKeyDown(KeyCode.W))
+        else
         {
-            nextState = new PlayerStateJump();
+            //殴る 青ボタン
+            if (Keyboard.current.rKey.wasPressedThisFrame)
+            {
+                GameObject pillar = PillarChack();
+                if (pillar != null)
+                {
+                    PlayerStatePillarDefeatMiniGame state = new PlayerStatePillarDefeatMiniGame();
+                    state.pillar = pillar;
+                    nextState = state;
+
+                    //StateBase buf3 = new PlayerStatePillarDefeatMiniGame();
+                    //((PlayerStatePillarDefeatMiniGame)buf3).pillar = pillar;
+
+                    //StateBase buf3 = new PlayerStatePillarDefeatMiniGame();
+                    //(buf3 as PlayerStatePillarDefeatMiniGame).pillar = pillar;
+                }
+            }
+
+            //ジャンプ 赤ボタン
+            if (Keyboard.current.qKey.wasPressedThisFrame)
+            {
+                nextState = new PlayerStateJump();
+            }
         }
 
         //現在のZ座標よりプレイヤがいる予定の場所の方が敵に遠かったら（仮）
@@ -100,9 +134,7 @@ public class PlayerStateRun : StateBase
         //敵に近づきすぎたら（仮）
         if (playerController_.IsBeCaught())
         {
-            //nextState = new PlayerStateBeCaught();
-
-            nextState = new PlayerStateDeath(); //仮 とりあえず殺しとく
+            nextState = new PlayerStateBeCaught();
         }
 
         //落下していたら
@@ -124,27 +156,37 @@ public class PlayerStateRun : StateBase
     {
         Vector3 moveVec = new Vector3(0, 0, 0);
 
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            moveVec.x = speed_;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            moveVec.x = -speed_;
-        }
-        else
-        {
-            moveVec.x = 0;
-        }
+        #region 旧
+        //if (Input.GetKey(KeyCode.RightArrow))
+        //{
+        //    moveVec.x = speed_;
+        //}
+        //else if (Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    moveVec.x = -speed_;
+        //}
+        //else
+        //{
+        //    moveVec.x = 0;
+        //}
+        #endregion
+
+        float gamepadStickLX = ControllerManager.GetGamepadStickL().x;
+
+        moveVec.x += gamepadStickLX > 0.9f ? speed_ : 0;
+        moveVec.x += gamepadStickLX < -0.9f ? -speed_ : 0;
 
         if (moveVec.x != 0)
         {
             if (playerController_.PlayerMoveChack(moveVec.normalized * 0.05f))
             {
+                rigidbody_.velocity = new Vector3(moveVec.x, rigidbody_.velocity.y, rigidbody_.velocity.z);
+
                 //指定したスピードから現在の速度を引いて加速力を求める
-                float currentSpeed = moveVec.x - rigidbody_.velocity.x;
+                //float currentSpeed = moveVec.x - rigidbody_.velocity.x;
                 //調整された加速力で力を加える
-                rigidbody_.AddForce(new Vector3(currentSpeed, 0, 0));
+                //rigidbody_.AddForce(new Vector3(currentSpeed, 0, 0));
+
 
                 //_gameObject.transform.position += moveVec;
             }
@@ -152,6 +194,10 @@ public class PlayerStateRun : StateBase
             {
                 rigidbody_.velocity = new Vector3(0, rigidbody_.velocity.y, rigidbody_.velocity.z);
             }
+        }
+        else
+        {
+            rigidbody_.velocity = new Vector3(0, rigidbody_.velocity.y, rigidbody_.velocity.z);
         }
     }
 

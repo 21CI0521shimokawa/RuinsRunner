@@ -35,7 +35,7 @@ public class MiniGameQTEManager : ObjectSuperClass
         {
             bool rtv = isFailure_;
 
-            isFailure = false;
+            isFailure_ = false;
 
             return rtv;
         }
@@ -204,8 +204,8 @@ public class MiniGameQTEManager : ObjectSuperClass
         }
 
         // アンマネージリソースの解放処理を記述
-        buttonQuantity_ = 0;
-        timeLinitMax_ = 0;
+        //buttonQuantity_ = 0;
+        //timeLinitMax_ = 0;
         buttonNumber_ = 0;
         isInitializeProcessing_ = false;
         unscaledTimeCount_ = 0.0f;

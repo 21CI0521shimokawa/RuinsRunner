@@ -80,7 +80,8 @@ public class PlayerController
     //•ß‚Ü‚Á‚½‚©‚Ç‚¤‚©
     public bool IsBeCaught()
     {
-        return gameObject.transform.position.z <= positionZTables[positionZTables.Length - 1];
+        //return gameObject.transform.position.z <= positionZTables[positionZTables.Length - 1];
+        return tablePositionZ >= positionZTables.Length - 1 && gameObject.transform.position.z <= positionZTables[positionZTables.Length - 1];
     }
 
     //’n–Ê‚É—§‚Á‚Ä‚é‚©‚Ç‚¤‚©

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MiniGameQTEState_Game : StateBase
 {
@@ -67,14 +68,35 @@ public class MiniGameQTEState_Game : StateBase
 
     void ButtonPress()
     {
-        isPressedButtons_[0] = Input.GetKeyDown(KeyCode.Q);
-        isPressedButtons_[1] = Input.GetKeyDown(KeyCode.W);
-        isPressedButtons_[2] = Input.GetKeyDown(KeyCode.E);
-        isPressedButtons_[3] = Input.GetKeyDown(KeyCode.R);
-        isPressedButtons_[4] = Input.GetKeyDown(KeyCode.UpArrow);
-        isPressedButtons_[5] = Input.GetKeyDown(KeyCode.DownArrow);
-        isPressedButtons_[6] = Input.GetKeyDown(KeyCode.RightArrow);
-        isPressedButtons_[7] = Input.GetKeyDown(KeyCode.LeftArrow);
+        //キーボード
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard != null)
+        {
+            #region 旧
+            isPressedButtons_[0] = keyboard.qKey.wasPressedThisFrame;
+            isPressedButtons_[1] = keyboard.wKey.wasPressedThisFrame;
+            isPressedButtons_[2] = keyboard.eKey.wasPressedThisFrame;
+            isPressedButtons_[3] = keyboard.rKey.wasPressedThisFrame;
+            isPressedButtons_[4] = keyboard.upArrowKey.wasPressedThisFrame;
+            isPressedButtons_[5] = keyboard.downArrowKey.wasPressedThisFrame;
+            isPressedButtons_[6] = keyboard.rightArrowKey.wasPressedThisFrame;
+            isPressedButtons_[7] = keyboard.leftArrowKey.wasPressedThisFrame;
+            #endregion
+        }
+
+        //ゲームパッド
+        Gamepad gamepad = Gamepad.current;
+        if(gamepad != null)
+        {
+            isPressedButtons_[0] = gamepad.buttonEast.wasPressedThisFrame;
+            isPressedButtons_[1] = gamepad.buttonSouth.wasPressedThisFrame;
+            isPressedButtons_[2] = gamepad.buttonNorth.wasPressedThisFrame;
+            isPressedButtons_[3] = gamepad.buttonWest.wasPressedThisFrame;
+            isPressedButtons_[4] = gamepad.dpad.up.wasPressedThisFrame;
+            isPressedButtons_[5] = gamepad.dpad.down.wasPressedThisFrame;
+            isPressedButtons_[6] = gamepad.dpad.right.wasPressedThisFrame;
+            isPressedButtons_[7] = gamepad.dpad.left.wasPressedThisFrame;
+        }
     }
 
     //ボタン確認

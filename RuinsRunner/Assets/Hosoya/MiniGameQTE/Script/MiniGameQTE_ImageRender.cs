@@ -11,7 +11,7 @@ public class MiniGameQTE_ImageRender : ObjectSuperClass
 
     List<Image> buttonImages_;      //今ある画像のリスト
     Image arrowSymbol_;             //矢印
-    [SerializeField] Slider timeGauge_;              //タイムゲージ
+    [SerializeField] H_GaugeManager timeGauge_;              //タイムゲージ
 
     const int imageSize_ = 60;      //画像サイズ
 
@@ -47,7 +47,7 @@ public class MiniGameQTE_ImageRender : ObjectSuperClass
         }
 
         //更新
-        timeGauge_.value = Mathf.InverseLerp(MiniGameQTEManager.timeLinitMax, 0, manager_.unscaledTimeCount);
+        timeGauge_.GaugeValueChange(MiniGameQTEManager.timeLinitMax, 0, manager_.unscaledTimeCount);
     }
 
     //初期化処理

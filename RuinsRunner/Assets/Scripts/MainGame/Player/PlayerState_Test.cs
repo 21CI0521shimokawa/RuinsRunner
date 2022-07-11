@@ -6,16 +6,36 @@ using UnityEngine.SceneManagement;
 public class PlayerState_Test : StateBase
 {
     PlayerController playerController_;
+    int randomGameNumber_;  //今やるゲームの番号
 
     public override void StateInitialize()
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        randomGameNumber_ = Random.Range(0, 2);
+        switch(randomGameNumber_)
+        {
+            case 0:
+                //Sceneを加算ロード。現在のシーンは残ったままで、Sceneが追加される
+                SceneManager.LoadSceneAsync("Scene_MiniGameQTE", LoadSceneMode.Additive);
 
-        //Sceneを加算ロード。現在のシーンは残ったままで、Sceneが追加される
-        SceneManager.LoadSceneAsync("Scene_MiniGameQTE", LoadSceneMode.Additive);
+                //できればstaticは使いたくない
+                MiniGameQTEManager.buttonQuantity = 3;
+                MiniGameQTEManager.timeLinitMax = 50.0f;
+                break;
+
+            case 1:
+                //Sceneを加算ロード。現在のシーンは残ったままで、Sceneが追加される
+                SceneManager.LoadSceneAsync("Scene_MiniGameStickRoundAndRound", LoadSceneMode.Additive);
+
+                //できればstaticは使いたくない
+                MiniGameStickRoundAndRoundManager.timeLinitMax = 5.0f;
+                MiniGameStickRoundAndRoundManager.increasePowerPerSecond = 5.0f;
+                MiniGameStickRoundAndRoundManager.decreasePowerPerSecond = 0.2f;
+                MiniGameStickRoundAndRoundManager.clearPower = 0.6f;
+                break;
+        }
 
         //同フレーム内だとまだロードされてないことになってる？
-
 
         #region 旧
         ////ロード済みのシーンであれば、名前で別シーンを取得できる
@@ -35,32 +55,52 @@ public class PlayerState_Test : StateBase
         //}
         #endregion
 
-
-        //できればstaticは使いたくない
-        MiniGameQTEManager.buttonQuantity = 10;
-        MiniGameQTEManager.timeLinitMax = 5.0f;
-
-
         Time.timeScale = 0.01f; //ゲーム速度を1%に変更
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
     {
-        if(MiniGameQTEManager.isGameClear)
+        switch (randomGameNumber_)
         {
-            return new PlayerStateRun();
-        }
-        if(MiniGameQTEManager.isFailure)
-        {
-            playerController_.Damage();
-            return new PlayerStateStumble();
-        }
+            case 0:
+                if (MiniGameQTEManager.isGameClear)
+                {
+                    return new PlayerStateRun();
+                }
+                if (MiniGameQTEManager.isFailure)
+                {
+                    playerController_.Damage();
+                    return new PlayerStateStumble();
+                }
+                break;
 
+            case 1:
+                if (MiniGameStickRoundAndRoundManager.isGameClear)
+                {
+                    return new PlayerStateRun();
+                }
+                if (MiniGameStickRoundAndRoundManager.isFailure)
+                {
+                    playerController_.Damage();
+                    return new PlayerStateStumble();
+                }
+                break;
+        }
         return this;
     }
     public override void StateFinalize()
     {
-        SceneManager.UnloadSceneAsync("Scene_MiniGameQTE");
+        switch (randomGameNumber_)
+        {
+            case 0:
+                SceneManager.UnloadSceneAsync("Scene_MiniGameQTE");
+                break;
+
+            case 1:
+                SceneManager.UnloadSceneAsync("Scene_MiniGameStickRoundAndRound");
+                break;
+        }
+
         Resources.UnloadUnusedAssets();
         Time.timeScale = 1.0f; //ゲーム速度を100%に変更
     }
