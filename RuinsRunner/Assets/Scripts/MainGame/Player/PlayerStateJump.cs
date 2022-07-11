@@ -17,7 +17,7 @@ public class PlayerStateJump : StateBase
 
         rigidbody_ = playerController_.GetComponent<Rigidbody>();
 
-        jumpPower_ = 5.0f;
+        jumpPower_ = 6.0f;
         sideMoveSpeed_ = 5;
     }
 
@@ -60,27 +60,37 @@ public class PlayerStateJump : StateBase
     {
         Vector3 moveVec = new Vector3(0, 0, 0);
 
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            moveVec.x = sideMoveSpeed_/* * Time.deltaTime*/;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            moveVec.x = -sideMoveSpeed_/* * Time.deltaTime*/;
-        }
-        else
-        {
-            moveVec.x = 0;
-        }
+        #region 旧
+        //if (Input.GetKey(KeyCode.RightArrow))
+        //{
+        //    moveVec.x = speed_;
+        //}
+        //else if (Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    moveVec.x = -speed_;
+        //}
+        //else
+        //{
+        //    moveVec.x = 0;
+        //}
+        #endregion
+
+        float gamepadStickLX = ControllerManager.GetGamepadStickL().x;
+
+        moveVec.x += gamepadStickLX > 0.9f ? sideMoveSpeed_ : 0;
+        moveVec.x += gamepadStickLX < -0.9f ? -sideMoveSpeed_ : 0;
 
         if (moveVec.x != 0)
         {
             if (playerController_.PlayerMoveChack(moveVec.normalized * 0.05f))
             {
+                rigidbody_.velocity = new Vector3(moveVec.x, rigidbody_.velocity.y, rigidbody_.velocity.z);
+
                 //指定したスピードから現在の速度を引いて加速力を求める
-                float currentSpeed = moveVec.x - rigidbody_.velocity.x;
+                //float currentSpeed = moveVec.x - rigidbody_.velocity.x;
                 //調整された加速力で力を加える
-                rigidbody_.AddForce(new Vector3(currentSpeed, 0, 0));
+                //rigidbody_.AddForce(new Vector3(currentSpeed, 0, 0));
+
 
                 //_gameObject.transform.position += moveVec;
             }
@@ -88,6 +98,10 @@ public class PlayerStateJump : StateBase
             {
                 rigidbody_.velocity = new Vector3(0, rigidbody_.velocity.y, rigidbody_.velocity.z);
             }
+        }
+        else
+        {
+            rigidbody_.velocity = new Vector3(0, rigidbody_.velocity.y, rigidbody_.velocity.z);
         }
     }
 }
