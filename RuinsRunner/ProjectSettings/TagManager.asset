@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - Pillar
   - Trap
+  - PillarForEvent
+  - RoundAndRoundManager
+  - ScoreManager
   layers:
   - Default
   - TransparentFX

@@ -18,8 +18,6 @@ public class GameStateRun : StateBase
 
     public override StateBase StateUpdate(GameObject gameObject)
     {
-        gameObject.GetComponent<SceneManagerMain>().SwitchState(GameState.Run);
-
         if (this.StateTimeCount >= 10)
         {
             nextState = new GameStateMiniGame1();

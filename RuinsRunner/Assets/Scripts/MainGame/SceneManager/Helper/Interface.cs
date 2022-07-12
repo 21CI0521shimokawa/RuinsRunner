@@ -43,3 +43,11 @@ public interface ISwitchRunToMG
 {
     void SwitchMiniGame(GameState gameState);
 }
+
+/// <summary>
+/// スコアの加算・減算
+/// </summary>
+public interface IUpdateScore
+{
+    void UpdateScore(int addScore);
+}
