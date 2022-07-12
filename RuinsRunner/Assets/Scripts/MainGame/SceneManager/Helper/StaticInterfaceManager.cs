@@ -53,10 +53,28 @@ public static class StaticInterfaceManager
         obj.MovePlayer(_moveAmount);
     }
 
+    /// <summary>
+    /// ゲームシーンをミニゲームに切り替える
+    /// </summary>
+    /// <param name="_gameState"></param>
+    /// <param name="_sceneManagerMain"></param>
     static public void SwitchRunToMG(GameState _gameState, SceneManagerMain _sceneManagerMain)
     {
         ISwitchRunToMG obj = _sceneManagerMain.GetComponent(typeof(ISwitchRunToMG)) as ISwitchRunToMG;
         if (obj == null) return;
         obj.SwitchMiniGame(_gameState);
+    }
+
+    /// <summary>
+    /// スコアの加算
+    /// </summary>
+    /// <param name="_addScore"></param>
+    /// <param name="_sceneManagerMain"></param>
+    static public void UpdateScore(int _addScore)
+    {
+        GameObject scoreManager = GameObject.FindGameObjectWithTag("ScoreManager");
+        IUpdateScore obj =scoreManager.GetComponent(typeof(IUpdateScore)) as IUpdateScore;
+        if(obj == null) return;
+        obj.UpdateScore(_addScore);
     }
 }

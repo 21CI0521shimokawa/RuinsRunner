@@ -10,6 +10,8 @@ public class EnemyStateKnockBack : StateBase
     {
         enemyController = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyController>();
         enemyController.EnemyAnimator.SetTrigger("KnockBack");
+        //ãØÇ‹ÇπÇÁÇÍÇΩÇÃÇ≈ÉXÉRÉAâ¡éZ
+        StaticInterfaceManager.UpdateScore(300);
     }
     public override StateBase StateUpdate(GameObject gameObject)
     {

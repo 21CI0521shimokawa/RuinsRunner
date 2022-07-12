@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class Item_Coin : ItemBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         transform.Rotate(new Vector3(0, 120 * Time.deltaTime, 0));
@@ -18,7 +11,7 @@ public class Item_Coin : ItemBase
 
     protected override void TakenItem(GameObject _player)
     {
-        Debug.Log("ƒRƒCƒ“‚ªŽæ‚ç‚ê‚½");
+        StaticInterfaceManager.UpdateScore(100);
     }
 
     protected override void ReleaseProcess_ManagedResource()

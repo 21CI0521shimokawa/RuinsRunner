@@ -20,6 +20,7 @@ public class Item_Meet : ItemBase
     {
         //_player.GetComponent<PlayerController>().Recovery();
         StaticInterfaceManager.MovePlayerZ(-1, _player.GetComponent<PlayerController>());
+        StaticInterfaceManager.UpdateScore(500);
     }
 
     protected override void ReleaseProcess_ManagedResource()
