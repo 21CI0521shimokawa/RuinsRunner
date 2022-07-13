@@ -9,16 +9,14 @@ TagManager:
   - Pillar
   - Trap
   - PillarForEvent
-  - RoundAndRoundManager
-  - ScoreManager
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostEffect
   - Water
   - UI
-  - 
+  - ObjectPostEffect
   - 
   - 
   - 

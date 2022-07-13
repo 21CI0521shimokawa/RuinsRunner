@@ -24,9 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene_MainGame.unity
     guid: f55264e13eec94743a1bbd473435a402
   - enabled: 1
-    path: Assets/Hosoya/MiniGameStickRoundAndRound/Scene_MiniGameStickRoundAndRound.unity
-    guid: a4f2db9521c5fe14b833a00764d3af2f
-  - enabled: 1
     path: Assets/Scenes/Test_MiniGame1.unity
     guid: 8fe4a922b5757b3409b169c7fead99f1
   - enabled: 1
