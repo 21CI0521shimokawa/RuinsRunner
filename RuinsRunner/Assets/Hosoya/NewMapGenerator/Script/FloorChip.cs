@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorChip : MonoBehaviour
+public class FloorChip : NewMapChip
 {
-    [SerializeField] int sizeZ_;
-    public int sizeZ
+    [SerializeField, Tooltip("âÒì]ÇµÇƒê∂ê¨Ç≈Ç´ÇÈÇ©Ç«Ç§Ç©")] bool canRotate_;
+    public bool canRotate
     {
         get
         {
-            return sizeZ_;
+            return canRotate_;
         }
     }
 }

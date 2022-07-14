@@ -10,8 +10,16 @@ public class NewMapGenerator : MonoBehaviour
     [SerializeField] GameObject mapFolder_;
     //マップチップの生成位置
     [SerializeField] Vector3 createPosition_;
-    //一番直近に生成したマップチップの情報を保存する変数
-    MapInformation latestMapInfo_;
+
+    //一番直近に生成した床チップの情報を保存する変数
+    [SerializeField, Tooltip("生成するマップチップとくっつく床データを入れておく")] FloorChip latestFloorInfo_;
+    public NewMapChip latestFloorInfo
+    {
+        get
+        {
+            return latestFloorInfo_;
+        }
+    }
 
     //移動距離
     float movedDistance_;
@@ -38,7 +46,7 @@ public class NewMapGenerator : MonoBehaviour
     {
         get
         {
-            return wallPrefabs;
+            return wallPrefabs_;
         }
     }
     //floorPrefabの保存場所
@@ -47,7 +55,7 @@ public class NewMapGenerator : MonoBehaviour
     {
         get
         {
-            return floorPrefabs;
+            return floorPrefabs_;
         }
     }
     //ゴールのマップチップ
@@ -86,25 +94,91 @@ public class NewMapGenerator : MonoBehaviour
         }
 
         movedDistance_ += MainGameConst.moveSpeed * Time.deltaTime;
-        state_.Update(gameObject);
+
+        if(state_ != null)
+        {
+            state_.Update(gameObject);
+        }
     }
 
+    //生成
     public GameObject Generate(GameObject _mapChip, float _generateOffsetZ = 0.0f)
     {
         //マップチップの位置に応じて生成位置を微調整する
         Vector3 createPosition = createPosition_;
-        createPosition.z -= movedDistance_ - 4.0f;
 
         //offset
         createPosition.z += _generateOffsetZ;
 
+        //生成するものが床ならlatestFloorInfoを更新
+        FloorChip floorData = _mapChip.GetComponent<FloorChip>();
+        if(floorData != null)
+        {
+            latestFloorInfo_ = floorData;
+        }
+
         return Instantiate(_mapChip, createPosition, Quaternion.identity, mapFolder_.transform);
+    }
+
+    //床回転
+    public void FloorRotate(GameObject _mapChip)
+    {
+        FloorChip chipData = _mapChip.GetComponent<FloorChip>();
+
+        if(chipData != null)
+        {
+            if(chipData.canRotate)
+            {
+                int randomValue = Random.Range(0, 100);
+
+                if(randomValue > 50)
+                {
+                    //回転
+                    _mapChip.transform.Rotate(new Vector3(0, 180, 0));
+
+                    //位置調整
+                    _mapChip.transform.position += new Vector3(0, 0, chipData.sizeZ);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("FloorChipが見つかりません！！");
+        }
+    }
+
+    //壁移動
+    public void WallMove(GameObject _mapChip, bool _isRightWall)
+    {
+        //右の壁なら回転する必要がないので終了
+        if(!_isRightWall)
+        {
+            WallChip chipData = _mapChip.GetComponent<WallChip>();
+
+            //回転
+            _mapChip.transform.Rotate(new Vector3(0, 180, 0));
+
+            //位置調整
+            _mapChip.transform.position += new Vector3(0, 0, chipData.sizeZ);
+        }
+    }
+
+    public bool IsWallPlacementCheck(GameObject _mapChip, bool _isRightWall)
+    {
+        if (_isRightWall)
+        {
+            return _mapChip.GetComponent<WallChip>().isPlacementRight;
+        }
+        else
+        {
+            return _mapChip.GetComponent<WallChip>().isPlacementLeft;
+        }
     }
 
     public bool IsGenerate()
     {
         //todo:アタッチして試運転が終わったら4.0fをgameObject.GetComponetn<RectTransform>().sizeDelta.zで取得したい
-        return movedDistance_ >= 4.0f;
+        return movedDistance_ >= latestFloorInfo_.sizeZ;
     }
 
     public bool IsGoalGenerate()

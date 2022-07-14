@@ -2,14 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallChip : MonoBehaviour
+public class WallChip : NewMapChip
 {
-    [SerializeField] int sizeZ_;
-    public int sizeZ
+    [SerializeField, Tooltip("右側に配置できるかどうか")] bool isPlacementRight_;
+    public bool isPlacementRight
     {
         get
         {
-            return sizeZ_;
+            return isPlacementRight_;
+        }
+    }
+
+    [SerializeField, Tooltip("左側に配置できるかどうか")] bool isPlacementLeft_;
+    public bool isPlacementLeft
+    {
+        get
+        {
+            return isPlacementLeft_;
         }
     }
 }
