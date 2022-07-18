@@ -25,8 +25,8 @@ public class PlayerStatePillarDefeatMiniGame : StateBase
         SceneManager.LoadSceneAsync("Scene_MiniGameQTE", LoadSceneMode.Additive);
 
         //できればstaticは使いたくない
-        MiniGameQTEManager.buttonQuantity = 5;
-        MiniGameQTEManager.timeLinitMax = 7.0f;
+        MiniGameQTEManager.buttonQuantity = 1;
+        MiniGameQTEManager.timeLinitMax = 5.0f;
 
         Time.timeScale = 0.01f; //ゲーム速度を1%に変更
     }

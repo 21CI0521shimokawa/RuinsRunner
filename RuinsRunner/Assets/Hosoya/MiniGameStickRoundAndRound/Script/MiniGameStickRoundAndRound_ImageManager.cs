@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MiniGameStickRoundAndRound_ImageManager : ObjectSuperClass
 {
     MiniGameStickRoundAndRoundManager manager_;
-    [SerializeField] H_GaugeManager powerGauge_;              //パワーゲージ
+    [SerializeField] H_NewGaugeManager powerGauge_;              //パワーゲージ
     [SerializeField] Image clearArea_;
 
     [SerializeField] Image arrow_;

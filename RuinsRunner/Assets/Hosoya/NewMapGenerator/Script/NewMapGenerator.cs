@@ -6,6 +6,8 @@ public class NewMapGenerator : MonoBehaviour
 {
     StateMachine state_;
 
+    ItemGenerator itemGenerator_;
+
     //マップチップの生成フォルダ（親）
     [SerializeField] GameObject mapFolder_;
     //マップチップの生成位置
@@ -78,6 +80,8 @@ public class NewMapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        itemGenerator_ = GetComponent<ItemGenerator>();
+
         state_ = new StateMachine(new NewMapGeneratorState_Normal());
         movedDistance_ = 0;
     }
@@ -184,5 +188,13 @@ public class NewMapGenerator : MonoBehaviour
     public bool IsGoalGenerate()
     {
         return remainTime_ <= 0;
+    }
+
+    public void ItemGenerator(int _floorSizeZ)
+    {
+        if(itemGenerator_ != null)
+        {
+            //生成用関数を呼び出す
+        }
     }
 }
