@@ -11,7 +11,7 @@ public class MiniGameQTE_ImageRender : ObjectSuperClass
 
     List<Image> buttonImages_;      //今ある画像のリスト
     Image arrowSymbol_;             //矢印
-    [SerializeField] H_GaugeManager timeGauge_;              //タイムゲージ
+    [SerializeField] H_NewGaugeManager timeGauge_;              //タイムゲージ
 
     const int imageSize_ = 60;      //画像サイズ
 
@@ -73,6 +73,7 @@ public class MiniGameQTE_ImageRender : ObjectSuperClass
         }
 
         //矢印の生成
+        if(manager_.buttons.Count > 1)
         {
             Image newImage = Instantiate(arrowSymbolPrefab_, Vector3.zero, Quaternion.identity, canbas_.transform).GetComponent<Image>();
             arrowSymbol_ = newImage;
@@ -90,7 +91,10 @@ public class MiniGameQTE_ImageRender : ObjectSuperClass
 
     public void ArrowSymbolPotisionChange()
     {
-        arrowSymbol_.rectTransform.anchoredPosition = new Vector2(buttonImages_[manager_.buttonNumber].rectTransform.anchoredPosition.x, -200);
+        if (arrowSymbol_ != null)
+        {
+            arrowSymbol_.rectTransform.anchoredPosition = new Vector2(buttonImages_[manager_.buttonNumber].rectTransform.anchoredPosition.x, -200);
+        }     
     }
 
 

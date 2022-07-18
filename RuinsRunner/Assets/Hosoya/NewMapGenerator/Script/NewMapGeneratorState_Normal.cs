@@ -58,8 +58,13 @@ public class NewMapGeneratorState_Normal : StateBase
 
                         if (wallPrefabs.Count != 0)
                         {
-                            //壁を決める
-                            int wallNumber = Random.Range(0, wallPrefabs.Count);
+                            //壁を決める 仮
+                            int wallNumber = Random.Range(1, wallPrefabs.Count + 5);
+
+                            if(wallNumber >= wallPrefabs.Count)
+                            {
+                                wallNumber = 0;
+                            }
 
                             //壁を設置
                             GameObject generateWall = mapGenerator_.Generate(wallPrefabs[wallNumber], floorSizeZ - generateWallSizeZ);
@@ -77,6 +82,9 @@ public class NewMapGeneratorState_Normal : StateBase
                         }
                     }
                 }
+
+                //アイテム生成
+                mapGenerator_.ItemGenerator(floorSizeZ);
             }
             else
             {
