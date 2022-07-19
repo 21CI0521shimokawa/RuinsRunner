@@ -6,15 +6,16 @@ using UnityEngine.UI;
 using SceneDefine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(SceneAddRequester))]
 public class SceneManagerMain 
     : SceneSuperClass
-    , IExitGame
     , ISwitchRunToMG
 {
     SceneAddRequester sceneAddRequester_;
 
     private void Awake()
     {
+        base.SSCInitialize();
         sceneAddRequester_ = GetComponent<SceneAddRequester>();
     }
 
@@ -24,11 +25,6 @@ public class SceneManagerMain
 
     private void Update()
     {
-        //動作確認用
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            StaticInterfaceManager.ExitGame();
-        }
     }
 
     /// <summary>
@@ -55,11 +51,5 @@ public class SceneManagerMain
         //MG1ロード
         sceneAddRequester_.RequestAddScene(SceneName.MINIGAME1);
         //TODO:エネミーとめる
-    }
-
-    //ゲーム
-    public void ExitToResult()
-    {
-        sceneAddRequester_.RequestAddScene(SceneName.RESULT);
     }
 }
