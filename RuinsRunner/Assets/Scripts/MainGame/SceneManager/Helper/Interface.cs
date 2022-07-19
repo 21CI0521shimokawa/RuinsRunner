@@ -51,8 +51,3 @@ public interface IUpdateScore
 {
     void UpdateScore(int addScore);
 }
-
-public interface IExitGame
-{
-    void ExitToResult();
-}

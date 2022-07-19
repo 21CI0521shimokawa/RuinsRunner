@@ -77,12 +77,4 @@ public static class StaticInterfaceManager
         if(obj == null) return;
         obj.UpdateScore(_addScore);
     }
-
-    static public void ExitGame()
-    {
-        GameObject sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
-        IExitGame obj = sceneManager.GetComponent(typeof(IExitGame)) as IExitGame;
-        if (obj == null) return;
-        obj.ExitToResult();
-    }
 }

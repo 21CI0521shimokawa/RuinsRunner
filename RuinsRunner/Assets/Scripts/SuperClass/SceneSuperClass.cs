@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 /// <summary>
 ///シーンマネージャー用メモリリーク対策基底クラス
 /// </summary>
-[RequireComponent(typeof(SceneAddRequester))]
 public class SceneSuperClass : MonoBehaviour
 {
     #region ANTI MEMORY LEAK
@@ -24,18 +23,16 @@ public class SceneSuperClass : MonoBehaviour
     #endregion
 
     #region SCENE CHANGE HELPER
-    protected SceneName currentSceneName = SceneName.NULL;
+    protected SceneName currentSceneName;
 
-    protected void SetSceneName()
+    protected void SSCInitialize()
     {
-        if (currentSceneName != SceneName.NULL) return;
         //シーンの名前から、自身のシーンを判断させる
         currentSceneName = SceneDictionary.GetSceneNameEnum(SceneManager.GetActiveScene().name);
     }
 
     public SceneName GetCurrentSceneName()
     {
-        SetSceneName();
         return currentSceneName;
     }
     #endregion
