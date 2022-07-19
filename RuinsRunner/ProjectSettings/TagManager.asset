@@ -9,6 +9,8 @@ TagManager:
   - Pillar
   - Trap
   - PillarForEvent
+  - MapGenerator
+  - ScoreManager
   layers:
   - Default
   - TransparentFX

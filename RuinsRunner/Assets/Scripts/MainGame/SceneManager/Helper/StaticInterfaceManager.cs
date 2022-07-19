@@ -73,8 +73,16 @@ public static class StaticInterfaceManager
     static public void UpdateScore(int _addScore)
     {
         GameObject scoreManager = GameObject.FindGameObjectWithTag("ScoreManager");
-        IUpdateScore obj =scoreManager.GetComponent(typeof(IUpdateScore)) as IUpdateScore;
-        if(obj == null) return;
+        IUpdateScore obj = scoreManager.GetComponent(typeof(IUpdateScore)) as IUpdateScore;
+        if (obj == null) return;
         obj.UpdateScore(_addScore);
+    }
+
+    static public void ExitGame()
+    {
+        GameObject sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
+        IExitGame obj = sceneManager.GetComponent(typeof(IExitGame)) as IExitGame;
+        if (obj == null) return;
+        obj.ExitToResult();
     }
 }

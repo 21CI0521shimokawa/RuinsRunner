@@ -5,13 +5,19 @@ using GameStateDefine;
 using UnityEngine.UI;
 using SceneDefine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
-[RequireComponent(typeof(SceneAddRequester))]
-public class SceneManagerMain 
+public class SceneManagerMain
     : SceneSuperClass
+    , IExitGame
     , ISwitchRunToMG
 {
     SceneAddRequester sceneAddRequester_;
+
+    [Tooltip("ゲーム終了時にメインゲームシーンの実行速度を下げていく早さ")]
+    [Range(0.01f, 0.1f)]
+    [SerializeField] float stopSceneSpeed_ = 0.05f;
+    [SerializeField] TextMeshProUGUI scoreTMP;
 
     private void Awake()
     {
@@ -24,6 +30,11 @@ public class SceneManagerMain
 
     private void Update()
     {
+        //動作確認用
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            StaticInterfaceManager.ExitGame();
+        }
     }
 
     /// <summary>
@@ -50,5 +61,25 @@ public class SceneManagerMain
         //MG1ロード
         sceneAddRequester_.RequestAddScene(SceneName.MINIGAME1);
         //TODO:エネミーとめる
+    }
+
+    //ランゲームを終了してリザルトをシーンを追加で呼び出す
+    public void ExitToResult()
+    {
+        scoreTMP.alpha = 0f;
+        StartCoroutine(GraduallyStopScene());
+        sceneAddRequester_.RequestAddScene(SceneName.RESULT);
+    }
+
+    IEnumerator GraduallyStopScene()
+    {
+        while(Time.timeScale > 0.05f)
+        {
+            Time.timeScale -= stopSceneSpeed_;
+            yield return new WaitForSeconds(0.01f);
+        }
+        Time.timeScale = 0f;
+        Debug.Log("メインシーン停止しました");
+        yield break;
     }
 }

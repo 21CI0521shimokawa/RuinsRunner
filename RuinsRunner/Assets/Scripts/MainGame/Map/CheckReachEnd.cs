@@ -10,15 +10,15 @@ public class CheckReachEnd : MonoBehaviour
     private void Start()
     {
         sceneManager_ = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerMain>();
-        pillar_ = GameObject.FindGameObjectWithTag("PillarForEvent");
+        //pillar_ = GameObject.FindGameObjectWithTag("PillarForEvent");
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            StaticInterfaceManager.ToFallOverPillar(ref pillar_);
-            StaticInterfaceManager.SwitchRunToMG(GameState.MiniGame1, sceneManager_);
+            //StaticInterfaceManager.ToFallOverPillar(ref pillar_);
+            StaticInterfaceManager.ExitGame();
         }
     }
 }

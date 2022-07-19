@@ -34,11 +34,16 @@ public class EnemyStateRun : StateBase
 
     public void Chase(GameObject gameObject)
     {
+        //åªç›óºï˚Ç∆Ç‡ìÄåãíÜ
+        #region â∫êÏé¿ëï
         //Quaternion move_rotation = Quaternion.LookRotation(FollowTarget.transform.position - gameObject.transform.position, Vector3.up);
         //gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, move_rotation, 0.1f);
         //EnemyRigidBody.velocity = gameObject.transform.forward * MoveSpeed;
-        float destinationX = FollowTarget.position.x;
-        enemyController.GetComponent<Transform>().position = new Vector3(Mathf.Lerp(enemyController.GetComponent<Transform>().position.x, destinationX, 0.1f), 0, Mathf.Lerp(enemyController.GetComponent<Transform>().position.z, 10, 0.01f));
+        #endregion
+        #region çHì°é¿ëï
+        //float destinationX = FollowTarget.position.x;
+        //enemyController.GetComponent<Transform>().position = new Vector3(Mathf.Lerp(enemyController.GetComponent<Transform>().position.x, destinationX, 0.1f), 0, Mathf.Lerp(enemyController.GetComponent<Transform>().position.z, 10, 0.01f));
+        #endregion
     }
 
     //ÉXÉ^Éu
