@@ -15,7 +15,6 @@ public class SceneManagerMain
 
     private void Awake()
     {
-        base.SSCInitialize();
         sceneAddRequester_ = GetComponent<SceneAddRequester>();
     }
 
