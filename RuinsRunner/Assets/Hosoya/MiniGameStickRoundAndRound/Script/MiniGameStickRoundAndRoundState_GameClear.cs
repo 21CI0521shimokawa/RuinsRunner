@@ -11,6 +11,7 @@ public class MiniGameStickRoundAndRoundState_GameClear : StateBase
         GameObject managerGameObject = GameObject.FindGameObjectWithTag("RoundAndRoundManager");
         manager_ = managerGameObject.GetComponent<MiniGameStickRoundAndRoundManager>();
 
+        PlayAudio.PlaySE(manager_.successSE);
         MiniGameStickRoundAndRoundManager.isGameClear = true;
 
         Debug.Log("クリア！！");

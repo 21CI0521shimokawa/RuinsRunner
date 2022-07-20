@@ -137,6 +137,24 @@ public class MiniGameQTEManager : ObjectSuperClass
         }
     }
 
+
+    [SerializeField] AudioClip successSE_;
+    public AudioClip successSE
+    {
+        get
+        {
+            return successSE_;
+        }
+    }
+    [SerializeField] AudioClip failureSE_;
+    public AudioClip failureSE
+    {
+        get
+        {
+            return failureSE_;
+        }
+    }
+
     private void Awake()
     {
         render_ = gameObject.GetComponent<MiniGameQTE_ImageRender>();

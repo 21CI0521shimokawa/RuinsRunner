@@ -23,6 +23,16 @@ public class NewMapGenerator : MonoBehaviour
         }
     }
 
+    //¼–¾
+    [SerializeField] GameObject torchPrefab_;
+    public GameObject torchPrefab
+    {
+        get
+        {
+            return torchPrefab_;
+        }
+    }
+
     //ˆÚ“®‹——£
     float movedDistance_;
     public float movedDistance

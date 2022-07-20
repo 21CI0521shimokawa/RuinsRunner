@@ -11,6 +11,7 @@ public class MiniGameStickRoundAndRoundState_Failure : StateBase
         GameObject managerGameObject = GameObject.FindGameObjectWithTag("RoundAndRoundManager");
         manager_ = managerGameObject.GetComponent<MiniGameStickRoundAndRoundManager>();
 
+        PlayAudio.PlaySE(manager_.failureSE);
         MiniGameStickRoundAndRoundManager.isFailure = true;
 
         Debug.Log("é∏îsÅc");

@@ -5,10 +5,12 @@ using UnityEngine;
 public class NewMapGeneratorState_Normal : StateBase
 {
     NewMapGenerator mapGenerator_;
+    float madeWallLength_;
 
     public override void StateInitialize()
     {
         mapGenerator_ = GameObject.FindGameObjectWithTag("MapGenerator").GetComponent<NewMapGenerator>();
+        madeWallLength_ = 0.0f;
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
@@ -81,6 +83,17 @@ public class NewMapGeneratorState_Normal : StateBase
                             generateWallSizeZ = 0;
                         }
                     }
+                }
+
+                //èºñæê∂ê¨
+                for(int i = 0; i < floorSizeZ; ++i)
+                {
+                    if(madeWallLength_ % 4 == 0)
+                    {
+                        GameObject generateTorch = mapGenerator_.Generate(mapGenerator_.torchPrefab, i);
+                    }
+
+                    madeWallLength_ += 1.0f;
                 }
 
                 //ÉAÉCÉeÉÄê∂ê¨

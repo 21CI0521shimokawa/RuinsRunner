@@ -84,6 +84,7 @@ public class MiniGameStickRoundAndRoundState_Game : StateBase
             {
                 //ÉQÅ[ÉWè„è∏
                 manager_.power += MiniGameStickRoundAndRoundManager.increasePowerPerSecond * Time.unscaledDeltaTime;
+                PlayAudio.PlaySE(manager_.chargeSE);
             }
         }
 
