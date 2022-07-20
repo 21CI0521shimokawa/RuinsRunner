@@ -11,6 +11,7 @@ public class MiniGameQTEState_Failure : StateBase
         GameObject managerGameObject = GameObject.FindGameObjectWithTag("QTEManager");
         manager_ = managerGameObject.GetComponent<MiniGameQTEManager>();
 
+        PlayAudio.PlaySE(manager_.failureSE);
         MiniGameQTEManager.isFailure = true;
 
         Debug.Log("é∏îsÅc");

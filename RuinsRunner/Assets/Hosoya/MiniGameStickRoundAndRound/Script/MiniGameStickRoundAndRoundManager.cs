@@ -131,6 +131,31 @@ public class MiniGameStickRoundAndRoundManager : ObjectSuperClass
         }
     }
 
+    [SerializeField] AudioClip successSE_;
+    public AudioClip successSE
+    {
+        get
+        {
+            return successSE_;
+        }
+    }
+    [SerializeField] AudioClip failureSE_;
+    public AudioClip failureSE
+    {
+        get
+        {
+            return failureSE_;
+        }
+    }
+    [SerializeField] AudioClip chargeSE_;
+    public AudioClip chargeSE
+    {
+        get
+        {
+            return chargeSE_;
+        }
+    }
+
     private void Awake()
     {
     }

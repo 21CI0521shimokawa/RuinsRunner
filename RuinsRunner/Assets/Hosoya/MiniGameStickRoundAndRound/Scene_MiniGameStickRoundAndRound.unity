@@ -561,6 +561,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab0cfd4275008a34799664ac13d9c2ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  successSE_: {fileID: 8300000, guid: e65c161e0a4a76f4596eb65e80a8c14f, type: 3}
+  failureSE_: {fileID: 8300000, guid: b0e58ab7b87a10844b594e82e973a990, type: 3}
+  chargeSE_: {fileID: 8300000, guid: 9f9e26dfbc04a71489dbc238ae47612b, type: 3}
 --- !u!4 &1514563182
 Transform:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class MiniGameQTEState_GameClear : StateBase
         GameObject managerGameObject = GameObject.FindGameObjectWithTag("QTEManager");
         manager_ = managerGameObject.GetComponent<MiniGameQTEManager>();
 
+        PlayAudio.PlaySE(manager_.successSE);
         MiniGameQTEManager.isGameClear = true;
 
         Debug.Log("クリア！！");

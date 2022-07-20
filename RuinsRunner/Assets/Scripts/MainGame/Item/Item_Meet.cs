@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Item_Meet : ItemBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] AudioClip audioClip_;
 
     // Update is called once per frame
     void Update()
@@ -21,6 +17,7 @@ public class Item_Meet : ItemBase
         //_player.GetComponent<PlayerController>().Recovery();
         StaticInterfaceManager.MovePlayerZ(-1, _player.GetComponent<PlayerController>());
         StaticInterfaceManager.UpdateScore(500);
+        PlayAudio.PlaySE(audioClip_);
     }
 
     protected override void ReleaseProcess_ManagedResource()
