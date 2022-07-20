@@ -5,6 +5,7 @@ using UnityEngine;
 public class LightMove : MonoBehaviour
 {
     [SerializeField] GameObject Player;
+    [SerializeField] float SpotPositonZ;
     private Vector3 FrozeYPosition;
     private void Awake()
     {
@@ -12,6 +13,6 @@ public class LightMove : MonoBehaviour
     }
     void Update()
     {
-        this.transform.position =new Vector3(Player.transform.position.x,FrozeYPosition.y,Player.transform.position.z);
+        this.transform.position =new Vector3(Player.transform.position.x,FrozeYPosition.y,Player.transform.position.z+SpotPositonZ);
     }
 }
