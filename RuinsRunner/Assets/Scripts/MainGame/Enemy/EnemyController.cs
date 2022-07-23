@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-public class EnemyController 
+public class EnemyController
     : ObjectSuperClass
     , IDamaged
 {
@@ -35,6 +35,7 @@ public class EnemyController
     void Update()
     {
         EnemyState.Update(this.gameObject);
+        Debug.Log(EnemyState.StateName);
     }
 
     protected void OnTriggerEnter(Collider other)
