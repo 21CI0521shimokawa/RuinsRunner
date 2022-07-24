@@ -29,7 +29,7 @@ public class PlayerStateBeCaught : StateBase
         {
             for(int i = 0; i < 2; ++i)
             {
-                playerController_.Recovery();
+                //playerController_.Recovery();
             }
             return new PlayerStateRun();
         }

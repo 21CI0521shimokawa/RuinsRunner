@@ -10,6 +10,7 @@ public class Pillar
     : MonoBehaviour
     , IToFallenOver
 {
+    [SerializeField] bool isFallDown = false;
     bool isFalleing_;
     private void Start()
     {
@@ -41,8 +42,21 @@ public class Pillar
                 transform.Rotate(0f, 0f, -(transform.localEulerAngles.z - 90));
             }
         }
-        isFalleing_ = false;
-        Debug.Log("柱コルーチンを終了しました");
+
+        if (isFallDown)
+        {
+            while(transform.position.z > -5)
+            {
+                transform.position -= new Vector3(0, 0, 0.01f);
+                yield return new WaitForSeconds(0.01f);
+            }
+            Destroy(gameObject);
+        }
+        else
+        {
+            isFalleing_ = false;
+            Debug.Log("柱コルーチンを終了しました");
+        }
 
         yield break;
     }

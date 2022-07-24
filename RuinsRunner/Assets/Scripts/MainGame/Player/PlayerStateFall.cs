@@ -33,7 +33,7 @@ public class PlayerStateFall : StateBase
 
     public override void StateFinalize()
     {
-
+        playerController_.animator_.ResetTrigger("StateFall");
     }
 
     bool Action()
@@ -42,12 +42,9 @@ public class PlayerStateFall : StateBase
         //ŒŠ‚É—Ž‚¿‚½‚ç•œ‹A
         if(playerController_.FallIntoHole())
         {
-            for (int i = 0; i < 2; ++i)
-            {
-                playerController_.Damage();
-            }
+            playerController_.Damage();
 
-            playerController_.gameObject.GetComponent<Rigidbody>().position = new Vector3(0, 10, playerController_.GetPositionZ());
+            playerController_.gameObject.GetComponent<Rigidbody>().position = new Vector3(0, 10, playerController_.transform.position.z/*playerController_.GetPositionZ()*/);
         }
 
 

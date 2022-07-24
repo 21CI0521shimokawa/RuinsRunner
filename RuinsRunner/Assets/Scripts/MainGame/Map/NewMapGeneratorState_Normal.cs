@@ -15,10 +15,25 @@ public class NewMapGeneratorState_Normal : StateBase
 
     public override StateBase StateUpdate(GameObject gameObject)
     {
+        StateBase nextState = this;
+
         if (mapGenerator_.IsGenerate())
         {
             if (!mapGenerator_.IsGoalGenerate())
             {
+                //エネミーアタックのエントリーチェック
+                if(!mapGenerator_.isCalledEnemyAttack && mapGenerator_.passedTime > mapGenerator_.EntryTimeEnemyAttack)
+                {
+                    nextState = new NewMapGeneratorState_EnemyAttack();
+                    return nextState;
+                }
+                //穴避けのエントリーチェック
+                if(!mapGenerator_.isCalledJumpHole && mapGenerator_.passedTime > mapGenerator_.EntryTimeJumpHole)
+                {
+                    nextState = new NewMapGeneratorState_JumpHole();
+                    return nextState;
+                }
+
                 //移動した分だけ減らす
                 mapGenerator_.movedDistance -= mapGenerator_.latestFloorInfo.sizeZ;
 
@@ -110,7 +125,7 @@ public class NewMapGeneratorState_Normal : StateBase
             }
         }
 
-        return this;
+        return nextState;
     }
 
     public override void StateFinalize()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DestroyOutOfCamera : MonoBehaviour
 {
+    [SerializeField] int destroyZPos = -15;
     private void Awake()
     {
         //™‰¼‚Å10•b‚É•ÏX‚µ‚½‚æ(2022/06/21 ×’J)™
