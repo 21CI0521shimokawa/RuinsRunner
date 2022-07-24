@@ -80,11 +80,84 @@ public class NewMapGenerator : MonoBehaviour
         }
     }
 
+    //エネミーアタックのマップチップ
+    [SerializeField] GameObject enemyAttackMapPrefab_;
+    public GameObject enemyAttackMapPrefab
+    {
+        get
+        {
+            return enemyAttackMapPrefab_;
+        }
+    }
 
+    //穴避けのマップチップ
+    [SerializeField] GameObject jumpHoleMapPrefab_;
+    public GameObject jumpHoleMapPrefab
+    {
+        get
+        {
+            return jumpHoleMapPrefab_;
+        }
+    }
+
+
+    //他のエントリーと時間がかぶらないように要調整
+    [Tooltip("エネミーアタックに入る経過時間")]
+    public int EntryTimeEnemyAttack;
+    
+    //他のエントリーと時間がかぶらないように要調整
+    [Tooltip("穴避けに入る経過時間")]
+    public int EntryTimeJumpHole;
+
+    //経過時間
+    private float passedTime_;
+    [HideInInspector]
+    public float passedTime
+    {
+        get
+        {
+            return passedTime_;
+        }
+    }
+
+    //エネミーアタックを呼び出したか
+    private bool isCalledEnemyAttack_;
+
+    [HideInInspector]
+    public bool isCalledEnemyAttack
+    {
+        get
+        {
+            return isCalledEnemyAttack_;
+        }
+        set
+        {
+            isCalledEnemyAttack_ = value;
+        }
+    }
+    
+    //穴避けを呼び出したか
+    private bool isCalledJumpHole_;
+
+    [HideInInspector]
+    public bool isCalledJumpHole
+    {
+        get
+        {
+            return isCalledJumpHole_;
+        }
+        set
+        {
+            isCalledJumpHole_ = value;
+        }
+    }
 
     private void Awake()
     {
         movedDistance_ = 0;
+        passedTime_ = 0;
+        isCalledEnemyAttack_ = false;
+        isCalledJumpHole_ = false;
     }
 
     // Start is called before the first frame update
@@ -101,6 +174,7 @@ public class NewMapGenerator : MonoBehaviour
     {
         //残り時間を更新
         //後々、シーンマネージャーからもらってくるようにして、シーン内で一つの数値を共有したい
+        passedTime_ += Time.deltaTime;
         remainTime_ -= Time.deltaTime;
         if (remainTime_ <= 0f)
         {

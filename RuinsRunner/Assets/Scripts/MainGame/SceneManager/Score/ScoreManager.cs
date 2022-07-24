@@ -37,7 +37,7 @@ public class ScoreManager
     {
         //ローカルスコアの更新
         score_ += addScore;
-        score_ = Mathf.Clamp(score_, 0, 9999);
+        score_ = Mathf.Clamp(score_, 0, 99999);
 
         //共有スコアの更新
         Scene scene = SceneManager.GetSceneByName("Manager");

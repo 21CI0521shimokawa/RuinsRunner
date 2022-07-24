@@ -11,6 +11,7 @@ TagManager:
   - PillarForEvent
   - MapGenerator
   - ScoreManager
+  - ForEvent
   layers:
   - Default
   - TransparentFX

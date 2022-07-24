@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController 
     : ObjectSuperClass
-    , IMovePlayer
+    //, IMovePlayer
 {
     public StateMachine state_;
     public Animator animator_;
@@ -12,32 +12,29 @@ public class PlayerController
     Rigidbody rigidbody_;
 
     //Player関係
-    [SerializeField] float[] positionZTables; //プレイヤのZ座標のテーブル
-    public int tablePositionZ;                //プレイヤのテーブルZ座標
+    //[SerializeField] float[] positionZTables; //プレイヤのZ座標のテーブル
+    public int positionZ;                //プレイヤのテーブルZ座標
 
     //現在のZ座標を取得
     public float GetPositionZ()
     {
-        return positionZTables[tablePositionZ];
+        return /*positionZTables[tablePositionZ]*/positionZ;
     }
 
     //ダメージ
     public void Damage()
     {
-        if (positionZTables.Length - 1 > tablePositionZ)
-        {
-            ++tablePositionZ;
-        }
+        StaticInterfaceManager.UpdateScore(-100);
     }
 
     //回復
-    public void Recovery()
-    {
-        if (0 < tablePositionZ)
-        {
-            --tablePositionZ;
-        }
-    }
+    //public void Recovery()
+    //{
+    //    if (0 < tablePositionZ)
+    //    {
+    //        --tablePositionZ;
+    //    }
+    //}
 
 
     //Run関連
@@ -78,18 +75,18 @@ public class PlayerController
 
 
     //捕まったかどうか
-    public bool IsBeCaught()
-    {
-        //return gameObject.transform.position.z <= positionZTables[positionZTables.Length - 1];
-        return tablePositionZ >= positionZTables.Length - 1 && gameObject.transform.position.z <= positionZTables[positionZTables.Length - 1];
-    }
+    //public bool IsBeCaught()
+    //{
+    //    //return gameObject.transform.position.z <= positionZTables[positionZTables.Length - 1];
+    //    return tablePositionZ >= positionZTables.Length - 1 && gameObject.transform.position.z <= positionZTables[positionZTables.Length - 1];
+    //}
 
     //地面に立ってるかどうか
     public bool OnGround()
     {
         //細かい判定を甘くするために条件を >=0 からゆるくしました。 -工藤 7/3
         //下方向に移動していなければ立ってることにする
-        if(rigidbody_.velocity.y >= -0.01f)
+        if(rigidbody_.velocity.y >= -0.1f)
         {
             return true;
         }
@@ -230,13 +227,13 @@ public class PlayerController
             // マネージリソースの解放処理を記述
             state_ = null;
             animator_ = null;
-            positionZTables = null;
+            //positionZTables = null;
         }
 
         // アンマネージリソースの解放処理を記述
 
         //なにかけばいいんだ とりあえず0を代入してみる
-        tablePositionZ = 0;
+        //tablePositionZ = 0;
 
 
         // Dispose済みを記録
@@ -246,10 +243,10 @@ public class PlayerController
         base.Dispose(_disposing);
     }
 
-    public void MovePlayer(int _moveAmount)
-    {
-        tablePositionZ += _moveAmount;
-        tablePositionZ = Mathf.Clamp(tablePositionZ, 0, positionZTables.Length - 1);
-        Debug.Log(_moveAmount + " 移動しました");
-    }
+    //public void MovePlayer(int _moveAmount)
+    //{
+    //    tablePositionZ += _moveAmount;
+    //    tablePositionZ = Mathf.Clamp(tablePositionZ, 0, positionZTables.Length - 1);
+    //    Debug.Log(_moveAmount + " 移動しました");
+    //}
 }
