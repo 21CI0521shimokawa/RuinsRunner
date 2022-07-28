@@ -8,6 +8,7 @@ public class PlayerController
 {
     public StateMachine state_;
     public Animator animator_;
+    [SerializeField] bool canMove = true;
 
     Rigidbody rigidbody_;
 
@@ -59,6 +60,7 @@ public class PlayerController
     // Update is called once per frame
     void Update()
     {
+        if (!canMove) return;
         state_.Update(gameObject);
 
         //わざと重くする装置 低スペックシミュレーション用

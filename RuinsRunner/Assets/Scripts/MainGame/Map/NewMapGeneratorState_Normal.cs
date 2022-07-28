@@ -105,7 +105,7 @@ public class NewMapGeneratorState_Normal : StateBase
                 {
                     if(madeWallLength_ % 4 == 0)
                     {
-                        GameObject generateTorch = mapGenerator_.Generate(mapGenerator_.torchPrefab, i);
+                       // GameObject generateTorch = mapGenerator_.Generate(mapGenerator_.torchPrefab, i);
                     }
 
                     madeWallLength_ += 1.0f;
