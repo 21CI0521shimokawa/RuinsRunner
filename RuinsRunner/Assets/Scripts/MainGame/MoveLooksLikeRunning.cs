@@ -10,7 +10,7 @@ public class MoveLooksLikeRunning : MonoBehaviour
         isRunning_ = _value;
     }
 
-    float moveSpeed;
+    public float moveSpeed;
 
     void Start()
     {
