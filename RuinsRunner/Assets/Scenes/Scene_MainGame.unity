@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -896,6 +896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!1 &497336929
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!114 &512426105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1400,6 +1402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!114 &905352536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1448,6 +1451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!4 &981709747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2018073681298163880, guid: 72164e76f0a108a4f9348ea55344b383, type: 3}
@@ -2227,6 +2231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!4 &1397694306 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 25688984814845085, guid: 856d0970161a2af4b8e4ea6eed3d5c04, type: 3}
@@ -2482,6 +2487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!114 &1625354730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2665,6 +2671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!4 &1647013166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 25688984814845085, guid: 856d0970161a2af4b8e4ea6eed3d5c04, type: 3}
@@ -2987,6 +2994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!114 &1808616429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3102,6 +3110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!1 &2014777447
 GameObject:
   m_ObjectHideFlags: 0
@@ -3261,6 +3270,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd9b931d0016f942b87b27186ea3cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SetEaseType: 1
+  DefaultCameraTransform: {fileID: 2014777450}
+  ReturnDefaultCameraPositonCameraSpeed: 4
+  EnemyFromBackCameraSpeed: 4
+  EndGameCameraSpeed: 4
+  PlayerTransform: {fileID: 2388738037213497224}
 --- !u!4 &2030822788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9114138171638688861, guid: 73cf47c31ba45284f92394ee1d44b191, type: 3}
@@ -3486,6 +3501,11 @@ PrefabInstance:
 --- !u!1 &2388738037213497218 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7850107678680211224, guid: b4332fca137894a4da3c2b12cad16c48, type: 3}
+  m_PrefabInstance: {fileID: 5609145105146435738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2388738037213497224 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7474567985328063906, guid: b4332fca137894a4da3c2b12cad16c48, type: 3}
   m_PrefabInstance: {fileID: 5609145105146435738}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5609145105146435738
