@@ -56,3 +56,17 @@ public interface IExitGame
 {
     void ExitToResult();
 }
+/// <summary>
+/// EnemyAttackゲームが始まった時のカメラムーブ
+/// </summary>
+public interface ICameraEnemyFromBackMove
+{
+    void DoEnemyFromBackMove(GameObject CameraObject);
+}
+/// <summary>
+/// Defaultの位置に戻るカメラムーブ
+/// </summary>
+public interface IReturnDefaultCameraPositonMove
+{
+    void DoDefaultCameraPositonMove(GameObject CameraObject);
+}

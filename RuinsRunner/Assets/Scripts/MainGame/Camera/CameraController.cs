@@ -6,9 +6,13 @@ using UniRx;
 using UniRx.Triggers;
 using DG.Tweening;
 
-public class CameraController : ObjectSuperClass
+public class CameraController
+    : ObjectSuperClass
+    , ICameraEnemyFromBackMove
+    , IReturnDefaultCameraPositonMove
 {
-    StateMachine MapState;
+    [SerializeField] StateMachine MapState;
+    [SerializeField] NewMapGenerator NewMapGenerator;
     [Header("カメラの設定関連")]
     [SerializeField] Ease SetEaseType;
     [Header("Positon関連")]
@@ -20,52 +24,16 @@ public class CameraController : ObjectSuperClass
     [Header("Player関連")]
     [SerializeField] Transform PlayerTransform;
 
+    private void Awake()
+    {
+        if (MapState == null)
+        {
+            MapState = NewMapGenerator.NowState;
+        }
+        DefaultCameraTransform = this.transform;
+    }
     void Start()
     {
-        DefaultCameraTransform = this.transform;
-        DoDefaultCameraMove(gameObject);
-        DoEnemyFromBackMove(gameObject);
-    }
-
-    private void DoDefaultCameraMove(GameObject CameraObject)
-    {
-        CameraObject.ObserveEveryValueChanged(_ => MapState)
-            .Where(_ => MapState == new StateMachine(new NewMapGeneratorState_Normal()))
-            .Subscribe(_ =>
-            {
-
-                var DoRotation = new Vector3(26.6f, 0, 0);
-                CameraObject.transform.DOMove(DefaultCameraTransform.position, ReturnDefaultCameraPositonCameraSpeed)
-                    .OnUpdate(() =>
-                    {
-                        CameraObject.transform.DORotate(DoRotation, ReturnDefaultCameraPositonCameraSpeed);
-                    })
-                    .SetEase(SetEaseType);
-            });
-    }
-    private void DoEnemyFromBackMove(GameObject CameraObject)
-    {
-        CameraObject.ObserveEveryValueChanged(_ => MapState)
-            .Where(_ => MapState == new StateMachine(new NewMapGeneratorState_EnemyAttack()))
-            .Subscribe(_ =>
-            {
-                var DoRotation = new Vector3(26.7f, 180f, 0f);
-                CameraObject.transform.DOPath
-                      (
-                      new[]
-                      {
-              new Vector3(PlayerTransform.position.x,PlayerTransform.position.y+5,PlayerTransform.position.z+8),
-                      },
-                      3f, PathType.Linear
-                      ).OnUpdate(() =>
-                      {
-                          CameraObject.transform.DORotate(DoRotation, EnemyFromBackCameraSpeed);
-                      })
-                      .OnComplete(() =>
-                      {
-                      })
-                      .SetEase(SetEaseType);
-            });
     }
     private void GameEndCameraMove(GameObject CameraObject)
     {
@@ -76,4 +44,36 @@ public class CameraController : ObjectSuperClass
         CameraObject.transform.DOMove(MoveTo, EndGameCameraSpeed)
                     .SetEase(SetEaseType);
     }
+    #region インターフェース
+    public void DoEnemyFromBackMove(GameObject CameraObject)
+    {
+        var DoRotation = new Vector3(26.7f, 180f, 0f);
+        CameraObject.transform.DOPath
+              (
+              new[]
+              {
+              new Vector3(PlayerTransform.position.x,PlayerTransform.position.y+5,PlayerTransform.position.z+8),
+              },
+              3f, PathType.Linear
+              ).OnUpdate(() =>
+              {
+                  CameraObject.transform.DORotate(DoRotation, EnemyFromBackCameraSpeed);
+              })
+              .OnComplete(() =>
+              {
+              })
+              .SetEase(SetEaseType);
+    }
+
+    public void DoDefaultCameraPositonMove(GameObject CameraObject)
+    {
+        var DoRotation = new Vector3(26.6f, 0, 0);
+        CameraObject.transform.DOMove(new Vector3(DefaultCameraTransform.position.x, DefaultCameraTransform.position.y,DefaultCameraTransform.position.z-14), ReturnDefaultCameraPositonCameraSpeed)
+            .OnUpdate(() =>
+            {
+                CameraObject.transform.DORotate(DoRotation, ReturnDefaultCameraPositonCameraSpeed);
+            })
+            .SetEase(SetEaseType);
+    }
+    #endregion
 }

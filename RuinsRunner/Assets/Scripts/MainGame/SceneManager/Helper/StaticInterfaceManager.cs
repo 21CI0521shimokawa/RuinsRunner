@@ -85,4 +85,16 @@ public static class StaticInterfaceManager
         if (obj == null) return;
         obj.ExitToResult();
     }
+    static public void DoEnemyAttackMove(GameObject CameraObject)
+    {
+        ICameraEnemyFromBackMove Objct = CameraObject.GetComponent(typeof(ICameraEnemyFromBackMove)) as ICameraEnemyFromBackMove;
+        if (Objct == null) return;
+        Objct.DoEnemyFromBackMove(CameraObject);
+    }
+    static public void DoReturnCameraMove(GameObject CameraObject)
+    {
+        IReturnDefaultCameraPositonMove Object = CameraObject.GetComponent(typeof(IReturnDefaultCameraPositonMove)) as IReturnDefaultCameraPositonMove;
+        if (Object == null) return;
+        Object.DoDefaultCameraPositonMove(CameraObject);
+    }
 }
