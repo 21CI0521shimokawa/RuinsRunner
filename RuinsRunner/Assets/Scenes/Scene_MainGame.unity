@@ -3272,8 +3272,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetEaseType: 1
   DefaultCameraTransform: {fileID: 2014777450}
-  ReturnDefaultCameraPositonCameraSpeed: 4
-  EnemyFromBackCameraSpeed: 4
+  ReturnDefaultCameraPositonCameraSpeed: 2
+  EnemyFromBackCameraSpeed: 3
   EndGameCameraSpeed: 4
   PlayerTransform: {fileID: 2388738037213497224}
 --- !u!4 &2030822788 stripped
