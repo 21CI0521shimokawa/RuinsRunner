@@ -14,6 +14,7 @@ public class EnemyStateAttackFromBack: StateBase
     public AttackFromBackState State;
     EnemyController EnemyController;
     GameObject Enemy;
+    GameObject Camera;
     Transform FollowTarget;
     private float NowEnemyPositon;
     private const int MaxMiniGameCont = 2;
@@ -23,12 +24,14 @@ public class EnemyStateAttackFromBack: StateBase
     public override void StateInitialize()
     {
         Enemy = GameObject.FindGameObjectWithTag("Enemy");
+        Camera = GameObject.FindGameObjectWithTag("MainCamera");
         EnemyController = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyController>();
         FollowTarget = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         EnemyController.EnemyAnimator.SetTrigger("Chase");
         NowMiniGameCount = 0;
         NowEnemyPositon = Enemy.transform.position.z;
-
+        State = AttackFromBackState.PREPARATION;//同フレームだともしかしたらバグ発生するかも
+        StaticInterfaceManager.DoEnemyAttackMove(Camera);
 
         MovePreration(Enemy);
         MoveAttack(Enemy);
@@ -132,5 +135,6 @@ public class EnemyStateAttackFromBack: StateBase
     }
     public override void StateFinalize()
     {//スタブ
+        StaticInterfaceManager.DoReturnCameraMove(Camera);
     }
 }

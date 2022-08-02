@@ -54,8 +54,6 @@ public class EnemyStateRun : StateBase
     //ÉXÉ^Éu
     public override void StateFinalize()
     {
-        EnemyStateAttackFromBack NextState=new EnemyStateAttackFromBack();
-        NextState.State = EnemyStateAttackFromBack.AttackFromBackState.PREPARATION;
     }
 
     public override void ReceiveDamage()

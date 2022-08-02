@@ -11,8 +11,6 @@ public class CameraController
     , ICameraEnemyFromBackMove
     , IReturnDefaultCameraPositonMove
 {
-    [SerializeField] StateMachine MapState;
-    [SerializeField] NewMapGenerator NewMapGenerator;
     [Header("ƒJƒƒ‰‚Ìİ’èŠÖ˜A")]
     [SerializeField] Ease SetEaseType;
     [Header("PositonŠÖ˜A")]
@@ -26,10 +24,6 @@ public class CameraController
 
     private void Awake()
     {
-        if (MapState == null)
-        {
-            MapState = NewMapGenerator.NowState;
-        }
         DefaultCameraTransform = this.transform;
     }
     void Start()

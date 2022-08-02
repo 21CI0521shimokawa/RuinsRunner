@@ -85,12 +85,20 @@ public static class StaticInterfaceManager
         if (obj == null) return;
         obj.ExitToResult();
     }
+    /// <summary>
+    /// AttackEnemyミニゲームの時のカメラムーブ関数
+    /// </summary>
+    /// <param name="CameraObject">カメラオブジェクト取得</param>
     static public void DoEnemyAttackMove(GameObject CameraObject)
     {
         ICameraEnemyFromBackMove Objct = CameraObject.GetComponent(typeof(ICameraEnemyFromBackMove)) as ICameraEnemyFromBackMove;
         if (Objct == null) return;
         Objct.DoEnemyFromBackMove(CameraObject);
     }
+    /// <summary>
+    /// Defaultのカメラの位置に戻る関数
+    /// </summary>
+    /// <param name="CameraObject">カメラオブジェクト取得</param>
     static public void DoReturnCameraMove(GameObject CameraObject)
     {
         IReturnDefaultCameraPositonMove Object = CameraObject.GetComponent(typeof(IReturnDefaultCameraPositonMove)) as IReturnDefaultCameraPositonMove;
