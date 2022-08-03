@@ -105,4 +105,14 @@ public static class StaticInterfaceManager
         if (Object == null) return;
         Object.DoDefaultCameraPositonMove(CameraObject);
     }
+    /// <summary>
+    /// 前方から飛んでくるオブジェクトを避けるゲーム開始
+    /// </summary>
+    static public void AvoidGameStart()
+    {
+        GameObject AvoidGameManeger = GameObject.FindGameObjectWithTag("AvoidManeger");
+        IAvoidGame Object=AvoidGameManeger.GetComponent(typeof(IAvoidGame))as IAvoidGame;
+        if (Object == null) return;
+        Object.DoAvoidGame();
+    }
 }
