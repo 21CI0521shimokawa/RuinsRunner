@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1483653190106877622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1483653190106877620}
+  - component: {fileID: 1483653190106877621}
+  - component: {fileID: 1483653190106877619}
+  m_Layer: 0
+  m_Name: MapGenerator
+  m_TagString: MapGenerator
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1483653190106877620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483653190106877622}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1483653190106877621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483653190106877622}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0299b5d59fe62ff47853160fa503cf2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapFolder_: {fileID: 0}
+  createPosition_: {x: 0, y: 0, z: 40}
+  mapPrefabs_:
+  - {fileID: 6488447310172164570, guid: 856d0970161a2af4b8e4ea6eed3d5c04, type: 3}
+  - {fileID: 7715612538408987477, guid: b2c62f7f8f752db409caf848a9073667, type: 3}
+  - {fileID: 5081682135434678197, guid: 93167859428dc2d48a3d67a85d875898, type: 3}
+  - {fileID: 3016820370389769527, guid: 5c19f9b58a8389941acbd679b4bf9f6d, type: 3}
+  - {fileID: 5989960226283344580, guid: 73cf47c31ba45284f92394ee1d44b191, type: 3}
+  - {fileID: 4836011828069624081, guid: 72164e76f0a108a4f9348ea55344b383, type: 3}
+  - {fileID: 526515022502195483, guid: a8ae6af6745606b428c2d83d0f6ef683, type: 3}
+  goalMapPrefab_: {fileID: 3839287147619380478, guid: ae4bcca76935642458b5423f0dbaf27a, type: 3}
+  remainTime_: 30
+--- !u!114 &1483653190106877619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483653190106877622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7d44bd82c52a74c8c1d476a0d7b271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapFolder_: {fileID: 0}
+  createPosition_: {x: 0, y: 0, z: 38}
+  latestFloorInfo_: {fileID: 0}
+  torchPrefab_: {fileID: 968587794806259885, guid: 1f36059799674134bad252fc4f7160dc, type: 3}
+  remainTime_: 60
+  wallPrefabs_:
+  - {fileID: 6488447310172164570, guid: 9890553dae9b1d4439ff692559b66067, type: 3}
+  - {fileID: 6488447310172164570, guid: b3cd6ca4af848f842a0ef73f0afea9e1, type: 3}
+  - {fileID: 6488447310172164570, guid: f94a59e3cf4574b41b6a9f8239277e6a, type: 3}
+  - {fileID: 6488447310172164570, guid: 4f7dedb7809a5424c9ea62cc78f02b7a, type: 3}
+  - {fileID: 6488447310172164570, guid: fc596a669a65a7d409c21d7a6bf27bf4, type: 3}
+  - {fileID: 6488447310172164570, guid: 0efdd83dd685ce04f85b41d07629949b, type: 3}
+  floorPrefabs_:
+  - {fileID: 6488447310172164570, guid: bf7936db60e56dc49b666fe0d22db823, type: 3}
+  - {fileID: 6488447310172164570, guid: 954d5bae29def254e84e3313e1b7f7d5, type: 3}
+  - {fileID: 6488447310172164570, guid: 224f4b16484250f44b4e9216e8cfd110, type: 3}
+  - {fileID: 6488447310172164570, guid: e9d549680b9e0984bad96fbf0cd4862c, type: 3}
+  - {fileID: 6488447310172164570, guid: 521f50ff03113284faadc3493cb251fa, type: 3}
+  - {fileID: 6488447310172164570, guid: eade8c6b185e69147b0a0eff17bb1e70, type: 3}
+  wallTorchPrefab_: {fileID: 6488447310172164570, guid: 1d9425a3cbee13e4aafcc7254719ca34, type: 3}
+  goalMapPrefab_: {fileID: 3839287147619380478, guid: ffba19aa75c23c1439ba3ab9c5a4fd11, type: 3}
+  enemyAttackMapPrefab_: {fileID: 6488447310172164570, guid: 0faf5f1cb97c993499a0c2cc21cc3636, type: 3}
+  jumpHoleMapPrefab_: {fileID: 6488447310172164570, guid: 12380a2b5bd344441a2425d74a546d3d, type: 3}
+  EntryTimeEnemyAttack: 30
+  EntryTimeJumpHole: 5

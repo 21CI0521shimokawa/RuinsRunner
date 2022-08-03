@@ -47,6 +47,36 @@ public class PlayerController
     //FallŠÖŒW
 
 
+    //JumpŠÖŒW
+    [SerializeField] AudioClip jumpSE_;
+    public AudioClip jumpSE
+    {
+        get
+        {
+            return jumpSE_;
+        }
+    }
+
+    //LandingŠÖŒW
+    [SerializeField] AudioClip landingSE_;
+    public AudioClip landingSE
+    {
+        get
+        {
+            return landingSE_;
+        }
+    }
+
+    //StumbleŠÖŒW
+    [SerializeField] AudioClip stumbleSE_;
+    public AudioClip stumbleSE
+    {
+        get
+        {
+            return stumbleSE_;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

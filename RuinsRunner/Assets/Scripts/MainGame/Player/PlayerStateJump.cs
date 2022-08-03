@@ -47,6 +47,7 @@ public class PlayerStateJump : StateBase
 
         if(StateFlameCount == 1)
         {
+            PlayAudio.PlaySE(playerController_.jumpSE);
             rigidbody_.AddForce(Vector3.up * jumpPower_, ForceMode.Impulse);
         }
 

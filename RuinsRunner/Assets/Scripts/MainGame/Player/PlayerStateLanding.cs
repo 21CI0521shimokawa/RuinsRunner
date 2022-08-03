@@ -10,6 +10,8 @@ public class PlayerStateLanding : StateBase
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerController_.animator_.SetTrigger("StateLanding");
+
+        PlayAudio.PlaySE(playerController_.landingSE);
     }
 
     public override StateBase StateUpdate(GameObject gameObject)

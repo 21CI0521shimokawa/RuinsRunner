@@ -24,6 +24,8 @@ public class PlayerStateStumble : StateBase
 
         moveStartPositionZ_ = playerController_.gameObject.transform.position.z;
         moveEndPositionZ_ = playerController_.GetPositionZ();
+
+        PlayAudio.PlaySE(playerController_.stumbleSE);
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
