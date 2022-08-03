@@ -29,7 +29,7 @@ public class RockController : ObjectSuperClass
     }
     private void HitProcessingWithPlayer()
     {
-        this.OnTriggerEnter2DAsObservable()
+        this.OnTriggerEnterAsObservable()
             .Select(collison => collison.tag)
             .Where(tag => tag == "Player")
             .Subscribe(collision =>

@@ -62,7 +62,7 @@ public class CameraController
     public void DoDefaultCameraPositonMove(GameObject CameraObject)
     {
         var DoRotation = new Vector3(26.6f, 0, 0);
-        CameraObject.transform.DOMove(new Vector3(DefaultCameraTransform.position.x, DefaultCameraTransform.position.y,DefaultCameraTransform.position.z-14), ReturnDefaultCameraPositonCameraSpeed)
+        CameraObject.transform.DOMove(new Vector3(DefaultCameraTransform.position.x, DefaultCameraTransform.position.y,PlayerTransform.position.z-4), ReturnDefaultCameraPositonCameraSpeed)
             .OnUpdate(() =>
             {
                 CameraObject.transform.DORotate(DoRotation, ReturnDefaultCameraPositonCameraSpeed);
