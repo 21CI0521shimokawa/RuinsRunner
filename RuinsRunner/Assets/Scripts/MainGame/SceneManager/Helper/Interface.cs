@@ -70,3 +70,10 @@ public interface IReturnDefaultCameraPositonMove
 {
     void DoDefaultCameraPositonMove(GameObject CameraObject);
 }
+/// <summary>
+/// 前方から飛んでくるオブジェクトを避けるゲーム開始
+/// </summary>
+public interface IAvoidGame
+{
+    void DoAvoidGame();
+}
