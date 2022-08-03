@@ -54,6 +54,7 @@ public class NewMapGeneratorState_Normal : StateBase
                 {
                     int generateWallSizeZ = floorSizeZ;
                     bool isRightWall = (i == 0);   //右の壁から生成
+                    bool isTorchWithWallInstalled = false;
 
                     while (generateWallSizeZ > 0)
                     {
@@ -84,7 +85,18 @@ public class NewMapGeneratorState_Normal : StateBase
                             }
 
                             //壁を設置
-                            GameObject generateWall = mapGenerator_.Generate(wallPrefabs[wallNumber], floorSizeZ - generateWallSizeZ);
+                            GameObject generateWall;
+
+                            //松明付きの壁を設置
+                            if (wallNumber == 0 && !isTorchWithWallInstalled)
+                            {
+                                generateWall = mapGenerator_.Generate(mapGenerator_.wallTorchPrefab, floorSizeZ - generateWallSizeZ);
+                                isTorchWithWallInstalled = true;
+                            }
+                            else
+                            {
+                                generateWall = mapGenerator_.Generate(wallPrefabs[wallNumber], floorSizeZ - generateWallSizeZ);
+                            }
 
                             //場所移動
                             mapGenerator_.WallMove(generateWall, isRightWall);
@@ -101,15 +113,15 @@ public class NewMapGeneratorState_Normal : StateBase
                 }
 
                 //松明生成
-                for(int i = 0; i < floorSizeZ; ++i)
-                {
-                    if(madeWallLength_ % 4 == 0)
-                    {
-                       // GameObject generateTorch = mapGenerator_.Generate(mapGenerator_.torchPrefab, i);
-                    }
+                //for(int i = 0; i < floorSizeZ; ++i)
+                //{
+                //    if(madeWallLength_ % 4 == 0)
+                //    {
+                //       // GameObject generateTorch = mapGenerator_.Generate(mapGenerator_.torchPrefab, i);
+                //    }
 
-                    madeWallLength_ += 1.0f;
-                }
+                //    madeWallLength_ += 1.0f;
+                //}
 
                 //アイテム生成
                 mapGenerator_.ItemGenerator(floorSizeZ);

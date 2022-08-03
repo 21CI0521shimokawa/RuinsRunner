@@ -49,7 +49,13 @@ public class NewMapGenerator : MonoBehaviour
 
     //シーンマネージャーから持ってくるようになったらSerialize属性を消していい
     [SerializeField] float remainTime_ = 10f;
-
+    public float remainTime
+    {
+        get
+        {
+            return remainTime_;
+        }
+    }
 
     //StateNormal
     //wallPrefabの保存場所
@@ -70,6 +76,17 @@ public class NewMapGenerator : MonoBehaviour
             return floorPrefabs_;
         }
     }
+
+    //松明壁
+    [SerializeField] GameObject wallTorchPrefab_;
+    public GameObject wallTorchPrefab
+    {
+        get
+        {
+            return wallTorchPrefab_;
+        }
+    }
+
     //ゴールのマップチップ
     [SerializeField] GameObject goalMapPrefab_;
     public GameObject goalMapPrefab
