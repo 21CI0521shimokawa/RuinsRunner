@@ -7,10 +7,10 @@ using UniRx.Triggers;
 using DG.Tweening;
 using UnityEngine;
 
-public class EnemyStateAttackFromBack: StateBase
+public class EnemyStateAttackFromBack : StateBase
 {
 
-    public enum AttackFromBackState { IDOL, PREPARATION, ATTACK, BUCK,END}
+    public enum AttackFromBackState { IDOL, PREPARATION, ATTACK, BUCK, END }
     public AttackFromBackState State;
     EnemyController EnemyController;
     GameObject Enemy;
@@ -63,7 +63,7 @@ public class EnemyStateAttackFromBack: StateBase
           }*/
         #endregion
         StateBase NextState = this;
-        if (State==AttackFromBackState.END)
+        if (State == AttackFromBackState.END)
         {
             NextState = new EnemyStateRun();
         }
@@ -109,12 +109,20 @@ public class EnemyStateAttackFromBack: StateBase
             {
                 var EnemyNewPositon = FollowTarget.position.z;
                 gameObject.transform.DOMoveZ(EnemyNewPositon, 1)
+                .OnUpdate(()=>
+                {
+                    HitProcessingWithPlayer(gameObject);
+                })
                  .OnComplete(() =>
                  {
                      State = AttackFromBackState.BUCK;
                  });
             });
     }
+    /// <summary>
+    /// UŒ‚Œã’Êí‚ÌˆÊ’u‚É–ß‚é
+    /// </summary>
+    /// <param name="gameObject"></param>
     private void BackMove(GameObject gameObject)
     {
         gameObject.ObserveEveryValueChanged(x => State)
@@ -131,6 +139,20 @@ public class EnemyStateAttackFromBack: StateBase
                         State = AttackFromBackState.END;
                     }
                 });
+            });
+    }
+    /// <summary>
+    /// Player‚Æ‚Ì“–‚½‚è”»’è‚Ìˆ—ŠÖ”
+    /// </summary>
+    /// <param name="gameObject"></param>
+    private void HitProcessingWithPlayer(GameObject gameObject)
+    {
+        gameObject.OnTriggerEnterAsObservable()
+            .Select(collison => collison.tag)
+            .Where(tag => tag == "Player")
+            .Subscribe(collision =>
+            {
+                StaticInterfaceManager.UpdateScore(-100);
             });
     }
     public override void StateFinalize()
