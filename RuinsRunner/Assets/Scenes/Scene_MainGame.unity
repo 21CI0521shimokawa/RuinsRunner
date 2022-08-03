@@ -3088,18 +3088,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3365909364952815574, guid: c91add993c1723944a15478bc9a267ad, type: 3}
-      propertyPath: IntervalTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3365909364952815574, guid: c91add993c1723944a15478bc9a267ad, type: 3}
-      propertyPath: WhatTimeDoAvoidGame
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3365909364952815574, guid: c91add993c1723944a15478bc9a267ad, type: 3}
-      propertyPath: RockGenerationPositionY
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5478417107911203987, guid: c91add993c1723944a15478bc9a267ad, type: 3}
       propertyPath: m_RootOrder
       value: 13

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235195673235860310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.23, y: 0, z: 0}
+  m_LocalPosition: {x: 5.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847637555001584626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.76, y: 0, z: 0}
+  m_LocalPosition: {x: -5.94, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -108,10 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90055b40dc45477498763290270552dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RockPrefubs: {fileID: 4299273238422665303, guid: 723c045cd979e8c4eb23fe0b0b93f559, type: 3}
+  RockPrefubs: {fileID: 3779733238977154412, guid: 4387aa68708f44d0f9ec0bea2fd54c7c, type: 3}
   LeftMaxGenerationPosition: {fileID: 3839312069079571045}
   RightMaxGenerationPosition: {fileID: 8208977790008234276}
   RockGenerationPositionZ: 20
-  RockGenerationPositionY: 0
-  WhatTimeDoAvoidGame: 3
-  IntervalTime: 4
+  RockGenerationPositionY: 2
+  WhatTimeDoAvoidGame: 10
+  IntervalTime: 2
