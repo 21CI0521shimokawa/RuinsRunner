@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Linq;
+using UnityEngine;
 using System.Collections.Generic;
 using UniRx;
 using UniRx.Toolkit;
 using UniRx.Triggers;
 using DG.Tweening;
-using UnityEngine;
 
 public class EnemyStateAttackFromBack : StateBase
 {
@@ -109,12 +109,12 @@ public class EnemyStateAttackFromBack : StateBase
             {
                 var EnemyNewPositon = FollowTarget.position.z;
                 gameObject.transform.DOMoveZ(EnemyNewPositon, 1)
-                .OnUpdate(()=>
+                .OnUpdate(() =>
                 {
-                    HitProcessingWithPlayer(gameObject);
                 })
                  .OnComplete(() =>
                  {
+                     HitProcessingWithPlayer(gameObject);
                      State = AttackFromBackState.BUCK;
                  });
             });
@@ -150,8 +150,10 @@ public class EnemyStateAttackFromBack : StateBase
         gameObject.OnTriggerEnterAsObservable()
             .Select(collison => collison.tag)
             .Where(tag => tag == "Player")
+            .Take(1)
             .Subscribe(collision =>
             {
+                Debug.Log("Q");
                 StaticInterfaceManager.UpdateScore(-100);
             });
     }

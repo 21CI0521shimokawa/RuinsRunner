@@ -46,7 +46,7 @@ public class CameraController
               (
               new[]
               {
-              new Vector3(PlayerTransform.position.x,PlayerTransform.position.y+5,PlayerTransform.position.z+8),
+              new Vector3(DefaultCameraTransform.position.x,PlayerTransform.position.y+5,PlayerTransform.position.z+8),
               },
               3f, PathType.Linear
               ).OnUpdate(() =>
@@ -62,7 +62,7 @@ public class CameraController
     public void DoDefaultCameraPositonMove(GameObject CameraObject)
     {
         var DoRotation = new Vector3(26.6f, 0, 0);
-        CameraObject.transform.DOMove(new Vector3(DefaultCameraTransform.position.x, DefaultCameraTransform.position.y,PlayerTransform.position.z-4), ReturnDefaultCameraPositonCameraSpeed)
+        CameraObject.transform.DOMove(new Vector3(DefaultCameraTransform.position.x, DefaultCameraTransform.position.y,PlayerTransform.position.z-6), ReturnDefaultCameraPositonCameraSpeed)
             .OnUpdate(() =>
             {
                 CameraObject.transform.DORotate(DoRotation, ReturnDefaultCameraPositonCameraSpeed);
