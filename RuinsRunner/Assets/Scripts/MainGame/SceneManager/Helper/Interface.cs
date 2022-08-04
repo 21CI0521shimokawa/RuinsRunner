@@ -77,3 +77,10 @@ public interface IAvoidGame
 {
     void DoAvoidGame();
 }
+/// <summary>
+/// ƒJƒƒ‰‚ÌˆÊ’uC³
+/// </summary>
+public interface IEditingCameraPositon
+{
+    void DoEditingCameraPositon(GameObject CameraObject);
+}

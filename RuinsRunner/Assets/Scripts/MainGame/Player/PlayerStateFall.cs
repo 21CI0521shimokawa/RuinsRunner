@@ -1,15 +1,23 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class PlayerStateFall : StateBase
+public class PlayerStateFall 
+    : StateBase
+    , IEditingCameraPositon
 {
     PlayerController playerController_;
+    GameObject PlayerObject;
+    GameObject CameraObject;
 
     public override void StateInitialize()
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerController_.animator_.SetTrigger("StateFall");
+        PlayerObject = GameObject.FindGameObjectWithTag("Player");
+        CameraObject = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
@@ -33,6 +41,7 @@ public class PlayerStateFall : StateBase
 
     public override void StateFinalize()
     {
+        DoEditingCameraPositon(CameraObject);
         playerController_.animator_.ResetTrigger("StateFall");
     }
 
@@ -49,5 +58,10 @@ public class PlayerStateFall : StateBase
 
 
         return playerController_.OnGround();
+    }
+    public void DoEditingCameraPositon(GameObject CameraObject)
+    {
+        var NewPositonZ =PlayerObject.transform.position.z-6;
+        CameraObject.transform.DOMoveZ(NewPositonZ, 1f);
     }
 }

@@ -115,4 +115,14 @@ public static class StaticInterfaceManager
         if (Object == null) return;
         Object.DoAvoidGame();
     }
+    /// <summary>
+    /// Player‚ª°‚©‚ç—‚¿‚½‚ÉƒJƒƒ‰‚ÌZ²‚ğ’²®
+    /// </summary>
+    /// <param name="CameraObject"></param>
+    static public void EditingCameraPositon(GameObject CameraObject)
+    {
+        IEditingCameraPositon Object = CameraObject.GetComponent(typeof(IEditingCameraPositon)) as IEditingCameraPositon;
+        if (Object == null) return;
+        Object.DoEditingCameraPositon(CameraObject);
+    }
 }

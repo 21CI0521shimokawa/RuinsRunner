@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RockDestinationPositonZ: -1
-  RockSpeed: 1
+  RockSpeed: 4
   RockEaseType: 1
 --- !u!65 &4736332770771583834
 BoxCollider:
