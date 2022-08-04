@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!114 &3608377344835891955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee186c6742fca474091a2031fba5ce1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyZPos: -15
 --- !u!65 &8333816309199158474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -291,7 +293,7 @@ BoxCollider:
   m_GameObject: {fileID: 3839287147619380478}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 4, y: 0.5, z: 4}
   m_Center: {x: 0, y: -0.3, z: 0}
@@ -304,9 +306,9 @@ BoxCollider:
   m_GameObject: {fileID: 3839287147619380478}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 0.5, z: 4}
+  m_Size: {x: 4, y: 0.5, z: 8}
   m_Center: {x: 0, y: -0.3, z: 4}
 --- !u!1 &8385121720718064723
 GameObject:
@@ -3705,6 +3707,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4564449845838197390, guid: 1f36059799674134bad252fc4f7160dc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f36059799674134bad252fc4f7160dc, type: 3}
 --- !u!4 &8027920851316795951 stripped
@@ -4823,7 +4829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4202807251681348007, guid: 1f36059799674134bad252fc4f7160dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.84
+      value: 1.56
       objectReference: {fileID: 0}
     - target: {fileID: 4202807251681348007, guid: 1f36059799674134bad252fc4f7160dc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4855,6 +4861,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4202807251681348007, guid: 1f36059799674134bad252fc4f7160dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564449845838197390, guid: 1f36059799674134bad252fc4f7160dc, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
