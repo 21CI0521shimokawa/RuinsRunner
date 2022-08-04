@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AvoidGameController 
+public class AvoidGameController
     : ObjectSuperClass
     , IAvoidGame
 
@@ -26,7 +26,7 @@ public class AvoidGameController
         {
             yield return new WaitForSeconds(IntervalTime);
             var RockGenerationPositionX = Random.Range(LeftMaxGenerationPosition.position.x, RightMaxGenerationPosition.position.x);
-            Instantiate(RockPrefubs, new Vector3(RockGenerationPositionX, RockGenerationPositionY, RockGenerationPositionZ), Quaternion.identity);
+            Instantiate(RockPrefubs, new Vector3(RockGenerationPositionX, RockGenerationPositionY, RockGenerationPositionZ), Quaternion.Euler(-180, 0, 0));
         }
         yield break;
     }

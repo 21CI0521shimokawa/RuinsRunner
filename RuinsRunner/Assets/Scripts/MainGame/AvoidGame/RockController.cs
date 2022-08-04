@@ -21,6 +21,12 @@ public class RockController : ObjectSuperClass
     private void RockMove()
     {
         this.transform.DOMoveZ(RockDestinationPositonZ, RockSpeed)
+            .OnUpdate(() =>
+            {
+                transform.DORotate(new Vector3(0, 0, -360), 1, RotateMode.FastBeyond360)
+                         .SetEase(RockEaseType)
+                         .SetLoops(-1);
+            })
             .OnComplete(() =>
             {
                 Destroy(this.gameObject);
