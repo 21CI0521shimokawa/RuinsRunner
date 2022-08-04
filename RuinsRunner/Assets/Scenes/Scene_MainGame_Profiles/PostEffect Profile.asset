@@ -24,10 +24,10 @@ MonoBehaviour:
     value: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 1}
   center:
     overrideState: 1
-    value: {x: 0.5, y: 0.45}
+    value: {x: 0.5, y: 0.33}
   intensity:
     overrideState: 1
-    value: 0.57
+    value: 1
   smoothness:
     overrideState: 1
     value: 1
@@ -36,7 +36,7 @@ MonoBehaviour:
     value: 1
   rounded:
     overrideState: 1
-    value: 0
+    value: 1
   mask:
     overrideState: 0
     value: {fileID: 0}
@@ -80,13 +80,13 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 2.3
+    value: 2.28
   color:
     overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
   ambientOnly:
     overrideState: 1
-    value: 1
+    value: 0
   noiseFilterTolerance:
     overrideState: 0
     value: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
     value: -12
   thicknessModifier:
     overrideState: 1
-    value: 5.74
+    value: 8.68
   directLightingStrength:
     overrideState: 0
     value: 0
