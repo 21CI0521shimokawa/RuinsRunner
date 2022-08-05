@@ -1508,14 +1508,9 @@ Animator:
   m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
     are already bound by a Humanoid avatar. These transforms can only be changed
     by Humanoid clips.\n\tTransform 'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform
-    'root'\n\tTransform 'pinky_03_l'\n\tTransform 'neck_01'\n\tTransform 'pinky_03_r'\n\tTransform
-    'clavicle_l'\n\tTransform 'ring_02_l'\n\tTransform 'ball_l'\n\tTransform 'B_Jaw'\n\tand
-    more ...\n\tFrom animation clip 'Sit_On_The_Celing_Idle'\n\tFrom animation clip
-    'Sit_Jump_From_The_Ceiling'\n\tFrom animation clip 'Sit_Out_Of_ Ground'\n\tFrom
-    animation clip 'Sit_jump_On_The_Ground'\n\tFrom animation clip 'Sit_Lies_On_The_Ground_Pose'\n\tFrom
-    animation clip 'Sit_Attack_From_Ground'\n\tFrom animation clip 'Sit_Sleep'\n\tFrom
-    animation clip 'Sit_Up_&_Shout'\n\tFrom animation clip 'Sit_Idle_2'\n\tFrom animation
-    clip 'Sit_Jump'\n\tand more ..."
+    'pinky_03_l'\n\tTransform 'neck_01'\n\tTransform 'pinky_03_r'\n\tTransform 'clavicle_l'\n\tTransform
+    'ring_02_l'\n\tTransform 'ball_l'\n\tTransform 'B_Jaw'\n\tTransform 'hand_l'\n\tand
+    more ...\n\tFrom animation clip 'Sit_Attack_1'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -1547,6 +1542,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyAnimator: {fileID: 95327782838202756}
   _IsSqueeze: 0
+  _IsCatch: 0
+  AttackSignsPrefubs: {fileID: 870066007021404426, guid: d17c4b39595a27246861edfcf64b8da4, type: 3}
 --- !u!54 &3861351979908098640
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1559,9 +1556,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 8
+  m_Constraints: 124
   m_CollisionDetection: 0
 --- !u!1 &1694010872196262
 GameObject:
