@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using UniRx;
 
 public class EnemyController
@@ -27,7 +28,13 @@ public class EnemyController
 
     #region Chase関連
     #endregion
-
+    #region EnemyAttack関連
+    [SerializeField] GameObject AttackSignsPrefubs;
+    public GameObject _AttackSignsPrefubs
+    {
+        get { return AttackSignsPrefubs; }
+    }
+    #endregion
     void Start()
     {
         EnemyState = new StateMachine(new EnemyStateRun());
@@ -50,5 +57,13 @@ public class EnemyController
     {
         EnemyState.CallReceiveDamage();
     }
+    public void CreateSignPrefub(GameObject SignPrefub, Transform EnemyTransform)
+    {
+        var InstansPositon = new Vector3(EnemyTransform.position.x, EnemyTransform.position.y+0.1f, EnemyTransform.position.z + 8);
+        GameObject InstanceObject=Instantiate(SignPrefub, InstansPositon, EnemyTransform.rotation);
+        DOVirtual.DelayedCall(1.0f, () =>
+        {
+            Destroy(InstanceObject);//消し方をフェードアウトに今後したい..
+        });
+    }
 }
-

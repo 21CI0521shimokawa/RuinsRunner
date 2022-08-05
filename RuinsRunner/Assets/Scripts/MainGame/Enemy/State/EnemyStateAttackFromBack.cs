@@ -6,7 +6,6 @@ using UniRx;
 using UniRx.Toolkit;
 using UniRx.Triggers;
 using DG.Tweening;
-
 public class EnemyStateAttackFromBack : StateBase
 {
 
@@ -93,6 +92,7 @@ public class EnemyStateAttackFromBack : StateBase
                      .SetLoops(PrerationTime)
                      .OnComplete(() =>
                      {
+                         EnemyController.CreateSignPrefub(EnemyController._AttackSignsPrefubs, gameObject.transform);
                          State = AttackFromBackState.ATTACK;
                      });
             });
@@ -107,8 +107,8 @@ public class EnemyStateAttackFromBack : StateBase
            .Where(x => State == AttackFromBackState.ATTACK)
             .Subscribe(_ =>
             {
-                var EnemyNewPositon = FollowTarget.position.z;
-                gameObject.transform.DOMoveZ(EnemyNewPositon, 1)
+                    var EnemyNewPositon = FollowTarget.position.z;
+                    gameObject.transform.DOMoveZ(EnemyNewPositon, 1)
                 .OnUpdate(() =>
                 {
                 })
@@ -153,12 +153,12 @@ public class EnemyStateAttackFromBack : StateBase
             .Take(1)
             .Subscribe(collision =>
             {
-                Debug.Log("Q");
                 StaticInterfaceManager.UpdateScore(-100);
             });
     }
     public override void StateFinalize()
-    {//ÉXÉ^Éu
+    {
         StaticInterfaceManager.DoReturnCameraMove(Camera);
     }
+
 }
