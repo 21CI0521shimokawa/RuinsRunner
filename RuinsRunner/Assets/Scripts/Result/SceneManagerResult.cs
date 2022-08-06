@@ -14,13 +14,22 @@ public class SceneManagerResult : MonoBehaviour
     [SerializeField] TextMeshProUGUI highscoreTMP;
     //int型で扱う時に使用
     int score_;
+    //ハイスコア
+    int highscore_;
     private void Start()
     {
+        //シーンの初期化
+        Scene scene = SceneManager.GetSceneByName("Manager");
+
         //スコアボードの初期化
         scoreBorad.alpha = 0f;
         scoreBorad.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
-        Scene scene = SceneManager.GetSceneByName("Manager");
+        //ハイスコアの初期化
+        highscore_ = PlayerPrefs.GetInt("Highscore", 0);
+
+        //ハイスコアのテキスト反映
+        highscoreTMP.text = highscore_.ToString();
 
         //スコアを共有シーンから持ってきて反映させる
         foreach (var rootGameObject in scene.GetRootGameObjects())
@@ -33,16 +42,6 @@ public class SceneManagerResult : MonoBehaviour
             }
         }
         scoreTMP.text = score_.ToString();
-
-        //    //スコアボードを徐々に表示
-        //    DOTween.ToAlpha(
-        //        () => new Color(0, 0, 0, scoreBorad.alpha),
-        //        color => scoreBorad.alpha = color.a,
-        //        1.0f,           //終了時のα値は1.0f
-        //        easingTime      //秒数設定
-        //        )
-        //        .SetEase(ease);
-        //}
 
         //スコアボードを徐々に表示
         StartCoroutine(GraduallyAppear());
