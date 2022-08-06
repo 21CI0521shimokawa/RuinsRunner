@@ -26,7 +26,6 @@ public class EnemyStateCatch : StateBase
     }
     public override void StateFinalize()
     {
-        enemyController._IsCatch = false;
     }
     bool Action()
     {

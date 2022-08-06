@@ -16,6 +16,7 @@ public class AvoidGameController
     [SerializeField] int RockGenerationPositionY;
     [SerializeField] int WhatTimeDoAvoidGame;
     [SerializeField] float IntervalTime;
+    [SerializeField] AudioClip AttackSignsSE;
     public void DoAvoidGame()
     {
         StartCoroutine(AvoidGameMove());
@@ -25,6 +26,7 @@ public class AvoidGameController
         for (int i = 0; i < WhatTimeDoAvoidGame; ++i)
         {
             yield return new WaitForSeconds(IntervalTime);
+            PlayAudio.PlaySE(AttackSignsSE);
             var RockGenerationPositionX = Random.Range(LeftMaxGenerationPosition.position.x, RightMaxGenerationPosition.position.x);
             Instantiate(RockPrefubs, new Vector3(RockGenerationPositionX, RockGenerationPositionY, RockGenerationPositionZ), Quaternion.Euler(-180, 0, 0));
         }

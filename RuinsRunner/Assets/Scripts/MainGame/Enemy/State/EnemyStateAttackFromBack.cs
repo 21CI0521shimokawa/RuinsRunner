@@ -109,11 +109,18 @@ public class EnemyStateAttackFromBack : StateBase
             {
                     var EnemyNewPositon = FollowTarget.position.z;
                     gameObject.transform.DOMoveZ(EnemyNewPositon, 1)
-                .OnUpdate(() =>
+                .OnStart(() =>
                 {
+                    EnemyController._Effects.transform.position = gameObject.transform.position;
+                    PlayAudio.PlaySE(EnemyController._AttackSE);
+                })
+                .OnUpdate(()=>
+                {
+                    DoPlayEffect(gameObject);
                 })
                  .OnComplete(() =>
                  {
+                     EnemyController._Effects.Stop();
                      HitProcessingWithPlayer(gameObject);
                      State = AttackFromBackState.BUCK;
                  });
@@ -156,9 +163,17 @@ public class EnemyStateAttackFromBack : StateBase
                 StaticInterfaceManager.UpdateScore(-100);
             });
     }
+    private void DoPlayEffect(GameObject gameObject)
+    {
+        gameObject.UpdateAsObservable()
+            .Subscribe(_ =>
+            {
+                EnemyController._Effects.Play();
+            });
+    }
     public override void StateFinalize()
     {
         StaticInterfaceManager.DoReturnCameraMove(Camera);
     }
-
+    
 }
