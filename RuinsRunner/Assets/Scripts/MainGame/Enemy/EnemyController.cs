@@ -11,30 +11,23 @@ public class EnemyController
     StateMachine EnemyState;
     public Animator EnemyAnimator;
 
-    #region KnockBack関連
-    public bool _IsSqueeze;
-    public bool _Issqueeze
-    {
-        get { return _IsSqueeze; }
-        set { _IsSqueeze = value; }
-    }
-    #endregion
-    public bool _IsCatch;
-    public bool _Iscatch
-    {
-        get { return _IsSqueeze; }
-        set { _Issqueeze = value; }
-    }
-
-    #region Chase関連
-    #endregion
-    #region EnemyAttack関連
+    [Header("EnemyAttack関連")]
     [SerializeField] GameObject AttackSignsPrefubs;
     public GameObject _AttackSignsPrefubs
     {
         get { return AttackSignsPrefubs; }
     }
-    #endregion
+    [SerializeField] AudioClip AttackSE;
+    public AudioClip _AttackSE
+    {
+        get { return AttackSE; }
+    }
+    [SerializeField] ParticleSystem Effects;
+    public ParticleSystem _Effects
+    {
+        get { return Effects; }
+    }
+    [SerializeField] 
     void Start()
     {
         EnemyState = new StateMachine(new EnemyStateRun());
@@ -42,15 +35,10 @@ public class EnemyController
     void Update()
     {
         EnemyState.Update(this.gameObject);
-        Debug.Log(EnemyState.StateName);
     }
 
     protected void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            _IsSqueeze = true;
-        }
     }
 
     public void CallReceiveDamage()

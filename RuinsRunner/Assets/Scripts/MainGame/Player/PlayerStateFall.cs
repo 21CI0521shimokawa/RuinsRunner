@@ -41,7 +41,6 @@ public class PlayerStateFall
 
     public override void StateFinalize()
     {
-        DoEditingCameraPositon(CameraObject);
         playerController_.animator_.ResetTrigger("StateFall");
     }
 
@@ -54,6 +53,8 @@ public class PlayerStateFall
             playerController_.Damage();
 
             playerController_.gameObject.GetComponent<Rigidbody>().position = new Vector3(0, 10, playerController_.transform.position.z/*playerController_.GetPositionZ()*/);
+
+            DoEditingCameraPositon(CameraObject);
         }
 
 

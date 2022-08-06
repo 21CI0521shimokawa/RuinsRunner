@@ -32,15 +32,9 @@ public class EnemyStateKnockBack : StateBase
     }
     public override void StateFinalize()
     {
-        enemyController._IsSqueeze = false;
     }
     bool Action()
     {
-        if (StateTimeCount >= 0.2f)
-        {
-            enemyController._IsSqueeze = true;
-        }
-
         return StateTimeCount >= 1.0f;
     }
 }
