@@ -173,8 +173,8 @@ public class PlayerStateRun : StateBase
 
         float gamepadStickLX = ControllerManager.GetGamepadStickL().x;
 
-        moveVec.x += gamepadStickLX > 0.9f ? speed_ : 0;
-        moveVec.x += gamepadStickLX < -0.9f ? -speed_ : 0;
+        moveVec.x += gamepadStickLX > 0.6f ? speed_ : 0;
+        moveVec.x += gamepadStickLX < -0.6f ? -speed_ : 0;
 
         if (moveVec.x != 0)
         {

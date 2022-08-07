@@ -11,6 +11,24 @@ public class ScoreManager
     [SerializeField]TextMeshProUGUI text;
     int score_;
 
+    //得点倍率
+    float scoreMagnification_;
+    public float scoreMagnification
+    {
+        get
+        {
+            return scoreMagnification_;
+        }
+
+        set
+        {
+            if(value >= 0.0f)
+            {
+                scoreMagnification_ = value;
+            }
+        }
+    }
+
     private void Start()
     {
         Scene scene = SceneManager.GetSceneByName("Manager");
@@ -27,6 +45,9 @@ public class ScoreManager
             }
         }
         text.text = score_.ToString();
+
+
+        scoreMagnification_ = 1.0f;
     }
 
     /// <summary>
@@ -35,8 +56,16 @@ public class ScoreManager
     /// <param name="addScore"></param>
     public void UpdateScore(int addScore)
     {
+        //得点が減点されたら倍率と速度をリセット
+        if(addScore < 0)
+        {
+            scoreMagnification_ = 1.0f;
+            MoveLooksLikeRunning.moveMagnification = 1.0f;
+        }
+
+
         //ローカルスコアの更新
-        score_ += addScore;
+        score_ += (int)(addScore * scoreMagnification_);
         score_ = Mathf.Clamp(score_, 0, 99999);
 
         //共有スコアの更新

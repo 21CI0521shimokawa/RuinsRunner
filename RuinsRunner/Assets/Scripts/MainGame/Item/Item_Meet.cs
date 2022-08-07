@@ -17,6 +17,12 @@ public class Item_Meet : ItemBase
         //_player.GetComponent<PlayerController>().Recovery();
         StaticInterfaceManager.MovePlayerZ(-1, _player.GetComponent<PlayerController>());
         StaticInterfaceManager.UpdateScore(500);
+
+        MoveLooksLikeRunning.moveMagnification = 1.5f;  //ˆÚ“®‘¬“x”{—¦
+
+        ScoreManager scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        scoreManager.scoreMagnification = 1.2f;    //“¾“_”{—¦
+
         PlayAudio.PlaySE(audioClip_);
     }
 

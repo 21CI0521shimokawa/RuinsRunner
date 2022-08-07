@@ -198,7 +198,7 @@ public class NewMapGenerator : MonoBehaviour
             remainTime_ = 0f;
         }
 
-        movedDistance_ += MainGameConst.moveSpeed * Time.deltaTime;
+        movedDistance_ += MainGameConst.moveSpeed * MoveLooksLikeRunning.moveMagnification * Time.deltaTime;
 
         if(state_ != null)
         {
