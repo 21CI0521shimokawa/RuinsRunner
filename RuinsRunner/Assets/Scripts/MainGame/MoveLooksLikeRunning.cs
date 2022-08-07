@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class MoveLooksLikeRunning : MonoBehaviour
 {
+    static float moveMagnification_ = 1.0f;    //ˆÚ“®‚·‚é‘¬“x”{—¦
+    static public float moveMagnification
+    { 
+        get
+        {
+            return moveMagnification_;
+        }
+
+        set
+        {
+            if(value >= 0.0f)
+            {
+                moveMagnification_ = value;
+            }
+        }
+    }
+
     static bool isRunning_; //ˆÚ“®‚³‚¹‚é‚©‚Ç‚¤‚©
     public static void Set_isRunning(bool _value)
     {
@@ -22,7 +39,7 @@ public class MoveLooksLikeRunning : MonoBehaviour
     {
         if (isRunning_)
         {
-            transform.position += Vector3.back * moveSpeed * Time.deltaTime;
+            transform.position += Vector3.back * (moveSpeed * moveMagnification_) * Time.deltaTime;
         }
     }
 }
