@@ -113,13 +113,13 @@ public class PlayerStateRun : StateBase
 
         //現在のZ座標よりプレイヤがいる予定の場所の方が敵に遠かったら（仮）
         //if分条件を '<' から　'!=' にしました（前後の移動を確認したかったため） 工藤 6/29
-        //if (gameObject.transform.position.z != playerController_.GetPositionZ())
-        //{
-        //    FrontMove(gameObject);    //こいつのせいで柱すり抜ける
-        //}
+        if (gameObject.transform.position.z != playerController_.GetPositionZ())
+        {
+            FrontMove(gameObject);    //こいつのせいで柱すり抜ける
+        }
 
         //トラップを踏んだら
-        if(playerController_.OnTrap())
+        if (playerController_.OnTrap())
         {
             playerController_.Damage();
             nextState = new PlayerStateStumble();
@@ -208,13 +208,17 @@ public class PlayerStateRun : StateBase
         if (!isMoveZ)
         {
             ////現在のZ座標とプレイヤがいる予定の場所が違ったら
-            //if (_gameObject.transform.position.z != playerController_.GetPositionZ())
-            //{
-            //    isMoveZ = true; //前後移動開始
-            //    moveZStartTime_ = StateTimeCount;
-            //    moveZStartPositionZ_ = _gameObject.transform.position.z;
-            //    moveZEndPositionZ_ = playerController_.GetPositionZ();
-            //}
+            if (_gameObject.transform.position.z != playerController_.GetPositionZ())
+            {
+                //前に障害物がないかプレイヤがある程度後ろに下がったら
+                if(playerController_.PlayerMoveChack(new Vector3(0, 0, 1)) || _gameObject.transform.position.z < 7.0f)
+                {
+                    isMoveZ = true; //前後移動開始
+                    moveZStartTime_ = StateTimeCount;
+                    moveZStartPositionZ_ = _gameObject.transform.position.z;
+                    moveZEndPositionZ_ = playerController_.GetPositionZ();
+                }
+            }
         }
         //前後移動中
         else
