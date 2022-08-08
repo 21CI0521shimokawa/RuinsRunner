@@ -57,6 +57,17 @@ public class NewMapGenerator : MonoBehaviour
         }
     }
 
+    //生成したPrefabList
+    static List<GameObject> generatedPrefabsList_ = new List<GameObject>();
+    public static List<GameObject> generatedPrefabsList
+    {
+        get
+        {
+            return generatedPrefabsList_;
+        }
+    }
+
+
     //StateNormal
     //wallPrefabの保存場所
     [SerializeField] List<GameObject> wallPrefabs_;
@@ -222,8 +233,40 @@ public class NewMapGenerator : MonoBehaviour
             latestFloorInfo_ = floorData;
         }
 
-        return Instantiate(_mapChip, createPosition, Quaternion.identity, mapFolder_.transform);
+        return GameObjectInstantiateOrReuse(_mapChip, createPosition);
     }
+
+
+    //オブジェクトの再利用
+    GameObject GameObjectInstantiateOrReuse(GameObject _mapChip, Vector3 _createPosition)
+    {
+        //今まで生成したオブジェクトのリストを取得
+        foreach(GameObject generatedObject in generatedPrefabsList_)
+        {
+            //そのオブジェクトの名前と今生成しようとしているPrefabの名前が同じなら
+            if(generatedObject.name == _mapChip.name)
+            {
+                //そのオブジェクトがアクティブでないなら
+                if (!generatedObject.activeInHierarchy)
+                {
+                    //再利用
+                    generatedObject.SetActive(true);
+                    generatedObject.transform.position = _createPosition;
+                    generatedObject.transform.rotation = Quaternion.identity;
+
+                    return generatedObject;
+                }
+            }
+        }
+
+        //生成
+        GameObject returnGameObject = Instantiate(_mapChip, _createPosition, Quaternion.identity, mapFolder_.transform);
+        returnGameObject.name = _mapChip.name;
+        generatedPrefabsList_.Add(returnGameObject);    //リストに追加
+
+        return returnGameObject;
+    }
+
 
     //床回転
     public void FloorRotate(GameObject _mapChip)

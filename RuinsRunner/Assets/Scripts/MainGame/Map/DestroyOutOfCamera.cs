@@ -22,6 +22,17 @@ public class DestroyOutOfCamera : MonoBehaviour
 
     void DestroyMe()
     {
+        //そのオブジェクトがMapGeneratorによって生成されたものかどうか確認
+        foreach(GameObject generatedObject in NewMapGenerator.generatedPrefabsList)
+        {
+            //自分と同じものが見つかったら
+            if(generatedObject == gameObject)
+            {
+                gameObject.SetActive(false);    //非アクティブにする
+                return;
+            }
+        }
+
         Destroy(gameObject);
     }
 }
