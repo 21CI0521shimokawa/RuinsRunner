@@ -4,12 +4,16 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class ScoreManager 
+public class ScoreManager
     : MonoBehaviour
     , IUpdateScore
+    , IUpdateCoinCount
 {
-    [SerializeField]TextMeshProUGUI text;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI coinCountText;
     int score_;
+    int coinCount_;
+    TakeOverVariables gameManager;
 
     //得点倍率
     float scoreMagnification_;
@@ -22,7 +26,7 @@ public class ScoreManager
 
         set
         {
-            if(value >= 0.0f)
+            if (value >= 0.0f)
             {
                 scoreMagnification_ = value;
             }
@@ -37,15 +41,17 @@ public class ScoreManager
         //つまり、ヒエラルキーの最上位のオブジェクトが取得できる
         foreach (var rootGameObject in scene.GetRootGameObjects())
         {
-            TakeOverVariables gameManager = rootGameObject.GetComponent<TakeOverVariables>();
+            gameManager = rootGameObject.GetComponent<TakeOverVariables>();
             if (gameManager != null)
             {
                 score_ = gameManager.Score;
+                coinCount_ = gameManager.CoinCount;
                 break;
             }
         }
-        text.text = score_.ToString();
-
+        //scoreText.text = score_.ToString();
+        coinCount_ = 0;
+        coinCountText.text = coinCount_.ToString();
 
         scoreMagnification_ = 1.0f;
     }
@@ -57,7 +63,7 @@ public class ScoreManager
     public void UpdateScore(int addScore)
     {
         //得点が減点されたら倍率と速度をリセット
-        if(addScore < 0)
+        if (addScore < 0)
         {
             scoreMagnification_ = 1.0f;
             MoveLooksLikeRunning.moveMagnification = 1.0f;
@@ -71,19 +77,16 @@ public class ScoreManager
         //共有スコアの更新
         Scene scene = SceneManager.GetSceneByName("Manager");
 
-        //GetRootGameObjectsで、そのシーンのルートGameObjects
-        //つまり、ヒエラルキーの最上位のオブジェクトが取得できる
-        foreach (var rootGameObject in scene.GetRootGameObjects())
-        {
-            TakeOverVariables gameManager = rootGameObject.GetComponent<TakeOverVariables>();
-            if (gameManager != null)
-            {
-                //GameManagerが見つかったので
-                //gameManagerのスコアを取得
-                gameManager.Score = score_;
-                break;
-            }
-        }
-        text.text = score_.ToString();
+        gameManager.Score = score_;
+        //scoreText.text = score_.ToString();
+    }
+
+    public void UpdateCoinCount()
+    {
+        //ローカルコインカウントの更新
+        coinCount_++;
+        coinCountText.text = coinCount_.ToString();
+        //共有コインカウントの更新
+        gameManager.CoinCount = coinCount_;
     }
 }

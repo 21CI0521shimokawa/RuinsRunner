@@ -50,7 +50,7 @@ namespace SceneDefine
             return SceneName.NULL;
         }
 
-        private static Dictionary<SceneName, string> sceneDictionary_ = new Dictionary<SceneName, string>(){
+        private static readonly Dictionary<SceneName, string> sceneDictionary_ = new Dictionary<SceneName, string>(){
                 { SceneName.JEC,        "Scene_Jec"      },
                 { SceneName.TITLE,      "Scene_Title"    },
                 { SceneName.DEMO,       "Scene_Demo"     },

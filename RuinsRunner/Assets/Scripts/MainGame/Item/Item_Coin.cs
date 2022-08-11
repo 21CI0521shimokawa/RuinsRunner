@@ -14,6 +14,7 @@ public class Item_Coin : ItemBase
     protected override void TakenItem(GameObject _player)
     {
         StaticInterfaceManager.UpdateScore(100);
+        StaticInterfaceManager.UpdateCoinCount();
         PlayAudio.PlaySE(audioClip_);
     }
 

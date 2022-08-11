@@ -51,6 +51,13 @@ public interface IUpdateScore
 {
     void UpdateScore(int addScore);
 }
+/// <summary>
+/// コインカウンターの増加
+/// </summary>
+public interface IUpdateCoinCount
+{
+    void UpdateCoinCount();
+}
 
 public interface IExitGame
 {

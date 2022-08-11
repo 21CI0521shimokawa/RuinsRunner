@@ -78,6 +78,14 @@ public static class StaticInterfaceManager
         obj.UpdateScore(_addScore);
     }
 
+    static public void UpdateCoinCount()
+    {
+        GameObject scoreManager = GameObject.FindGameObjectWithTag("ScoreManager");
+        IUpdateCoinCount obj = scoreManager.GetComponent(typeof(IUpdateCoinCount)) as IUpdateCoinCount;
+        if (obj == null) return;
+        obj.UpdateCoinCount();
+    }
+
     static public void ExitGame()
     {
         GameObject sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
