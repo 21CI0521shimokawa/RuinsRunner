@@ -4,9 +4,11 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using SceneDefine;
 using System;
 
-public class SceneManagerResult : MonoBehaviour
+public class SceneManagerResult : SceneSuperClass
 {
     [SerializeField] float easingTime = 1.5f;
     [SerializeField] CanvasGroup scoreBorad;
@@ -46,6 +48,22 @@ public class SceneManagerResult : MonoBehaviour
         //スコアボードを徐々に表示
         StartCoroutine(GraduallyAppear());
     }
+
+    private void Update()
+    {
+        if (Gamepad.current.buttonEast.wasPressedThisFrame)
+        {
+            SceneAddRequester sceneAddRequester = GetComponent<SceneAddRequester>();
+            //先にランゲームシーンを消去
+            sceneAddRequester.RequestUnLoadScene(SceneName.RUNGAME);
+            //エンディングのロード
+            SceneManager.LoadScene("Scene_Ending");
+            //続いてこのシーンを消去
+            sceneAddRequester.RequestUnLoadScene(SceneName.RESULT);
+            //sceneAddRequester.RequestAddScene(SceneName.ENDING, true);
+        }
+    }
+
     IEnumerator GraduallyAppear()
     {
         while (scoreBorad.alpha < 1.0f)

@@ -29,4 +29,13 @@ public class SceneAddRequester : MonoBehaviour
             //SceneTransition.UnloadScene(currentSceneName_);
         }
     }
+
+    public void RequestUnLoadScene(SceneName _sName)
+    {
+        //現在のシーン名を取得
+        string requestedSceneName_ = SceneDictionary.GetSceneNameString(_sName);
+
+        //今までのメインシーンを消す
+        SceneManager.UnloadSceneAsync(requestedSceneName_);
+    }
 }

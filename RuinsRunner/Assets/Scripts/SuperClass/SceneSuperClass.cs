@@ -30,7 +30,22 @@ public class SceneSuperClass : MonoBehaviour
     {
         if (currentSceneName != SceneName.NULL) return;
         //シーンの名前から、自身のシーンを判断させる
-        currentSceneName = SceneDictionary.GetSceneNameEnum(SceneManager.GetActiveScene().name);
+        if(SceneManager.GetActiveScene().name != "Manager")
+        {
+            currentSceneName = SceneDictionary.GetSceneNameEnum(SceneManager.GetActiveScene().name);
+            return;
+        }
+        //マネージャーシーンを検知してしまうとNULLになってしまいロード等で支障をきたすので、イてれーとして探す
+        //（複数シーン展開時にもしかしたらまた順番を考えないといけなくなると思う）
+        for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
+        {
+            if(SceneManager.GetSceneAt(i).name != "Manager")
+            {
+                currentSceneName = SceneDictionary.GetSceneNameEnum(SceneManager.GetSceneAt(i).name);
+                break;
+            }
+        }
+        Debug.Log("ここに入っているということはマネージャーシーン以外認識できていない");
     }
 
     public SceneName GetCurrentSceneName()

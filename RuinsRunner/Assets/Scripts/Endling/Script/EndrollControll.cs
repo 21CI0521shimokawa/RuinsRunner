@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 
-public class EndrollControll : MonoBehaviour
+public class EndrollControll : SceneSuperClass
 {
     [Header("移動させるテキスト")]
     [SerializeField] TextMeshProUGUI TargetText;
@@ -24,7 +24,8 @@ public class EndrollControll : MonoBehaviour
         _TargetText.transform.DOMoveY(DestinationY, MoveTime)
             .OnComplete(() =>
             {
-                //scene移行の処理
+                Debug.Log("コンプリート");
+                GetComponent<SceneAddRequester>().RequestAddScene(SceneDefine.SceneName.TITLE, true);
             })
             .SetEase(EaseType);
     }
