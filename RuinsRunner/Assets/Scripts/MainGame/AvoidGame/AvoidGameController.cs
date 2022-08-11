@@ -7,8 +7,11 @@ public class AvoidGameController
     , IAvoidGame
 
 {
+    [Header("関数取得")]
+    [SerializeField] EnemyController EnemyController;
     [Header("飛んでくるオブジェクト関連")]
     [SerializeField] GameObject RockPrefubs;
+    [SerializeField] Transform InstanceObjectTransform;
     [Header("ミニゲーム設定")]
     [SerializeField] Transform LeftMaxGenerationPosition;
     [SerializeField] Transform RightMaxGenerationPosition;
@@ -28,7 +31,8 @@ public class AvoidGameController
             yield return new WaitForSeconds(IntervalTime);
             PlayAudio.PlaySE(AttackSignsSE);
             var RockGenerationPositionX = Random.Range(LeftMaxGenerationPosition.position.x, RightMaxGenerationPosition.position.x);
-            Instantiate(RockPrefubs, new Vector3(RockGenerationPositionX, RockGenerationPositionY, RockGenerationPositionZ), Quaternion.Euler(-180, 0, 0));
+            GameObject InstanceObject=Instantiate(RockPrefubs, new Vector3(RockGenerationPositionX, RockGenerationPositionY, RockGenerationPositionZ), Quaternion.Euler(-180, 0, 0));
+            EnemyController.CreateSignPrefub(EnemyController._AttackSignsPrefubs, InstanceObjectTransform);
         }
         yield break;
     }

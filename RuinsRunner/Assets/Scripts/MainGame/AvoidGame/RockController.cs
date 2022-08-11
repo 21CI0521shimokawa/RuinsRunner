@@ -23,7 +23,7 @@ public class RockController : ObjectSuperClass
         this.transform.DOMoveZ(RockDestinationPositonZ, RockSpeed)
             .OnUpdate(() =>
             {
-                transform.DORotate(new Vector3(0, 0, -360), 1, RotateMode.FastBeyond360)
+                transform.DORotate(new Vector3(0, 0, -360), 1, RotateMode.LocalAxisAdd)
                          .SetEase(RockEaseType)
                          .SetLoops(-1);
             })
