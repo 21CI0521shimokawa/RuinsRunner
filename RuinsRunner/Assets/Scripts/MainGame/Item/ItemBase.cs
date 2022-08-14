@@ -24,7 +24,8 @@ public abstract class ItemBase : ObjectSuperClass
         if(other.gameObject.tag == "Player")
         {
             TakenItem(other.gameObject);
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 

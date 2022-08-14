@@ -254,6 +254,14 @@ public class NewMapGenerator : MonoBehaviour
                     generatedObject.transform.position = _createPosition;
                     generatedObject.transform.rotation = Quaternion.identity;
 
+                    //子供もアクティブにする
+                    var children = new Transform[generatedObject.transform.childCount];
+
+                    for (var i = 0; i < children.Length; ++i)
+                    {
+                        generatedObject.transform.GetChild(i).gameObject.SetActive(true);
+                    }
+
                     return generatedObject;
                 }
             }
@@ -325,7 +333,6 @@ public class NewMapGenerator : MonoBehaviour
 
     public bool IsGenerate()
     {
-        //todo:アタッチして試運転が終わったら4.0fをgameObject.GetComponetn<RectTransform>().sizeDelta.zで取得したい
         return movedDistance_ >= latestFloorInfo_.sizeZ;
     }
 
