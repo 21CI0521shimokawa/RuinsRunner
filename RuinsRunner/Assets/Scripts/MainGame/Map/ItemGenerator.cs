@@ -4,5 +4,13 @@ using UnityEngine;
 
 public class ItemGenerator : MonoBehaviour
 {
-    
+    void Start()
+    {
+        
+    }
+
+    void Update()
+    {
+        
+    }
 }
