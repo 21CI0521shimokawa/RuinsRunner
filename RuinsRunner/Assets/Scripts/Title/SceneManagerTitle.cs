@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class SceneManagerTitle : SceneSuperClass
 {
     [SerializeField] Fade fade_;
-    [SerializeField] GameObject enemy;
+    //[SerializeField] GameObject enemy;
     [Tooltip("フェードインにかける時間")]
     [SerializeField] float fadeinTime = 1.0f;
     [Tooltip("フェードアウトにかける時間")]
@@ -38,24 +38,26 @@ public class SceneManagerTitle : SceneSuperClass
 
     private void Update()
     {
-        if(passedTime_ > logoAppTime && !isAlreadyStopped)
-        {
-            foreach(GameObject obj in slowObjects)
-            {
-                MoveLooksLikeRunning move = obj.GetComponent<MoveLooksLikeRunning>();
-                if(move != null)
-                {
-                    move.moveSpeed = 0.1f;
-                }
-                Animator anim = obj.GetComponent<Animator>();
-                if(anim != null)
-                {
-                    anim.speed = 0.01f;
-                }
-            }
-            enemy.GetComponent<Animator>().SetTrigger("Attack");
-            isAlreadyStopped = true;
-        }
+        #region 旧スローモーション実装
+        //if(passedTime_ > logoAppTime && !isAlreadyStopped)
+        //{
+        //    foreach(GameObject obj in slowObjects)
+        //    {
+        //        MoveLooksLikeRunning move = obj.GetComponent<MoveLooksLikeRunning>();
+        //        if(move != null)
+        //        {
+        //            move.moveSpeed = 0.1f;
+        //        }
+        //        Animator anim = obj.GetComponent<Animator>();
+        //        if(anim != null)
+        //        {
+        //            anim.speed = 0.01f;
+        //        }
+        //    }
+        //    enemy.GetComponent<Animator>().SetTrigger("Attack");
+        //    isAlreadyStopped = true;
+        //}
+        #endregion
         FadeUpdate();
     }
 
