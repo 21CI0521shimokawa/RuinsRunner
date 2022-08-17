@@ -42,7 +42,7 @@ public class SceneSuperClass : MonoBehaviour
             if(SceneManager.GetSceneAt(i).name != "Manager")
             {
                 currentSceneName = SceneDictionary.GetSceneNameEnum(SceneManager.GetSceneAt(i).name);
-                break;
+                return;
             }
         }
         Debug.Log("ここに入っているということはマネージャーシーン以外認識できていない");

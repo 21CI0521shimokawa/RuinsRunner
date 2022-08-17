@@ -441,6 +441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 1483653190106877622, guid: 6cb24037e9094584d915e6348b23e62b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cb24037e9094584d915e6348b23e62b, type: 3}
 --- !u!1001 &149331719
@@ -923,6 +927,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayAudio
       objectReference: {fileID: 0}
+    - target: {fileID: 7100380774684161385, guid: e8375f3949676094eb9aa64da5e29189, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7100380774684161390, guid: e8375f3949676094eb9aa64da5e29189, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -982,7 +990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 968587794806259885, guid: 1f36059799674134bad252fc4f7160dc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4202807251681348007, guid: 1f36059799674134bad252fc4f7160dc, type: 3}
       propertyPath: m_RootOrder
@@ -1812,6 +1820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7051322479100515760, guid: 5cc8d906e3c02864ab687153583511f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7678783341766840074, guid: 5cc8d906e3c02864ab687153583511f2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2492,7 +2504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1521378223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2596,6 +2608,10 @@ PrefabInstance:
     - target: {fileID: 1692222168060432, guid: 3f27a8f2ca0d1fb4aa9e99c4571f2fee, type: 3}
       propertyPath: m_Name
       value: Monster_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692222168060432, guid: 3f27a8f2ca0d1fb4aa9e99c4571f2fee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4800736443630082, guid: 3f27a8f2ca0d1fb4aa9e99c4571f2fee, type: 3}
       propertyPath: m_RootOrder
@@ -2903,7 +2919,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e712f7071b2be4a9f14b95ddebedb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1752890863}
+  scoreText: {fileID: 0}
+  coinCountText: {fileID: 0}
 --- !u!114 &1752890863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3329,7 +3346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2086877954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3515,6 +3532,10 @@ PrefabInstance:
     - target: {fileID: 7360877377509752493, guid: c91add993c1723944a15478bc9a267ad, type: 3}
       propertyPath: m_Name
       value: AvoidManeger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360877377509752493, guid: c91add993c1723944a15478bc9a267ad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c91add993c1723944a15478bc9a267ad, type: 3}
