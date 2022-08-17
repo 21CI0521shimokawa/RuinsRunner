@@ -54,7 +54,7 @@ public class PlayerStateFall
 
             playerController_.gameObject.GetComponent<Rigidbody>().position = new Vector3(0, 10, playerController_.transform.position.z/*playerController_.GetPositionZ()*/);
 
-            DoEditingCameraPositon(CameraObject);
+            //DoEditingCameraPositon(CameraObject);
         }
 
 

@@ -59,7 +59,6 @@ public class SceneManagerResult : SceneSuperClass
             //エンディングのロード
             SceneManager.LoadScene("Scene_Ending");
             //続いてこのシーンを消去
-            sceneAddRequester.RequestUnLoadScene(SceneName.RESULT);
             //sceneAddRequester.RequestAddScene(SceneName.ENDING, true);
         }
     }
