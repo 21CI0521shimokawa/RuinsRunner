@@ -39,6 +39,10 @@ public class EnemyController
 
     protected void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("EnemyAttack"))
+        {
+            EnemyState = new StateMachine(new EnemyStateAttackFromBack());
+        }
     }
 
     public void CallReceiveDamage()

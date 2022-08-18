@@ -108,10 +108,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90055b40dc45477498763290270552dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyController: {fileID: 0}
   RockPrefubs: {fileID: 3779733238977154412, guid: 4387aa68708f44d0f9ec0bea2fd54c7c, type: 3}
+  InstanceObjectTransform: {fileID: 0}
   LeftMaxGenerationPosition: {fileID: 3839312069079571045}
   RightMaxGenerationPosition: {fileID: 8208977790008234276}
-  RockGenerationPositionZ: 20
+  RockGenerationPositionZ: 40
   RockGenerationPositionY: 2
   WhatTimeDoAvoidGame: 10
   IntervalTime: 2
+  AttackSignsSE: {fileID: 8300000, guid: e8543a64f1dba9e4186b17c1f15aed2c, type: 3}

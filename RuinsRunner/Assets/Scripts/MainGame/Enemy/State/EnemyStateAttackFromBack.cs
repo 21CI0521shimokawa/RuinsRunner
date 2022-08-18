@@ -9,7 +9,7 @@ using DG.Tweening;
 public class EnemyStateAttackFromBack : StateBase
 {
 
-    public enum AttackFromBackState { IDOL, PREPARATION, ATTACK, BUCK, END }
+    public enum AttackFromBackState { IDOL, PREPARATION, ATTACK, BUCK, END}
     public AttackFromBackState State;
     EnemyController EnemyController;
     GameObject Enemy;
@@ -174,6 +174,7 @@ public class EnemyStateAttackFromBack : StateBase
     public override void StateFinalize()
     {
         StaticInterfaceManager.DoReturnCameraMove(Camera);
+        StaticInterfaceManager.AvoidGameStart();
     }
     
 }

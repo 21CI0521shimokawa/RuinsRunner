@@ -5379,7 +5379,7 @@ GameObject:
   - component: {fileID: 9110057426292232483}
   m_Layer: 0
   m_Name: EnemyAttackMap
-  m_TagString: Untagged
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5523,6 +5523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!114 &1338865149428275842
 MonoBehaviour:
   m_ObjectHideFlags: 0

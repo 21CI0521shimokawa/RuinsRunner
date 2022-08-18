@@ -32,7 +32,7 @@ public class AvoidGameController
             PlayAudio.PlaySE(AttackSignsSE);
             var RockGenerationPositionX = Random.Range(LeftMaxGenerationPosition.position.x, RightMaxGenerationPosition.position.x);
             GameObject InstanceObject=Instantiate(RockPrefubs, new Vector3(RockGenerationPositionX, RockGenerationPositionY, RockGenerationPositionZ), Quaternion.Euler(-180, 0, 0));
-            EnemyController.CreateSignPrefub(EnemyController._AttackSignsPrefubs, InstanceObjectTransform);
+         //   EnemyController.CreateSignPrefub(EnemyController._AttackSignsPrefubs, InstanceObjectTransform);
         }
         yield break;
     }
