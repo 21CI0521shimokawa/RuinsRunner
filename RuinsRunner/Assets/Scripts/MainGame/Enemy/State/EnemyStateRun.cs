@@ -28,12 +28,6 @@ public class EnemyStateRun : StateBase
         //     NextState = new EnemyStateKnockBack();
         // }
         #endregion
-        #region 後ろから攻撃ステート移行(仮)
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-            NextState = new EnemyStateAttackFromBack();
-        }
-        #endregion
         return NextState;
     }
 
