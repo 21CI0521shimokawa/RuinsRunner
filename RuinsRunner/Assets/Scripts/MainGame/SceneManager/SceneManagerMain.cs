@@ -68,7 +68,7 @@ public class SceneManagerMain
     {
         scoreTMP.alpha = 0f;
         StartCoroutine(GraduallyStopScene());
-        sceneAddRequester_.RequestAddScene(SceneName.RESULT);
+        sceneAddRequester_.RequestAddScene(SceneName.RESULT, true);
     }
 
     IEnumerator GraduallyStopScene()

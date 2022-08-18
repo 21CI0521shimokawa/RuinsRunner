@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using SceneDefine;
 
 public class EndrollControll : SceneSuperClass
 {

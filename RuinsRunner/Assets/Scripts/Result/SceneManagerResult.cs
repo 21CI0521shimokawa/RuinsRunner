@@ -52,14 +52,14 @@ public class SceneManagerResult : SceneSuperClass
     private void Update()
     {
         if (Gamepad.current.buttonEast.wasPressedThisFrame)
-        {
-            SceneAddRequester sceneAddRequester = GetComponent<SceneAddRequester>();
-            //先にランゲームシーンを消去
-            sceneAddRequester.RequestUnLoadScene(SceneName.RUNGAME);
-            //エンディングのロード
-            SceneManager.LoadScene("Scene_Ending");
-            //続いてこのシーンを消去
-            //sceneAddRequester.RequestAddScene(SceneName.ENDING, true);
+            {
+                SceneAddRequester sceneAddRequester = GetComponent<SceneAddRequester>();
+                //先にランゲームシーンを消去
+               // sceneAddRequester.RequestUnLoadScene(SceneName.RUNGAME);
+            //    //エンディングのロード
+            //    //SceneManager.LoadScene("Scene_Ending");
+            //    //続いてこのシーンを消去
+                sceneAddRequester.RequestAddScene(SceneName.ENDING, true);
         }
     }
 
