@@ -75485,7 +75485,7 @@ GameObject:
   - component: {fileID: 1729732776}
   - component: {fileID: 1729732778}
   m_Layer: 5
-  m_Name: '"PUSH A BUTTON"'
+  m_Name: '"PUSH B BUTTON"'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75531,7 +75531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PUSH A BUTTON
+  m_text: PUSH B BUTTON
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
