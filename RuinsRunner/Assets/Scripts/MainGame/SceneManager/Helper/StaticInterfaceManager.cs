@@ -133,4 +133,28 @@ public static class StaticInterfaceManager
         if (Object == null) return;
         Object.DoEditingCameraPositon(CameraObject);
     }
+    /// <summary>
+    /// Ç®ì˜ÇéÊÇ¡ÇΩéûÇ…âÊñ Ç…èWíÜê¸ÇèoÇ∑
+    /// </summary>
+    static public void PlayConcentrationLineEffect()
+    {
+        GameObject EffectManeger = GameObject.FindGameObjectWithTag("EffectManeger");
+        IGetMeet Object = EffectManeger.GetComponent(typeof(IGetMeet)) as IGetMeet;
+        if (Object == null) return;
+        Object.PlayConcentrationLine();
+    }
+    static public void PlayEnemyStormEffect()
+    {
+        GameObject EffectManeger = GameObject.FindGameObjectWithTag("EffectManeger");
+        ICreateStormEffect Object = EffectManeger.GetComponent(typeof(ICreateStormEffect)) as ICreateStormEffect;
+        if (Object == null) return;
+        Object.PlayStormEffect();
+    }
+    static public void StopEnemyStormEffect()
+    {
+        GameObject EffectManeger = GameObject.FindGameObjectWithTag("EffectManeger");
+        IStopStormEffect Object = EffectManeger.GetComponent(typeof(IStopStormEffect)) as IStopStormEffect;
+        if (Object == null) return;
+        Object.StopStormEffect();
+    }
 }

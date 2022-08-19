@@ -92,13 +92,12 @@ public class EnemyStateAttackFromBack : StateBase
                      .SetLoops(PrerationTime)
                      .OnComplete(() =>
                      {
-                         EnemyController.CreateSignPrefub(EnemyController._AttackSignsPrefubs, gameObject.transform);
                          State = AttackFromBackState.ATTACK;
                      });
             });
     }
     /// <summary>
-    /// Y²‚ÉˆÚ“®‚·‚éUŒ‚ŠÖ”
+    /// Z²‚ÉˆÚ“®‚·‚éUŒ‚ŠÖ”
     /// </summary>
     /// <param name="gameObject"></param>
     private void MoveAttack(GameObject gameObject)
@@ -107,20 +106,17 @@ public class EnemyStateAttackFromBack : StateBase
            .Where(x => State == AttackFromBackState.ATTACK)
             .Subscribe(_ =>
             {
-                    var EnemyNewPositon = FollowTarget.position.z;
-                    gameObject.transform.DOMoveZ(EnemyNewPositon, 1)
+                StaticInterfaceManager.PlayEnemyStormEffect();
+                var EnemyNewPositon = FollowTarget.position;
+                    gameObject.transform.DOMove(EnemyNewPositon, 1)
                 .OnStart(() =>
                 {
-                    EnemyController._Effects.transform.position = gameObject.transform.position;
+                    EnemyController.CreateSignPrefub(EnemyController._AttackSignsPrefubs,FollowTarget);
                     PlayAudio.PlaySE(EnemyController._AttackSE);
-                })
-                .OnUpdate(()=>
-                {
-                    DoPlayEffect(gameObject);
                 })
                  .OnComplete(() =>
                  {
-                     EnemyController._Effects.Stop();
+                     StaticInterfaceManager.StopEnemyStormEffect();
                      HitProcessingWithPlayer(gameObject);
                      State = AttackFromBackState.BUCK;
                  });
@@ -161,14 +157,6 @@ public class EnemyStateAttackFromBack : StateBase
             .Subscribe(collision =>
             {
                 StaticInterfaceManager.UpdateScore(-100);
-            });
-    }
-    private void DoPlayEffect(GameObject gameObject)
-    {
-        gameObject.UpdateAsObservable()
-            .Subscribe(_ =>
-            {
-                EnemyController._Effects.Play();
             });
     }
     public override void StateFinalize()
