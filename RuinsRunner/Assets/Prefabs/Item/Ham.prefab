@@ -396,6 +396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip_: {fileID: 8300000, guid: 15e2170b4251a324fabbe678012ef92a, type: 3}
+  ConcentrationLine: {fileID: 6233820944164204346, guid: 143c032b00a5a1b4185ff3ad0706a68f, type: 3}
 --- !u!114 &8960347896539419625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,3 +409,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0

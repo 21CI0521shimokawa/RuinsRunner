@@ -22,11 +22,6 @@ public class EnemyController
     {
         get { return AttackSE; }
     }
-    [SerializeField] ParticleSystem Effects;
-    public ParticleSystem _Effects
-    {
-        get { return Effects; }
-    }
     [SerializeField] 
     void Start()
     {
@@ -51,7 +46,7 @@ public class EnemyController
     }
     public void CreateSignPrefub(GameObject SignPrefub, Transform EnemyTransform)
     {
-        var InstansPositon = new Vector3(EnemyTransform.position.x, EnemyTransform.position.y+0.1f, EnemyTransform.position.z + 8);
+        var InstansPositon = new Vector3(EnemyTransform.position.x, EnemyTransform.position.y+0.1f, EnemyTransform.position.z);
         GameObject InstanceObject=Instantiate(SignPrefub, InstansPositon, EnemyTransform.rotation);
         DOVirtual.DelayedCall(1.0f, () =>
         {

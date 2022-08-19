@@ -91,3 +91,24 @@ public interface IEditingCameraPositon
 {
     void DoEditingCameraPositon(GameObject CameraObject);
 }
+/// <summary>
+/// ‚¨“÷‚ğæ‚Á‚½‚ÌW’†üEffect
+/// </summary>
+public interface IGetMeet
+{
+    void PlayConcentrationLine();
+}
+/// <summary>
+/// “Ëi‚·‚é‚ÌEffect
+/// </summary>
+public interface ICreateStormEffect
+{
+    void PlayStormEffect();
+}
+/// <summary>
+/// “Ëi‚·‚é‚ÌEffect’â~
+/// </summary>
+public interface IStopStormEffect
+{
+    void StopStormEffect();
+}
