@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayAudio : ObjectSuperClass
 {
@@ -19,6 +20,13 @@ public class PlayAudio : ObjectSuperClass
     // Start is called before the first frame update
     void Start()
     {
+        //MainGameSceneだったら消えないようにする
+        if(gameObject.scene.name == "Scene_MainGame")
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
+
         audioSource_ = GetComponent<AudioSource>();
         playAudioList_ = new List<PlayAudioData>();
     }
@@ -26,6 +34,17 @@ public class PlayAudio : ObjectSuperClass
     // Update is called once per frame
     void Update()
     {
+        //このオブジェクトがDontDestroyOnLoadだったら
+        if (gameObject.scene.name == "DontDestroyOnLoad")
+        {
+            //アクティブシーンがMainGameでないなら
+            if(SceneManager.GetActiveScene().name != "Scene_MainGame")
+            {
+                //このオブジェクトをアクティブなシーンに移動（DontDestroyOnLoadの解除）
+                SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
+            }
+        }
+
         //削除する要素の番号リスト
         List<int> deleteNumbers = new List<int>();
 

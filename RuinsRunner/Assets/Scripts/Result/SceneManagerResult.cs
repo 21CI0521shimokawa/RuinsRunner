@@ -51,6 +51,12 @@ public class SceneManagerResult : SceneSuperClass
 
     private void Update()
     {
+        Time.timeScale = 1.0f;
+
+        if(Gamepad.current == null)
+        {
+            return;
+        }
         if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
                 SceneAddRequester sceneAddRequester = GetComponent<SceneAddRequester>();

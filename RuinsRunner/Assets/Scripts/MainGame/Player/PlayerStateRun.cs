@@ -61,22 +61,22 @@ public class PlayerStateRun : StateBase
         if (gamepad != null)
         {
             //殴る 青ボタン
-            if (Keyboard.current.rKey.wasPressedThisFrame || Gamepad.current.buttonWest.wasPressedThisFrame)
-            {
-                GameObject pillar = PillarChack();
-                if (pillar != null)
-                {
-                    PlayerStatePillarDefeatMiniGame state = new PlayerStatePillarDefeatMiniGame();
-                    state.pillar = pillar;
-                    nextState = state;
+            //if (Keyboard.current.rKey.wasPressedThisFrame || Gamepad.current.buttonWest.wasPressedThisFrame)
+            //{
+            //    GameObject pillar = PillarChack();
+            //    if (pillar != null)
+            //    {
+            //        //PlayerStatePillarDefeatMiniGame state = new PlayerStatePillarDefeatMiniGame();
+            //        //state.pillar = pillar;
+            //        //nextState = state;
 
-                    //StateBase buf3 = new PlayerStatePillarDefeatMiniGame();
-                    //((PlayerStatePillarDefeatMiniGame)buf3).pillar = pillar;
+            //        //StateBase buf3 = new PlayerStatePillarDefeatMiniGame();
+            //        //((PlayerStatePillarDefeatMiniGame)buf3).pillar = pillar;
 
-                    //StateBase buf3 = new PlayerStatePillarDefeatMiniGame();
-                    //(buf3 as PlayerStatePillarDefeatMiniGame).pillar = pillar;
-                }
-            }
+            //        //StateBase buf3 = new PlayerStatePillarDefeatMiniGame();
+            //        //(buf3 as PlayerStatePillarDefeatMiniGame).pillar = pillar;
+            //    }
+            //}
 
             //ジャンプ 赤ボタン
             if (Keyboard.current.qKey.wasPressedThisFrame || Gamepad.current.buttonEast.wasPressedThisFrame)

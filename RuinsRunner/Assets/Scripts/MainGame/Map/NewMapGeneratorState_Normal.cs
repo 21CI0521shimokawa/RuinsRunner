@@ -21,21 +21,26 @@ public class NewMapGeneratorState_Normal : StateBase
         {
             if (!mapGenerator_.IsGoalGenerate())
             {
+                //移動した分だけ減らす
+                mapGenerator_.movedDistance -= mapGenerator_.latestFloorInfo.sizeZ;
+
                 //エネミーアタックのエントリーチェック
-                if(!mapGenerator_.isCalledEnemyAttack && mapGenerator_.passedTime > mapGenerator_.EntryTimeEnemyAttack)
+                if (!mapGenerator_.isCalledEnemyAttack && mapGenerator_.passedTime > mapGenerator_.EntryTimeEnemyAttack)
                 {
-                    nextState = new NewMapGeneratorState_EnemyAttack();
-                    return nextState;
-                }
-                //穴避けのエントリーチェック
-                if(!mapGenerator_.isCalledJumpHole && mapGenerator_.passedTime > mapGenerator_.EntryTimeJumpHole)
-                {
-                    nextState = new NewMapGeneratorState_JumpHole();
+                    //nextState = new NewMapGeneratorState_EnemyAttack();
+                    mapGenerator_.isCalledEnemyAttack = true;
+                    mapGenerator_.Generate(mapGenerator_.enemyAttackMapPrefab);
                     return nextState;
                 }
 
-                //移動した分だけ減らす
-                mapGenerator_.movedDistance -= mapGenerator_.latestFloorInfo.sizeZ;
+                //穴避けのエントリーチェック
+                if(!mapGenerator_.isCalledJumpHole && mapGenerator_.passedTime > mapGenerator_.EntryTimeJumpHole)
+                {
+                    //nextState = new NewMapGeneratorState_JumpHole();
+                    mapGenerator_.isCalledJumpHole = true;
+                    mapGenerator_.Generate(mapGenerator_.jumpHoleMapPrefab);
+                    return nextState;
+                }
 
                 //床を決める 仮
                 int floorNumber = Random.Range(0, mapGenerator_.floorPrefabs.Count);

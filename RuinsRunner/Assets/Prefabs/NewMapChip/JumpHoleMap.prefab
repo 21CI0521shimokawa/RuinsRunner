@@ -635,7 +635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8589bb68ee680a4abe67d789f556dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeZ_: 68
+  sizeZ_: 64
   canRotate_: 0
 --- !u!1 &9173845275827778364
 GameObject:
