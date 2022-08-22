@@ -65,6 +65,9 @@ public class EnemyStateAttackFromBack : StateBase
         if (State == AttackFromBackState.END)
         {
             NextState = new EnemyStateRun();
+
+            //É}ÉbÉvê∂ê¨Çí èÌÇ…ñﬂÇ∑
+            GameObject.FindGameObjectWithTag("MapGenerator").GetComponent<NewMapGenerator>().endEnemyAttack = true;
         }
         return NextState;
     }

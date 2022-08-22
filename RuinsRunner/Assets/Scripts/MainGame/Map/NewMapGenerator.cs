@@ -163,7 +163,21 @@ public class NewMapGenerator : MonoBehaviour
             isCalledEnemyAttack_ = value;
         }
     }
-    
+
+    //エネミーアタックが終了したかどうか
+    bool endEnemyAttack_;
+    public bool endEnemyAttack
+    {
+        get
+        {
+            return endEnemyAttack_;
+        }
+        set
+        {
+            endEnemyAttack_ = value;
+        }
+    }
+
     //穴避けを呼び出したか
     private bool isCalledJumpHole_;
 
@@ -194,6 +208,10 @@ public class NewMapGenerator : MonoBehaviour
         itemGenerator_ = GetComponent<ItemGenerator>();
 
         state_ = new StateMachine(new NewMapGeneratorState_Normal());
+        //state_ = new StateMachine(new NewMapGeneratorState_EnemyAttack());
+
+        generatedPrefabsList_ = new List<GameObject>();
+
         movedDistance_ = 0;
     }
 

@@ -90,7 +90,7 @@ MonoBehaviour:
   - {fileID: 6488447310172164570, guid: eade8c6b185e69147b0a0eff17bb1e70, type: 3}
   wallTorchPrefab_: {fileID: 6488447310172164570, guid: 1d9425a3cbee13e4aafcc7254719ca34, type: 3}
   goalMapPrefab_: {fileID: 3839287147619380478, guid: ffba19aa75c23c1439ba3ab9c5a4fd11, type: 3}
-  enemyAttackMapPrefab_: {fileID: 6488447310172164570, guid: 0faf5f1cb97c993499a0c2cc21cc3636, type: 3}
+  enemyAttackMapPrefab_: {fileID: 6488447310172164570, guid: 473f63f299101e64d825270309e08630, type: 3}
   jumpHoleMapPrefab_: {fileID: 6488447310172164570, guid: 12380a2b5bd344441a2425d74a546d3d, type: 3}
   EntryTimeEnemyAttack: 30
   EntryTimeJumpHole: 5

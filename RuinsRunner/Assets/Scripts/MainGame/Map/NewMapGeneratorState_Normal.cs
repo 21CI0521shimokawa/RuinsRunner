@@ -27,7 +27,7 @@ public class NewMapGeneratorState_Normal : StateBase
                 //エネミーアタックのエントリーチェック
                 if (!mapGenerator_.isCalledEnemyAttack && mapGenerator_.passedTime > mapGenerator_.EntryTimeEnemyAttack)
                 {
-                    //nextState = new NewMapGeneratorState_EnemyAttack();
+                    nextState = new NewMapGeneratorState_EnemyAttack();
                     mapGenerator_.isCalledEnemyAttack = true;
                     mapGenerator_.Generate(mapGenerator_.enemyAttackMapPrefab);
                     return nextState;
