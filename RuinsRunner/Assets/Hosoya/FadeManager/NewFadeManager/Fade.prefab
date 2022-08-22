@@ -190,5 +190,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fce1b133b5d0054986cbed1556b4f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadePrefabTemp_: {fileID: 8280893801069842006}
+  fadePrefabTemp_: {fileID: 0}
   fadeImage_: {fileID: 8313357815391871756}

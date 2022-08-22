@@ -22,7 +22,7 @@ public class NewFadeSceneManager : MonoBehaviour
     private void Awake()
     {
         //fadePrefab‚Ìİ’è
-        if(fadePrefab_ == null)
+        if(fadePrefabTemp_ != null)
         {
             fadePrefab_ = fadePrefabTemp_;
             Destroy(gameObject);
