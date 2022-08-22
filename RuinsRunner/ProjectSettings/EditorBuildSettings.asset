@@ -32,5 +32,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Manager.unity
     guid: 9d34805279f72fb4bb8d370d39f97dce
+  - enabled: 1
+    path: Assets/Hosoya/FadeManager/FadeScene.unity
+    guid: 78c560ea8e6db874eba9a376283bc061
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 523924990df1f8e4689cf4cb3bd37445, type: 2}

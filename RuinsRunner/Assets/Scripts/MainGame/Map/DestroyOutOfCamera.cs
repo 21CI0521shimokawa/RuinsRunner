@@ -14,7 +14,7 @@ public class DestroyOutOfCamera : MonoBehaviour
     private void Update()
     {
         //空のオブジェクトmapEaterにぶつかったら消す方法もいいのではと感じる
-        if (transform.position.z <= -10)
+        if (transform.position.z <= destroyZPos)
         {
             DestroyMe();
         }
