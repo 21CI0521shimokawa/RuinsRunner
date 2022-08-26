@@ -26,6 +26,8 @@ public class SceneManagerMain
 
     private void Start()
     {
+        //‰Šú‰»
+        MoveLooksLikeRunning.Set_isRunning(true);
     }
 
     private void Update()

@@ -10,6 +10,4 @@ public class NewMapChip : MonoBehaviour
             return sizeZ_;
         }
     }
-
-
 }

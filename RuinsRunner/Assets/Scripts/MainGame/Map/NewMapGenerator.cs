@@ -6,7 +6,7 @@ public class NewMapGenerator : MonoBehaviour
 {
     StateMachine state_;
 
-    ItemGenerator itemGenerator_;
+    ItemGeneratorVer2 itemGenerator_;
 
     //マップチップの生成フォルダ（親）
     [SerializeField] GameObject mapFolder_;
@@ -205,7 +205,7 @@ public class NewMapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        itemGenerator_ = GetComponent<ItemGenerator>();
+        itemGenerator_ = GetComponent<ItemGeneratorVer2>();
 
         state_ = new StateMachine(new NewMapGeneratorState_Normal());
         //state_ = new StateMachine(new NewMapGeneratorState_EnemyAttack());
@@ -363,7 +363,7 @@ public class NewMapGenerator : MonoBehaviour
     {
         if(itemGenerator_ != null)
         {
-            //生成用関数を呼び出す
+            itemGenerator_.Generate(_floorSizeZ);
         }
     }
 }

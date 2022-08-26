@@ -68,8 +68,13 @@ public class SceneManagerTitle : SceneSuperClass
         //パッドの入力を反映
         Gamepad gamepad = Gamepad.current;
 
+        if(gamepad == null)
+        {
+            return;
+        }
+
         //パッドのXボタンの入力がされたら
-        if (Gamepad.current.buttonEast.wasPressedThisFrame)
+        if (gamepad.buttonEast.wasPressedThisFrame)
         {
             PlayAudio.PlaySE(audio);
             //フェードアウト
