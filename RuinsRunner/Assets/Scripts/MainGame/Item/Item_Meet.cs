@@ -19,7 +19,7 @@ public class Item_Meet : ItemBase
         MoveLooksLikeRunning.moveMagnification = 1.5f;  //移動速度倍率
         StaticInterfaceManager.PlayConcentrationLineEffect();
         ScoreManager scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
-        scoreManager.scoreMagnification = 1.2f;    //得点倍率
+        scoreManager.scoreUpTime = 10.0f;    //得点アップ時間
 
         PlayAudio.PlaySE(audioClip_);
     }

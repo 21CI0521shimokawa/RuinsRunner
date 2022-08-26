@@ -15,21 +15,29 @@ public class ScoreManager
     int coinCount_;
     TakeOverVariables gameManager;
 
+
+    float scoreUpTime_;
+    public float scoreUpTime
+    {
+        get
+        {
+            return scoreUpTime_;
+        }
+
+        set
+        {
+            scoreUpTime_ = value;
+        }
+    }
+
     //“¾“_”{—¦
     float scoreMagnification_;
+
     public float scoreMagnification
     {
         get
         {
             return scoreMagnification_;
-        }
-
-        set
-        {
-            if (value >= 0.0f)
-            {
-                scoreMagnification_ = value;
-            }
         }
     }
 
@@ -54,6 +62,21 @@ public class ScoreManager
         coinCountText.text = coinCount_.ToString();
 
         scoreMagnification_ = 1.0f;
+        scoreUpTime_ = 0.0f;
+    }
+
+    void Update()
+    {
+        if(scoreUpTime_ > 0.0f)
+        {
+            scoreUpTime_ -= Time.deltaTime;
+            scoreMagnification_ = 3.0f;
+        }
+        else
+        {
+            scoreUpTime_ = 0.0f;
+            scoreMagnification_ = 1.0f;
+        }
     }
 
     /// <summary>

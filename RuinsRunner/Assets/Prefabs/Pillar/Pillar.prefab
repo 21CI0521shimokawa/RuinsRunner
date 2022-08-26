@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e283fb9539ff3e540985278224e30d9b, type: 2}
     - target: {fileID: 919132149155446097, guid: 0e65aa73435b6e441b283f7d15eaa069, type: 3}
       propertyPath: m_Name
-      value: deco_pyramid_columnB
+      value: Pillar
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0e65aa73435b6e441b283f7d15eaa069, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -98,11 +98,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6773094296195208193}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3196b1faa07f8a749ad3b2d1dccb26df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFallDown: 0
 --- !u!114 &341278087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,3 +116,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
+--- !u!114 &2067613586554452383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6773094296195208193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1135ab7d1f32202479049931927e95c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFallDown: 0
+  fallStartPosZ: 30
+  fallEndPosZ: 20

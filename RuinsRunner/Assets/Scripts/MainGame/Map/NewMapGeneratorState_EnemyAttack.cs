@@ -110,9 +110,6 @@ public class NewMapGeneratorState_EnemyAttack : StateBase
 
                 //    madeWallLength_ += 1.0f;
                 //}
-
-                //ÉAÉCÉeÉÄê∂ê¨
-                mapGenerator_.ItemGenerator(floorSizeZ);
             }
             else
             {

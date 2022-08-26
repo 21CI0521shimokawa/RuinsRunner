@@ -2231,6 +2231,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4967215, y: 6, z: 1.4967215}
   m_Center: {x: 0, y: 3, z: 0}
+--- !u!114 &1190112380253983377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5922347704743017198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1135ab7d1f32202479049931927e95c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFallDown: 1
+  fallStartPosZ: 30
+  fallEndPosZ: 20
 --- !u!114 &3298732380830295731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2243,7 +2258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acc791a6964cada4f91549346e733a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFallDown: 1
+  isFallDown: 0
   fallStartTime: 5.5
 --- !u!4 &6447948985645588564 stripped
 Transform:
@@ -3913,6 +3928,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8875876335615858708}
     m_Modifications:
     - target: {fileID: 2894774202124890310, guid: 9abd79a480c977b4d876884d9fd1f59d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894774202124890310, guid: 9abd79a480c977b4d876884d9fd1f59d, type: 3}
       propertyPath: isFallDown
       value: 1
       objectReference: {fileID: 0}
@@ -4926,7 +4945,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4967215, y: 6, z: 1.4967215}
   m_Center: {x: 0, y: 3, z: 0}
---- !u!114 &8841415312219060019
+--- !u!114 &6682352089612074865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4934,6 +4953,21 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5052033334418226084}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1135ab7d1f32202479049931927e95c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFallDown: 1
+  fallStartPosZ: 30
+  fallEndPosZ: 20
+--- !u!114 &8841415312219060019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5052033334418226084}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acc791a6964cada4f91549346e733a63, type: 3}
   m_Name: 
@@ -9965,6 +9999,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8875876335615858708}
     m_Modifications:
     - target: {fileID: 2894774202124890310, guid: 9abd79a480c977b4d876884d9fd1f59d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894774202124890310, guid: 9abd79a480c977b4d876884d9fd1f59d, type: 3}
       propertyPath: isFallDown
       value: 1
       objectReference: {fileID: 0}
@@ -14529,7 +14567,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4967215, y: 6, z: 1.4967215}
   m_Center: {x: 0, y: 3, z: 0}
---- !u!114 &8285166240033612904
+--- !u!114 &7533976285441645141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14537,6 +14575,21 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7864986475062314298}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1135ab7d1f32202479049931927e95c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFallDown: 1
+  fallStartPosZ: 30
+  fallEndPosZ: 20
+--- !u!114 &8285166240033612904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7864986475062314298}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acc791a6964cada4f91549346e733a63, type: 3}
   m_Name: 
@@ -15106,7 +15159,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4967215, y: 6, z: 1.4967215}
   m_Center: {x: 0, y: 3, z: 0}
---- !u!114 &3366352875899091093
+--- !u!114 &762279023204975190
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15114,6 +15167,21 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7929808290204914304}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1135ab7d1f32202479049931927e95c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFallDown: 1
+  fallStartPosZ: 30
+  fallEndPosZ: 20
+--- !u!114 &3366352875899091093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7929808290204914304}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acc791a6964cada4f91549346e733a63, type: 3}
   m_Name: 
@@ -15557,13 +15625,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7586611750125674281}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acc791a6964cada4f91549346e733a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
   fallStartTime: 12.5
+--- !u!114 &4622917956242022329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7586611750125674281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1135ab7d1f32202479049931927e95c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFallDown: 1
+  fallStartPosZ: 30
+  fallEndPosZ: 20
 --- !u!1001 &4404329325533379874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24869,7 +24952,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4967215, y: 6, z: 1.4967215}
   m_Center: {x: 0, y: 3, z: 0}
---- !u!114 &8691580146861990687
+--- !u!114 &769183301512651211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24877,6 +24960,21 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4487444396173451044}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1135ab7d1f32202479049931927e95c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFallDown: 1
+  fallStartPosZ: 30
+  fallEndPosZ: 20
+--- !u!114 &8691580146861990687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4487444396173451044}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acc791a6964cada4f91549346e733a63, type: 3}
   m_Name: 
