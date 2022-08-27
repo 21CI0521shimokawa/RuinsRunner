@@ -9,7 +9,7 @@ using DG.Tweening;
 public class EnemyStateAttackFromBack : StateBase
 {
 
-    public enum AttackFromBackState { IDOL, PREPARATION, ATTACK, BUCK, END}
+    public enum AttackFromBackState { IDOL, PREPARATION, ATTACK, BUCK, END }
     public AttackFromBackState State;
     EnemyController EnemyController;
     GameObject Enemy;
@@ -38,34 +38,10 @@ public class EnemyStateAttackFromBack : StateBase
     }
     public override StateBase StateUpdate(GameObject gameObject)
     {
-        #region 旧
-        /*  Observable.Interval(System.TimeSpan.FromSeconds(WaitTimes))
-               .Select(_ => IventStart())
-               .DistinctUntilChanged()
-               .Where(x => x)
-               .Take(DoTimes)
-               .Subscribe(x =>
-               {
-                   Debug.Log("a");
-               });*/
-        /*  var NowEnemyPositon = gameObject.transform.position.z;
-          var EnemyNewPositon = FollowTarget.position.z;
-          if (IventStart())
-          {
-              gameObject.transform.DOMoveZ(EnemyNewPositon, 1)
-               .OnComplete(() =>
-              {
-                  gameObject.transform.DOMoveZ(NowEnemyPositon, 0.2f);
-                  gameObject.transform.DOKill();
-              });
-              Debug.Log(gameObject.transform.position);
-          }*/
-        #endregion
         StateBase NextState = this;
         if (State == AttackFromBackState.END)
         {
             NextState = new EnemyStateRun();
-
             //マップ生成を通常に戻す
             GameObject.FindGameObjectWithTag("MapGenerator").GetComponent<NewMapGenerator>().endEnemyAttack = true;
         }
@@ -77,7 +53,7 @@ public class EnemyStateAttackFromBack : StateBase
     /// </summary>
     /// <param name="gameObject"></param>
     private void MovePreration(GameObject gameObject)
-    {//別の方法で実装したい。。。
+    {
         gameObject.ObserveEveryValueChanged(x => State)
             .Where(x => State == AttackFromBackState.PREPARATION)
             .Subscribe(_ =>
@@ -90,11 +66,12 @@ public class EnemyStateAttackFromBack : StateBase
               new Vector3(3.0f,gameObject.transform.position.y,gameObject.transform.position.z),
               new Vector3(-3.0f,gameObject.transform.position.y,gameObject.transform.position.z),
                     },
-                    3f, PathType.Linear
+                    4f, PathType.Linear
                     ).SetOptions(true)
                      .SetLoops(PrerationTime)
                      .OnComplete(() =>
                      {
+                         EnemyController.CreateSignPrefub(EnemyController._AttackSignsPrefubs,gameObject.transform);
                          State = AttackFromBackState.ATTACK;
                      });
             });
@@ -109,20 +86,18 @@ public class EnemyStateAttackFromBack : StateBase
            .Where(x => State == AttackFromBackState.ATTACK)
             .Subscribe(_ =>
             {
-                StaticInterfaceManager.PlayEnemyStormEffect();
+               StaticInterfaceManager.PlayEnemyStormEffect();
                 var EnemyNewPositon = FollowTarget.position;
-                    gameObject.transform.DOMove(EnemyNewPositon, 1)
-                .OnStart(() =>
-                {
-                    EnemyController.CreateSignPrefub(EnemyController._AttackSignsPrefubs,FollowTarget);
-                    PlayAudio.PlaySE(EnemyController._AttackSE);
-                })
-                 .OnComplete(() =>
-                 {
-                     StaticInterfaceManager.StopEnemyStormEffect();
-                     HitProcessingWithPlayer(gameObject);
-                     State = AttackFromBackState.BUCK;
-                 });
+                gameObject.transform.DOMoveZ(EnemyNewPositon.z, 1)
+            .OnStart(() =>
+            {
+                PlayAudio.PlaySE(EnemyController._AttackSE);
+            })
+             .OnComplete(() =>
+             {
+                 StaticInterfaceManager.StopEnemyStormEffect();
+                 State = AttackFromBackState.BUCK;
+             });
             });
     }
     /// <summary>
@@ -167,5 +142,5 @@ public class EnemyStateAttackFromBack : StateBase
         StaticInterfaceManager.DoReturnCameraMove(Camera);
         StaticInterfaceManager.AvoidGameStart();
     }
-    
+
 }
