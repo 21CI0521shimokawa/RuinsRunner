@@ -46,7 +46,7 @@ public class EnemyController
     }
     public void CreateSignPrefub(GameObject SignPrefub, Transform EnemyTransform)
     {
-        var InstansPositon = new Vector3(EnemyTransform.position.x, EnemyTransform.position.y+0.1f, EnemyTransform.position.z);
+        var InstansPositon = new Vector3(EnemyTransform.position.x, EnemyTransform.position.y+0.1f, EnemyTransform.position.z+6);
         GameObject InstanceObject=Instantiate(SignPrefub, InstansPositon, EnemyTransform.rotation);
         DOVirtual.DelayedCall(1.0f, () =>
         {

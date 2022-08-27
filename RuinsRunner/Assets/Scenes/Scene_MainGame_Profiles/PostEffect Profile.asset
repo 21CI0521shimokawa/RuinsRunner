@@ -24,7 +24,7 @@ MonoBehaviour:
     value: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 1}
   center:
     overrideState: 1
-    value: {x: 0.5, y: 0.33}
+    value: {x: 0.47, y: -2.88}
   intensity:
     overrideState: 1
     value: 1
@@ -38,11 +38,11 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   mask:
-    overrideState: 0
+    overrideState: 1
     value: {fileID: 0}
     defaultState: 1
   opacity:
-    overrideState: 0
+    overrideState: 1
     value: 1
 --- !u!114 &11400000
 MonoBehaviour:
