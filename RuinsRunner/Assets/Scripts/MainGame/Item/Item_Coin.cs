@@ -21,7 +21,7 @@ public class Item_Coin : ItemBase
 
         if(scoreManager_.scoreUpTime > 0.0f)
         {
-            material_.color = new Color(0.6039216f, 0.01568628f, 0.03210715f);
+            material_.color = new Color(0.8039216f, 0.01568628f, 0.03210715f);
         }
         else
         {
