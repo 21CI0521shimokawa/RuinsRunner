@@ -5,12 +5,10 @@ using UnityEngine;
 public class NewMapGeneratorState_Normal : StateBase
 {
     NewMapGenerator mapGenerator_;
-    float madeWallLength_;
 
     public override void StateInitialize()
     {
         mapGenerator_ = GameObject.FindGameObjectWithTag("MapGenerator").GetComponent<NewMapGenerator>();
-        madeWallLength_ = 0.0f;
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
@@ -24,23 +22,31 @@ public class NewMapGeneratorState_Normal : StateBase
                 //移動した分だけ減らす
                 mapGenerator_.movedDistance -= mapGenerator_.latestFloorInfo.sizeZ;
 
+                //ミニゲームのエントリーチェック
+                if (MiniGameEntryCheck(ref nextState))
+                {
+                    //ミニゲームになったらreturn
+                    return nextState;
+                }
+                #region 旧処理
                 //エネミーアタックのエントリーチェック
-                if (!mapGenerator_.isCalledEnemyAttack && mapGenerator_.passedTime > mapGenerator_.EntryTimeEnemyAttack)
-                {
-                    nextState = new NewMapGeneratorState_EnemyAttack();
-                    mapGenerator_.isCalledEnemyAttack = true;
-                    mapGenerator_.Generate(mapGenerator_.enemyAttackMapPrefab);
-                    return nextState;
-                }
+                //if (!mapGenerator_.isCalledEnemyAttack && mapGenerator_.passedTime > mapGenerator_.EntryTimeEnemyAttack)
+                //{
+                //    nextState = new NewMapGeneratorState_EnemyAttack();
+                //    mapGenerator_.isCalledEnemyAttack = true;
+                //    mapGenerator_.Generate(mapGenerator_.enemyAttackMapPrefab);
+                //    return nextState;
+                //}
 
-                //穴避けのエントリーチェック
-                if(!mapGenerator_.isCalledJumpHole && mapGenerator_.passedTime > mapGenerator_.EntryTimeJumpHole)
-                {
-                    //nextState = new NewMapGeneratorState_JumpHole();
-                    mapGenerator_.isCalledJumpHole = true;
-                    mapGenerator_.Generate(mapGenerator_.jumpHoleMapPrefab);
-                    return nextState;
-                }
+                ////穴避けのエントリーチェック
+                //if(!mapGenerator_.isCalledJumpHole && mapGenerator_.passedTime > mapGenerator_.EntryTimeJumpHole)
+                //{
+                //    //nextState = new NewMapGeneratorState_JumpHole();
+                //    mapGenerator_.isCalledJumpHole = true;
+                //    mapGenerator_.Generate(mapGenerator_.jumpHoleMapPrefab);
+                //    return nextState;
+                //}
+                #endregion
 
                 //床を決める 仮
                 int floorNumber = Random.Range(0, mapGenerator_.floorPrefabs.Count);
@@ -135,8 +141,6 @@ public class NewMapGeneratorState_Normal : StateBase
             {
                 mapGenerator_.Generate(mapGenerator_.goalMapPrefab);
 
-
-
                 //生成しない
                 mapGenerator_.enabled = false;
             }
@@ -148,5 +152,37 @@ public class NewMapGeneratorState_Normal : StateBase
     public override void StateFinalize()
     {
         mapGenerator_ = null;
+    }
+
+
+    bool MiniGameEntryCheck(ref StateBase _state)
+    {
+        for(int i = 0; i < mapGenerator_.miniGameEntryTimes.Length; ++i)
+        {
+            //既に呼び出していたら呼ばない
+            if (!mapGenerator_.isCalledMiniGames[i])
+            {
+                //呼ぶ時間になっていたら呼ぶ
+                if (mapGenerator_.passedTime > mapGenerator_.miniGameEntryTimes[i])
+                {
+                    mapGenerator_.isCalledMiniGames[i] = true;
+
+                    //prefab生成
+                    mapGenerator_.Generate(mapGenerator_.miniGameMapPrefabs[i]);
+
+                    //minigame名によって専用の処理がある場合はここに記述
+
+                    //エネミーアタック
+                    if (mapGenerator_.miniGameNames[i] == "EnemyAttack")
+                    {
+                        _state = new NewMapGeneratorState_EnemyAttack();
+                    }
+
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

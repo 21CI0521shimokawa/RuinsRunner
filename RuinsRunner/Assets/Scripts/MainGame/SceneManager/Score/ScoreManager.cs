@@ -76,6 +76,12 @@ public class ScoreManager
         {
             scoreUpTime_ = 0.0f;
             scoreMagnification_ = 1.0f;
+
+            if(MoveLooksLikeRunning.moveMagnification > 1.0f)
+            {
+                MoveLooksLikeRunning.moveMagnification = 1.0f;
+                StaticInterfaceManager.StopConcentrationLineEffect();
+            }
         }
     }
 
@@ -88,8 +94,7 @@ public class ScoreManager
         //得点が減点されたら倍率と速度をリセット
         if (addScore < 0)
         {
-            scoreMagnification_ = 1.0f;
-            MoveLooksLikeRunning.moveMagnification = 1.0f;
+            scoreUpTime_ = 0.0f;
         }
 
 

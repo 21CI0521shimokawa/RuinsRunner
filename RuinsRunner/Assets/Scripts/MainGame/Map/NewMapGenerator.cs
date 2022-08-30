@@ -108,34 +108,51 @@ public class NewMapGenerator : MonoBehaviour
         }
     }
 
-    //エネミーアタックのマップチップ
-    [SerializeField] GameObject enemyAttackMapPrefab_;
-    public GameObject enemyAttackMapPrefab
+
+    [Header("ミニゲームを呼ぶために設定する項目")]
+    [Header("項目数は全て同じにすること")]
+    //マップチップを呼び出す経過時間
+    [Tooltip("ミニゲームに入る経過時間")]
+    [SerializeField] int[] miniGameEntryTimes_;
+    public int[] miniGameEntryTimes
     {
         get
         {
-            return enemyAttackMapPrefab_;
+            return miniGameEntryTimes_;
         }
     }
 
-    //穴避けのマップチップ
-    [SerializeField] GameObject jumpHoleMapPrefab_;
-    public GameObject jumpHoleMapPrefab
+    //マップチップ
+    [Tooltip("ミニゲームのPrefab")]
+    [SerializeField] GameObject[] miniGameMapPrefabs_;
+    public GameObject[] miniGameMapPrefabs
     {
         get
         {
-            return jumpHoleMapPrefab_;
+            return miniGameMapPrefabs_;
         }
     }
 
+    //ミニゲーム名
+    [Tooltip("ミニゲームの名前\n専用のStateに入れたいときなどに使う")]
+    [SerializeField] string[] miniGameNames_;
+    public string[] miniGameNames
+    {
+        get
+        {
+            return miniGameNames_;
+        }
+    }
 
-    //他のエントリーと時間がかぶらないように要調整
-    [Tooltip("エネミーアタックに入る経過時間")]
-    public int EntryTimeEnemyAttack;
-    
-    //他のエントリーと時間がかぶらないように要調整
-    [Tooltip("穴避けに入る経過時間")]
-    public int EntryTimeJumpHole;
+    //呼び出したかどうか
+    bool[] isCalledMiniGames_;
+    public bool[] isCalledMiniGames
+    {
+        get
+        {
+            return isCalledMiniGames_;
+        }
+    }
 
     //経過時間
     private float passedTime_;
@@ -145,22 +162,6 @@ public class NewMapGenerator : MonoBehaviour
         get
         {
             return passedTime_;
-        }
-    }
-
-    //エネミーアタックを呼び出したか
-    private bool isCalledEnemyAttack_;
-
-    [HideInInspector]
-    public bool isCalledEnemyAttack
-    {
-        get
-        {
-            return isCalledEnemyAttack_;
-        }
-        set
-        {
-            isCalledEnemyAttack_ = value;
         }
     }
 
@@ -178,28 +179,12 @@ public class NewMapGenerator : MonoBehaviour
         }
     }
 
-    //穴避けを呼び出したか
-    private bool isCalledJumpHole_;
-
-    [HideInInspector]
-    public bool isCalledJumpHole
-    {
-        get
-        {
-            return isCalledJumpHole_;
-        }
-        set
-        {
-            isCalledJumpHole_ = value;
-        }
-    }
-
     private void Awake()
     {
         movedDistance_ = 0;
         passedTime_ = 0;
-        isCalledEnemyAttack_ = false;
-        isCalledJumpHole_ = false;
+
+        isCalledMiniGames_ = new bool[miniGameEntryTimes_.Length];
     }
 
     // Start is called before the first frame update

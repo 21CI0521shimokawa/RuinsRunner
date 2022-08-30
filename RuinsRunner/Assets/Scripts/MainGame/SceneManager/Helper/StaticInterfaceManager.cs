@@ -143,6 +143,16 @@ public static class StaticInterfaceManager
         if (Object == null) return;
         Object.PlayConcentrationLine();
     }
+    /// <summary>
+    /// èWíÜê¸Çè¡Ç∑
+    /// </summary>
+    static public void StopConcentrationLineEffect()
+    {
+        GameObject EffectManeger = GameObject.FindGameObjectWithTag("EffectManeger");
+        IStopConcentrationLineEffect Object = EffectManeger.GetComponent(typeof(IStopConcentrationLineEffect)) as IStopConcentrationLineEffect;
+        if (Object == null) return;
+        Object.StopConcentrationLine();
+    }
     static public void PlayEnemyStormEffect()
     {
         GameObject EffectManeger = GameObject.FindGameObjectWithTag("EffectManeger");
