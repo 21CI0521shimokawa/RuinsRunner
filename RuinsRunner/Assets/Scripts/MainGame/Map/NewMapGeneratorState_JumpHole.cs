@@ -9,9 +9,7 @@ public class NewMapGeneratorState_JumpHole : StateBase
     public override void StateInitialize()
     {
         mapGenerator_ = GameObject.FindGameObjectWithTag("MapGenerator").GetComponent<NewMapGenerator>();
-        map_ = mapGenerator_.jumpHoleMapPrefab;
         mapGenerator_.Generate(map_);
-        mapGenerator_.isCalledJumpHole = true;
     }
     public override StateBase StateUpdate(GameObject gameObject)
     {

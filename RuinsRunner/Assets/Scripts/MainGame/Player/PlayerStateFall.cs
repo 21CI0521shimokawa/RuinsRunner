@@ -52,7 +52,7 @@ public class PlayerStateFall
         {
             playerController_.Damage();
 
-            playerController_.gameObject.GetComponent<Rigidbody>().position = new Vector3(0, 10, playerController_.transform.position.z/*playerController_.GetPositionZ()*/);
+            playerController_.gameObject.GetComponent<Rigidbody>().position = new Vector3(0, 10, playerController_.GetPositionZ());
 
             //DoEditingCameraPositon(CameraObject);
         }

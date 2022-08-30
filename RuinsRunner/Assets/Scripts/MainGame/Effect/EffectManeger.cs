@@ -5,6 +5,7 @@ using UnityEngine;
 public class EffectManeger
     : MonoBehaviour
     ,IGetMeet
+    ,IStopConcentrationLineEffect
     ,ICreateStormEffect
     ,IStopStormEffect
 {
@@ -19,6 +20,10 @@ public class EffectManeger
     public void PlayConcentrationLine()
     {
         ConcentrationLine.Play();
+    }
+    public void StopConcentrationLine()
+    {
+        ConcentrationLine.Stop();
     }
 
     public void PlayStormEffect()

@@ -8,11 +8,15 @@ public class NewEventPillar : MonoBehaviour
 
     [SerializeField] float fallStartPosZ = 30.0f;
     [SerializeField] float fallEndPosZ = 20.0f;
+
     float betweenDistance;
+
+    float startLocalPositionY;
 
     private void Start()
     {
         betweenDistance = fallStartPosZ - fallEndPosZ; //正の値にする為、開始Z - 終了Z
+        startLocalPositionY = transform.localPosition.y;
     }
 
     private void Update()
@@ -26,15 +30,22 @@ public class NewEventPillar : MonoBehaviour
 
             //距離の割合と比例させて傾ける
             float distanceRate = (fallStartPosZ - this.transform.position.z) / betweenDistance; //距離の割合
-            //transform.rotation = Quaternion.Euler(0f, 0f, 90f * distanceRate); //角度に変換
 
-            //transform.Rotate(0, 0, 90f * distanceRate - transform.rotation.z); //角度に変換
-            //transform.eulerAngles = new Vector3(0, 0, 90f * distanceRate - transform.rotation.z);
-            //transform.rotation = Quaternion.AngleAxis(90f * distanceRate - transform.rotation.z, transform.forward);
+            //回転
+            //0.0f~0.6fを0.0f~1.0fに変換
+            float rotateRate = Mathf.InverseLerp(0.0f, 0.6f, distanceRate);
 
             Vector3 localAngle = transform.localEulerAngles;
-            localAngle.z = 90f * distanceRate;
+            localAngle.z = 90f * rotateRate;
             transform.localEulerAngles = localAngle;
+
+            //落下
+            //0.6f~1.0fを0.0f~1.0fに変換
+            float fallRate = Mathf.InverseLerp(0.6f, 1.0f, distanceRate);
+
+            Vector3 localPotision = transform.localPosition;
+            localPotision.y = Mathf.Lerp(startLocalPositionY, -10.0f, fallRate);
+            transform.localPosition = localPotision;
         }
     }
 

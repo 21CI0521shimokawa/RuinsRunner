@@ -99,6 +99,13 @@ public interface IGetMeet
     void PlayConcentrationLine();
 }
 /// <summary>
+/// W’†üíœ
+/// </summary>
+public interface IStopConcentrationLineEffect
+{ 
+    void StopConcentrationLine();
+}
+/// <summary>
 /// “Ëi‚·‚é‚ÌEffect
 /// </summary>
 public interface ICreateStormEffect
