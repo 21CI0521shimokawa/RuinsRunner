@@ -25,8 +25,7 @@ public class EndrollControll : SceneSuperClass
         _TargetText.transform.DOMoveY(DestinationY, MoveTime)
             .OnComplete(() =>
             {
-                Debug.Log("コンプリート");
-                GetComponent<SceneAddRequester>().RequestAddScene(SceneDefine.SceneName.TITLE, true);
+                SceneFadeManager.StartMoveScene("Scene_Title");
             })
             .SetEase(EaseType);
     }

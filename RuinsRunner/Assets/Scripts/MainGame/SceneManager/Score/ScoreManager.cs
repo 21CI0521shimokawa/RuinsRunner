@@ -96,8 +96,7 @@ public class ScoreManager
         {
             scoreUpTime_ = 0.0f;
         }
-
-
+        /*
         //ローカルスコアの更新
         score_ += (int)(addScore * scoreMagnification_);
         score_ = Mathf.Clamp(score_, 0, 99999);
@@ -107,6 +106,7 @@ public class ScoreManager
 
         gameManager.Score = score_;
         //scoreText.text = score_.ToString();
+        */
     }
 
     public void UpdateCoinCount()

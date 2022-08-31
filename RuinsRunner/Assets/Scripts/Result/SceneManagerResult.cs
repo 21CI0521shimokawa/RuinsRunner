@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using SceneDefine;
 using System;
+using UniRx;
 
 public class SceneManagerResult : SceneSuperClass
 {
@@ -18,11 +19,15 @@ public class SceneManagerResult : SceneSuperClass
     int score_;
     //ハイスコア
     int highscore_;
+    //フェードアウトの時に使う変数
+    bool IsFade;
     private void Start()
     {
         //シーンの初期化
         Scene scene = SceneManager.GetSceneByName("Manager");
 
+        //フェードアウトの初期化
+        IsFade = false;
         //スコアボードの初期化
         scoreBorad.alpha = 0f;
         scoreBorad.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
@@ -47,25 +52,29 @@ public class SceneManagerResult : SceneSuperClass
 
         //スコアボードを徐々に表示
         StartCoroutine(GraduallyAppear());
+
+        DoFade();
     }
 
     private void Update()
     {
         Time.timeScale = 1.0f;
 
-        if(Gamepad.current == null)
+        if (Gamepad.current == null)
         {
             return;
         }
         if (Gamepad.current.buttonEast.wasPressedThisFrame)
-            {
-                SceneAddRequester sceneAddRequester = GetComponent<SceneAddRequester>();
-                //先にランゲームシーンを消去
-               // sceneAddRequester.RequestUnLoadScene(SceneName.RUNGAME);
+        {
+            SceneAddRequester sceneAddRequester = GetComponent<SceneAddRequester>();
+            //先にランゲームシーンを消去
+            // sceneAddRequester.RequestUnLoadScene(SceneName.RUNGAME);
             //    //エンディングのロード
             //    //SceneManager.LoadScene("Scene_Ending");
             //    //続いてこのシーンを消去
-                sceneAddRequester.RequestAddScene(SceneName.ENDING, true);
+            //レガシー
+            //sceneAddRequester.RequestAddScene(SceneName.ENDING, true);
+            IsFade = true;
         }
     }
 
@@ -81,5 +90,17 @@ public class SceneManagerResult : SceneSuperClass
             yield return new WaitForSecondsRealtime(0.01f);
         }
         yield break;
+    }
+    /// <summary>
+    /// 多重読み込み防止フェードアウト関数
+    /// </summary>
+    void DoFade()
+    {
+        gameObject.ObserveEveryValueChanged(_ => IsFade)
+                  .Where(x => IsFade)
+                  .Subscribe(_ =>
+                  {
+                      SceneFadeManager.StartMoveScene("Scene_Ending");
+                  });
     }
 }
