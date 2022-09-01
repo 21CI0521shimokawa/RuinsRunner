@@ -58,7 +58,7 @@ public class EnemyStateAttackFromBack : StateBase
             .Where(x => State == AttackFromBackState.PREPARATION)
             .Subscribe(_ =>
             {
-                var PrerationTime = Random.Range(2, 5);
+                var PrerationTime = Random.Range(1, 3);
                 gameObject.transform.DOPath
                     (
                     new[]
@@ -66,7 +66,7 @@ public class EnemyStateAttackFromBack : StateBase
               new Vector3(3.0f,gameObject.transform.position.y,gameObject.transform.position.z),
               new Vector3(-3.0f,gameObject.transform.position.y,gameObject.transform.position.z),
                     },
-                    4f, PathType.Linear
+                    3f, PathType.Linear
                     ).SetOptions(true)
                      .SetLoops(PrerationTime)
                      .OnComplete(() =>
