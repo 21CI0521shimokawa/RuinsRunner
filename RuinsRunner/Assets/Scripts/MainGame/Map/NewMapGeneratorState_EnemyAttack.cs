@@ -24,6 +24,9 @@ public class NewMapGeneratorState_EnemyAttack : StateBase
                 //ˆÚ“®‚µ‚½•ª‚¾‚¯Œ¸‚ç‚·
                 mapGenerator_.movedDistance -= mapGenerator_.latestFloorInfo.sizeZ;
 
+                //ˆÚ“®‚µ‚·‚¬‚½•ª‚¾‚¯¶¬‚·‚éÀ•W‚ğ’²®‚·‚é
+                float movedDistance = -mapGenerator_.movedDistance;
+
                 //’Êí‚É–ß‚·
                 if (mapGenerator_.endEnemyAttack)
                 {

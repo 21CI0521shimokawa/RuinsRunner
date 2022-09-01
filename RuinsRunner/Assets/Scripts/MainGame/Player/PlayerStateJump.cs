@@ -13,7 +13,10 @@ public class PlayerStateJump : StateBase
     public override void StateInitialize()
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        playerController_.animator_.SetTrigger("StateJump");
+        
+        //playerController_.animator_.SetTrigger("StateJump");
+        //1フレームだけトリガーをセットする
+        playerController_.animator_.SetTriggerOneFrame("StateJump");
 
         rigidbody_ = playerController_.GetComponent<Rigidbody>();
 

@@ -17,11 +17,11 @@ public class NewMapGeneratorState_Normal : StateBase
 
         if (mapGenerator_.IsGenerate())
         {
+            //移動した分だけ減らす
+            mapGenerator_.movedDistance -= mapGenerator_.latestFloorInfo.sizeZ;
+
             if (!mapGenerator_.IsGoalGenerate())
             {
-                //移動した分だけ減らす
-                mapGenerator_.movedDistance -= mapGenerator_.latestFloorInfo.sizeZ;
-
                 //ミニゲームのエントリーチェック
                 if (MiniGameEntryCheck(ref nextState))
                 {

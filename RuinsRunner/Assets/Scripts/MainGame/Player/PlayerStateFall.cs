@@ -10,14 +10,20 @@ public class PlayerStateFall
 {
     PlayerController playerController_;
     GameObject PlayerObject;
-    GameObject CameraObject;
+    //GameObject CameraObject;
+
+    bool isFallIntoFall_; //穴に落下して復帰したかどうか
 
     public override void StateInitialize()
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        playerController_.animator_.SetTrigger("StateFall");
+        //playerController_.animator_.SetTrigger("StateFall");
+        //1フレームだけトリガーをセットする
+        playerController_.animator_.SetTriggerOneFrame("StateFall");
         PlayerObject = GameObject.FindGameObjectWithTag("Player");
-        CameraObject = GameObject.FindGameObjectWithTag("MainCamera");
+        //CameraObject = GameObject.FindGameObjectWithTag("MainCamera");
+
+        isFallIntoFall_ = false;
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
@@ -42,6 +48,11 @@ public class PlayerStateFall
     public override void StateFinalize()
     {
         playerController_.animator_.ResetTrigger("StateFall");
+
+        if(isFallIntoFall_)
+        {
+            playerController_.LostCoin(5);
+        }
     }
 
     bool Action()
@@ -53,6 +64,8 @@ public class PlayerStateFall
             playerController_.Damage();
 
             playerController_.gameObject.GetComponent<Rigidbody>().position = new Vector3(0, 10, playerController_.GetPositionZ());
+
+            isFallIntoFall_ = true;
 
             //DoEditingCameraPositon(CameraObject);
         }

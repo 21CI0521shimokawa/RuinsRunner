@@ -77,6 +77,9 @@ public class PlayerController
         }
     }
 
+
+    [SerializeField] GameObject fallCoinPrefab_;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -230,6 +233,39 @@ public class PlayerController
     {
         return gameObject.transform.position.y <= -5.0f;
     }
+
+
+    //コインをばらまく
+    public void LostCoin(int _quantity)
+    {
+        Vector3 position = gameObject.transform.position;
+        position.y += 1.0f;
+        for (int i = 0; i < _quantity; ++i)
+        {
+            GameObject coin = GameObject.Instantiate(fallCoinPrefab_, position, Quaternion.Euler(Random.Range(-180.0f, 180.0f), Random.Range(-180.0f, 180.0f), Random.Range(-180.0f, 180.0f)));
+
+            //飛ばす
+            Rigidbody rb = coin.GetComponent<Rigidbody>();
+            Vector3 force = new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-1.0f, 5.0f), Random.Range(-5.0f, 5.0f));
+            rb.AddForce(force, ForceMode.Impulse);
+
+            //回転
+            rb.angularVelocity = new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f));
+        }
+    }
+
+    //プレイヤこける
+    public void Stumble(int _coinQuantity = 0)
+    {
+        LostCoin(_coinQuantity);
+
+        //走っているときのみこける
+        if (state_.StateName == "PlayerStateRun")
+        {
+            state_ = new StateMachine(new PlayerStateStumble());
+        }
+    }
+
 
     private void OnDrawGizmos()
     {

@@ -9,8 +9,9 @@ public class PlayerStateLanding : StateBase
     public override void StateInitialize()
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        playerController_.animator_.SetTrigger("StateLanding");
-
+        //playerController_.animator_.SetTrigger("StateLanding");
+        //1フレームだけトリガーをセットする
+        playerController_.animator_.SetTriggerOneFrame("StateLanding");
         PlayAudio.PlaySE(playerController_.landingSE);
     }
 

@@ -226,6 +226,9 @@ public class NewMapGenerator : MonoBehaviour
         //マップチップの位置に応じて生成位置を微調整する
         Vector3 createPosition = createPosition_;
 
+        //移動しすぎた分だけ生成する座標を調整する（隙間が開かないように）
+        createPosition.z -= movedDistance;
+
         //offset
         createPosition.z += _generateOffsetZ;
 

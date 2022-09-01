@@ -41,6 +41,10 @@ public class RockController : ObjectSuperClass
             .Subscribe(collision =>
             {
                 StaticInterfaceManager.UpdateScore(-100);
+
+                //ƒvƒŒƒCƒ„‚±‚¯‚é
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().Stumble(3);
+
                 Destroy(gameObject);
             });
     }

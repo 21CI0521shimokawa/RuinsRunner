@@ -9,8 +9,9 @@ public class PlayerStateDeath : StateBase
     public override void StateInitialize()
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        playerController_.animator_.SetTrigger("StateDeath");
-
+        //playerController_.animator_.SetTrigger("StateDeath");
+        //1フレームだけトリガーをセットする
+        playerController_.animator_.SetTriggerOneFrame("StateDeath");
         MoveLooksLikeRunning.Set_isRunning(false);   //移動停止
     }
 
