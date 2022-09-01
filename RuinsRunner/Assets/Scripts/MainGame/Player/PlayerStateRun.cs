@@ -29,13 +29,13 @@ public class PlayerStateRun : StateBase
         moveZTime_ = 1.0f;
 
         //走るモーションじゃなかったらSetTriggerする
-        if (!playerController_.animator_.GetCurrentAnimatorStateInfo(0).IsName("Sprint"))
-        {
-            playerController_.animator_.SetTrigger("StateRun");
-        }
+        //if (!playerController_.animator_.GetCurrentAnimatorStateInfo(0).IsName("Sprint"))
+        //{
+        //    //playerController_.animator_.SetTrigger("StateRun");
+        //}
 
-        ////1フレームだけトリガーをセットする
-        //playerController_.animator_.SetTriggerOneFrame("StateRun");
+        //1フレームだけトリガーをセットする
+        playerController_.animator_.SetTriggerOneFrame("StateRun");
     }
 
     public override StateBase StateUpdate(GameObject gameObject)
@@ -48,10 +48,12 @@ public class PlayerStateRun : StateBase
         //横移動
         SideMove(gameObject);
 
-        //ミニゲーム呼び出し（仮）
+        //（仮）
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            nextState = new PlayerState_Test(); //仮
+            //nextState = new PlayerState_Test(); //仮
+
+            playerController_.LostCoin(5);
         }
 
         //仮 黄色ボタン

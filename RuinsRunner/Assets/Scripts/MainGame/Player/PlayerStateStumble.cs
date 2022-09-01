@@ -17,10 +17,12 @@ public class PlayerStateStumble : StateBase
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         //こけるモーションじゃなかったらSetTriggerする
-        if (!playerController_.animator_.GetCurrentAnimatorStateInfo(0).IsName("Stumble"))
-        {
-            playerController_.animator_.SetTrigger("StateStumble");
-        }
+        //if (!playerController_.animator_.GetCurrentAnimatorStateInfo(0).IsName("Stumble"))
+        //{
+        //    playerController_.animator_.SetTrigger("StateStumble");
+        //}
+        //1フレームだけトリガーをセットする
+        playerController_.animator_.SetTriggerOneFrame("StateStumble");
 
         moveStartPositionZ_ = playerController_.gameObject.transform.position.z;
         moveEndPositionZ_ = playerController_.GetPositionZ();

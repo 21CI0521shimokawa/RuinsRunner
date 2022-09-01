@@ -21,11 +21,21 @@ public class Item_Coin : ItemBase
 
         if(scoreManager_.scoreUpTime > 0.0f)
         {
-            material_.color = new Color(0.8039216f, 0.01568628f, 0.03210715f);
+            // マテリアルの変更するパラメータを事前に知らせる
+            material_.EnableKeyword("_EMISSION");
+
+            //特殊
+            //material_.color = new Color(0.8039216f, 0.01568628f, 0.03210715f);
+            material_.SetColor("_EmissionColor", new Color(0.8039216f, 0.01568628f, 0.03210715f));
         }
         else
         {
-            material_.color = new Color(0.6037736f, 0.4345016f, 0.01423994f);
+            // マテリアルの変更するパラメータを事前に知らせる
+            material_.EnableKeyword("_EMISSION");
+
+            //通常
+            //material_.color = new Color(0.6037736f, 0.4345016f, 0.01423994f);
+            material_.SetColor("_EmissionColor", new Color(0.6037736f, 0.4345016f, 0.01423994f));
         }
 
     }

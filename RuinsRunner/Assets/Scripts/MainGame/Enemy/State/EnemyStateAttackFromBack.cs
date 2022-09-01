@@ -135,6 +135,9 @@ public class EnemyStateAttackFromBack : StateBase
             .Subscribe(collision =>
             {
                 StaticInterfaceManager.UpdateScore(-100);
+
+                //ƒvƒŒƒCƒ„‚±‚¯‚é
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().Stumble(3);
             });
     }
     public override void StateFinalize()
