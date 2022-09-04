@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2000649146379340831
+--- !u!1 &1827408500673082045
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2000649146379340829}
-  - component: {fileID: 2000649146379340828}
-  - component: {fileID: 2000649146379340826}
-  - component: {fileID: 1104865680195898168}
+  - component: {fileID: 1827408500673082047}
+  - component: {fileID: 1827408500673082040}
+  - component: {fileID: 993814399999030682}
   m_Layer: 0
   m_Name: MapGenerator
   m_TagString: MapGenerator
@@ -19,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2000649146379340829
+--- !u!4 &1827408500673082047
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000649146379340831}
+  m_GameObject: {fileID: 1827408500673082045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,47 +33,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2000649146379340828
+--- !u!114 &1827408500673082040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000649146379340831}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0299b5d59fe62ff47853160fa503cf2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapFolder_: {fileID: 0}
-  createPosition_: {x: 0, y: 0, z: 40}
-  mapPrefabs_:
-  - {fileID: 6488447310172164570, guid: 856d0970161a2af4b8e4ea6eed3d5c04, type: 3}
-  - {fileID: 7715612538408987477, guid: b2c62f7f8f752db409caf848a9073667, type: 3}
-  - {fileID: 5081682135434678197, guid: 93167859428dc2d48a3d67a85d875898, type: 3}
-  - {fileID: 3016820370389769527, guid: 5c19f9b58a8389941acbd679b4bf9f6d, type: 3}
-  - {fileID: 5989960226283344580, guid: 73cf47c31ba45284f92394ee1d44b191, type: 3}
-  - {fileID: 4836011828069624081, guid: 72164e76f0a108a4f9348ea55344b383, type: 3}
-  - {fileID: 526515022502195483, guid: a8ae6af6745606b428c2d83d0f6ef683, type: 3}
-  goalMapPrefab_: {fileID: 3839287147619380478, guid: ae4bcca76935642458b5423f0dbaf27a, type: 3}
-  remainTime_: 30
---- !u!114 &2000649146379340826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000649146379340831}
+  m_GameObject: {fileID: 1827408500673082045}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca7d44bd82c52a74c8c1d476a0d7b271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapFolder_: {fileID: 2000649146379340831}
+  mapFolder_: {fileID: 1827408500673082045}
   createPosition_: {x: 0, y: 0, z: 38}
   latestFloorInfo_: {fileID: 4671435657749616180, guid: e9d549680b9e0984bad96fbf0cd4862c, type: 3}
   torchPrefab_: {fileID: 5957534493944704245, guid: d181bf80ea6cb804f8fdb3af5bbd70d0, type: 3}
-  remainTime_: 90
+  remainTime_: 120
   wallPrefabs_:
   - {fileID: 6488447310172164570, guid: 9890553dae9b1d4439ff692559b66067, type: 3}
   - {fileID: 6488447310172164570, guid: b3cd6ca4af848f842a0ef73f0afea9e1, type: 3}
@@ -86,27 +61,31 @@ MonoBehaviour:
   - {fileID: 6488447310172164570, guid: bf7936db60e56dc49b666fe0d22db823, type: 3}
   - {fileID: 6488447310172164570, guid: 954d5bae29def254e84e3313e1b7f7d5, type: 3}
   - {fileID: 6488447310172164570, guid: 224f4b16484250f44b4e9216e8cfd110, type: 3}
+  - {fileID: 6488447310172164570, guid: b983307bb66927148b985ed610711090, type: 3}
   wallTorchPrefab_: {fileID: 6488447310172164570, guid: e4370f95f19e17a42902251de32377f8, type: 3}
   goalMapPrefab_: {fileID: 3839287147619380478, guid: ffba19aa75c23c1439ba3ab9c5a4fd11, type: 3}
-  miniGameEntryTimes_: 1400000046000000
+  miniGameEntryTimes_: 14000000320000005a000000
   miniGameMapPrefabs_:
+  - {fileID: 6488447310172164570, guid: 12380a2b5bd344441a2425d74a546d3d, type: 3}
   - {fileID: 6488447310172164570, guid: 473f63f299101e64d825270309e08630, type: 3}
   - {fileID: 6488447310172164570, guid: 12380a2b5bd344441a2425d74a546d3d, type: 3}
   miniGameNames_:
+  - JumpHole
   - EnemyAttack
   - JumpHole
---- !u!114 &1104865680195898168
+--- !u!114 &993814399999030682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000649146379340831}
+  m_GameObject: {fileID: 1827408500673082045}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6693a440581113d448af1b53206968f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabNoSetFloorSizeZ_: 4
   coinPrefabs_: {fileID: 264181131417774409, guid: 9d3e0238b797bff4c894bbaa5e3a4713, type: 3}
   meetPrefabs_: {fileID: 8214590461903862056, guid: a5fb0c9d0cf5680499634409c0831105, type: 3}
   setPositionXTable_:

@@ -7,7 +7,7 @@ public class ItemGeneratorVer2 : MonoBehaviour
     NewMapGenerator mapGenerator_;
 
     //床サイズ
-    float prefabNoSetFloorSizeZ_;
+    [SerializeField] float prefabNoSetFloorSizeZ_;
 
     //itemの保存場所
     [SerializeField] GameObject coinPrefabs_;
@@ -29,7 +29,6 @@ public class ItemGeneratorVer2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        prefabNoSetFloorSizeZ_ = 0.0f;
         mapGenerator_ = GetComponent<NewMapGenerator>();
 
         setItemCount_ = 0;
@@ -40,8 +39,10 @@ public class ItemGeneratorVer2 : MonoBehaviour
     public void Generate(float _floorSizeZ)
     {
         prefabNoSetFloorSizeZ_ += _floorSizeZ;
+        
+        //置いたアイテムの長さ
+        float setPrefabSizeZ = 0;
 
-        float setPrefabSizeZ = 0.0f;
         while (IsGenerate())
         {
             //prefabを決める 仮
@@ -62,37 +63,7 @@ public class ItemGeneratorVer2 : MonoBehaviour
             Vector3 newPotision = generatePrefab.transform.position;
             newPotision.x = SetPositionX();
 
-            //そこに床がなかったらちょっとY+に移動させる
-            newPotision.y = 2.5f;
-
-            Vector3 origin = newPotision; // 原点
-            origin.y -= 1;
-            Vector3 direction = Vector3.down; // ベクトル
-
-            Ray ray = new Ray(origin, direction); // Rayを生成;
-            Debug.DrawRay(ray.origin, ray.direction * 10, Color.green, 0.01f); // 緑色で可視化
-
-            RaycastHit[] hits = Physics.RaycastAll(ray, 10);
-
-            bool isHit = false;
-            foreach (RaycastHit hit in hits) // もしRayを投射して何らかのコライダーに衝突したら
-            {
-                //トリガーだったら除外する
-                if (hit.collider.isTrigger == true) { continue; }
-
-                //一部のTagがついてるゲームオブジェクトは除外する
-                string hitGameObjectTagName = hit.collider.gameObject.tag;
-                if (hitGameObjectTagName == "") { continue; }
-                //必要に応じて追加
-
-                isHit = true;
-                break;
-            }
-            
-            if(isHit)
-            {
-                newPotision.y = 1;
-            }
+            newPotision.y = SetPositionY(newPotision, generatePrefab);
 
             generatePrefab.transform.position = newPotision;
 
@@ -128,6 +99,39 @@ public class ItemGeneratorVer2 : MonoBehaviour
         consecutiveSetQuantity_ += Random.Range(1, 6);  //1個~5個まで
 
         return setPositionXTable_[setPositionTableNum_];
+    }
+
+    //そこに床がなかったらちょっとY+に移動させる
+    float SetPositionY(Vector3 _position, GameObject _generateItem)
+    {
+        Vector3 origin = _position; // 原点
+        origin.y += 2;
+        Vector3 direction = Vector3.down; // ベクトル
+
+        Ray ray = new Ray(origin, direction); // Rayを生成;
+        Debug.DrawRay(ray.origin, ray.direction * 10, Color.green, 0.01f); // 緑色で可視化
+
+        RaycastHit[] hits = Physics.RaycastAll(ray, 10);
+
+        bool isHit = false;
+        foreach (RaycastHit hit in hits) // もしRayを投射して何らかのコライダーに衝突したら
+        {
+            //トリガーだったら除外する
+            if (hit.collider.isTrigger == true) { continue; }
+
+            //自身（今生成したアイテム）だったら除外する
+            if(hit.collider.gameObject == _generateItem) { continue; }
+
+            //一部のTagがついてるゲームオブジェクトは除外する
+            string hitGameObjectTagName = hit.collider.gameObject.tag;
+            if (hitGameObjectTagName == "") { continue; }
+            //必要に応じて追加
+
+            isHit = true;
+            break;
+        }
+
+        return isHit ? 1.0f : 2.5f;
     }
 
 
