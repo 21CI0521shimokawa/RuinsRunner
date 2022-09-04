@@ -109,10 +109,10 @@ public class ScoreManager
         */
     }
 
-    public void UpdateCoinCount()
+    public void UpdateCoinCount(int _addValue)
     {
         //ローカルコインカウントの更新
-        coinCount_++;
+        coinCount_ += _addValue;
         coinCountText.text = coinCount_.ToString();
         //共有コインカウントの更新
         gameManager.CoinCount = coinCount_;

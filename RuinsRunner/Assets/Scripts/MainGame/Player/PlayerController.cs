@@ -242,6 +242,9 @@ public class PlayerController
         position.y += 1.0f;
         for (int i = 0; i < _quantity; ++i)
         {
+            //スコアマネージャーに伝える
+            StaticInterfaceManager.UpdateCoinCount(-1);
+
             GameObject coin = GameObject.Instantiate(fallCoinPrefab_, position, Quaternion.Euler(Random.Range(-180.0f, 180.0f), Random.Range(-180.0f, 180.0f), Random.Range(-180.0f, 180.0f)));
 
             //飛ばす
