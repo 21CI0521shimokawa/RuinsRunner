@@ -31,7 +31,7 @@ public class EnemyStateAttackFromBack : StateBase
         NowEnemyPositon = Enemy.transform.position.z;
         State = AttackFromBackState.PREPARATION;//同フレームだともしかしたらバグ発生するかも
         StaticInterfaceManager.DoEnemyAttackMove(Camera);
-
+        StaticInterfaceManager.StopConcentrationLineEffect();
         MovePreration(Enemy);
         MoveAttack(Enemy);
         BackMove(Enemy);
@@ -86,6 +86,8 @@ public class EnemyStateAttackFromBack : StateBase
            .Where(x => State == AttackFromBackState.ATTACK)
             .Subscribe(_ =>
             {
+                HitProcessingWithPlayer(gameObject);
+                EnemyController.EnemyAnimator.SetTrigger("Attack");
                StaticInterfaceManager.PlayEnemyStormEffect();
                 var EnemyNewPositon = FollowTarget.position;
                 gameObject.transform.DOMoveZ(EnemyNewPositon.z, 1)

@@ -11,7 +11,6 @@ public class AvoidGameController
     [SerializeField] EnemyController EnemyController;
     [Header("飛んでくるオブジェクト関連")]
     [SerializeField] GameObject RockPrefubs;
-    [SerializeField] Transform InstanceObjectTransform;
     [Header("ミニゲーム設定")]
     [SerializeField] Transform LeftMaxGenerationPosition;
     [SerializeField] Transform RightMaxGenerationPosition;
