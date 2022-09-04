@@ -111,8 +111,14 @@ public class ScoreManager
 
     public void UpdateCoinCount(int _addValue)
     {
+        //もしお肉バフだったら倍率かける
+        if(scoreMagnification > 0)
+        {
+            _addValue *= (int)scoreMagnification;
+        }
         //ローカルコインカウントの更新
         coinCount_ += _addValue;
+        coinCount_ = Mathf.Max(coinCount_, 0);
         coinCountText.text = coinCount_.ToString();
         //共有コインカウントの更新
         gameManager.CoinCount = coinCount_;
