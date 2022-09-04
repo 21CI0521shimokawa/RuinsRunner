@@ -44,7 +44,7 @@ public class SceneManagerResult : SceneSuperClass
             TakeOverVariables gameManager = rootGameObject.GetComponent<TakeOverVariables>();
             if (gameManager != null)
             {
-                score_ = gameManager.Score;
+                score_ = gameManager.CoinCount;
                 break;
             }
         }

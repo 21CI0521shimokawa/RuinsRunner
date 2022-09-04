@@ -56,7 +56,7 @@ public interface IUpdateScore
 /// </summary>
 public interface IUpdateCoinCount
 {
-    void UpdateCoinCount();
+    void UpdateCoinCount(int addValue);
 }
 
 public interface IExitGame
