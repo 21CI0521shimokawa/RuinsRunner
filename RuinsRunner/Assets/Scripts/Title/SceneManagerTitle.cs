@@ -3,37 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using SceneDefine;
+using UniRx;
 using UnityEngine.UI;
 
 public class SceneManagerTitle : SceneSuperClass
 {
-    [SerializeField] Fade fade_;
-    //[SerializeField] GameObject enemy;
-    [Tooltip("フェードインにかける時間")]
-    [SerializeField] float fadeinTime = 1.0f;
-    [Tooltip("フェードアウトにかける時間")]
-    [SerializeField] float fadeoutTime = 1.0f;
     [Tooltip("デモ移行までの時間")]
     [SerializeField] float displayTime = 2.0f;
-    [Tooltip("ロゴを出すまでの時間")]
-    [SerializeField] float logoAppTime = 2.0f;
     [SerializeField] GameObject[] slowObjects;
     [SerializeField] AudioClip audio;
 
     bool isFading_;
     float passedTime_;
-    bool isAlreadyStopped;
+    //フェードアウトの時に使う変数
+   public bool IsFadeMain;
+   public bool IsFadeDemo;
 
+    private void Awake()
+    {
+        IsFadeMain = false;
+        IsFadeDemo = false;
+    }
     private void Start()
     {
         isFading_ = true;
-        isAlreadyStopped = false;
         passedTime_ = 0.0f;
-        fade_.FadeOut(fadeoutTime, 
-            () => 
-            {
-                isFading_ = false;
-            });
+        DoFade(IsFadeMain, "Scene_MainGame");
+        DoFade(IsFadeDemo, "Scene_Demo");
     }
 
     private void Update()
@@ -70,6 +66,7 @@ public class SceneManagerTitle : SceneSuperClass
 
         if(gamepad == null)
         {
+            Debug.Log("a");
             return;
         }
 
@@ -78,28 +75,26 @@ public class SceneManagerTitle : SceneSuperClass
         {
             PlayAudio.PlaySE(audio);
             //フェードアウト
-            fade_.FadeIn(fadeinTime,
-                () =>
-                {
-                    isFading_ = true;
-                    //フェードアウト終了後
-                    //ランゲームシーンへ移行（操作説明とかのシーンを挟みたい）
-                    GetComponent<SceneAddRequester>().RequestAddScene(SceneName.RUNGAME, true);
-                });
+            IsFadeMain = true;
         }
 
         passedTime_ += Time.deltaTime;
         if (passedTime_ > displayTime)
         {
-            isFading_ = true;
             //フェードアウト
-            fade_.FadeIn(fadeinTime,
-                () =>
-                {
-                    //フェードアウト終了後
-                    //デモシーンへ移行
-                    GetComponent<SceneAddRequester>().RequestAddScene(SceneName.DEMO, true);
-                });
+            IsFadeDemo = true;
         }
+    }
+    /// <summary>
+    /// 多重読み込み防止フェードアウト関数
+    /// </summary>
+    void DoFade(bool _Isfade,string SceneName)
+    {
+        gameObject.ObserveEveryValueChanged(_ => _Isfade)
+                  .Where(x => _Isfade)
+                  .Subscribe(_ =>
+                  {
+                      SceneFadeManager.StartMoveScene(SceneName);
+                  });
     }
 }
