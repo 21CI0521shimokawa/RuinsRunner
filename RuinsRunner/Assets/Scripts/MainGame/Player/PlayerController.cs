@@ -10,7 +10,7 @@ public class PlayerController
     public Animator animator_;
     [SerializeField] bool canMove = true;
 
-    Rigidbody rigidbody_;
+    public Rigidbody rigidbody_;
 
     //Player関係
     //[SerializeField] float[] positionZTables; //プレイヤのZ座標のテーブル

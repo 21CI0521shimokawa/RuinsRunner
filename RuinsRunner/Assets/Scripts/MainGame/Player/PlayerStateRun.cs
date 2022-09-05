@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerStateRun : StateBase
 {
     PlayerController playerController_;
-    Rigidbody rigidbody_;
 
     [SerializeField] float speed_;   //左右移動速度
 
@@ -21,7 +20,6 @@ public class PlayerStateRun : StateBase
     public override void StateInitialize()
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        rigidbody_ = playerController_.gameObject.GetComponent<Rigidbody>();
         speed_ = 8;
 
         moveZStartTime_ = 0.0;
@@ -182,7 +180,7 @@ public class PlayerStateRun : StateBase
         {
             if (playerController_.PlayerMoveChack(moveVec.normalized * 0.05f))
             {
-                rigidbody_.velocity = new Vector3(moveVec.x, rigidbody_.velocity.y, rigidbody_.velocity.z);
+                playerController_.rigidbody_.velocity = new Vector3(moveVec.x, playerController_.rigidbody_.velocity.y, playerController_.rigidbody_.velocity.z);
 
                 //指定したスピードから現在の速度を引いて加速力を求める
                 //float currentSpeed = moveVec.x - rigidbody_.velocity.x;
@@ -194,12 +192,12 @@ public class PlayerStateRun : StateBase
             }
             else
             {
-                rigidbody_.velocity = new Vector3(0, rigidbody_.velocity.y, rigidbody_.velocity.z);
+                playerController_.rigidbody_.velocity = new Vector3(0, playerController_.rigidbody_.velocity.y, playerController_.rigidbody_.velocity.z);
             }
         }
         else
         {
-            rigidbody_.velocity = new Vector3(0, rigidbody_.velocity.y, rigidbody_.velocity.z);
+            playerController_.rigidbody_.velocity = new Vector3(0, playerController_.rigidbody_.velocity.y, playerController_.rigidbody_.velocity.z);
         }
     }
 
@@ -239,7 +237,7 @@ public class PlayerStateRun : StateBase
             }
 
             //_gameObject.transform.position = newVec;
-            rigidbody_.MovePosition(newVec);
+            playerController_.rigidbody_.MovePosition(newVec);
         }
     }
 
