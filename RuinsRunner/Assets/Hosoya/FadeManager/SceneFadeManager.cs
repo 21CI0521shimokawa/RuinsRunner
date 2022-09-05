@@ -48,7 +48,7 @@ public class SceneFadeManager : MonoBehaviour
                     stateTime_ = 0.0f;
 
                     //sceneê∂ê¨
-                    SceneManager.LoadSceneAsync(nextSceneName_, LoadSceneMode.Additive);
+                    SceneManager.LoadScene(nextSceneName_, LoadSceneMode.Additive);
                 }
                 break;
 

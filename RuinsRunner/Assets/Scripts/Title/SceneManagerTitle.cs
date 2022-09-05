@@ -12,8 +12,6 @@ public class SceneManagerTitle : SceneSuperClass
     [SerializeField] float displayTime = 2.0f;
     [SerializeField] GameObject[] slowObjects;
     [SerializeField] AudioClip audio;
-
-    bool isFading_;
     float passedTime_;
     //フェードアウトの時に使う変数
    public bool IsFadeMain;
@@ -26,10 +24,7 @@ public class SceneManagerTitle : SceneSuperClass
     }
     private void Start()
     {
-        isFading_ = true;
         passedTime_ = 0.0f;
-        DoFade(IsFadeMain, "Scene_MainGame");
-        DoFade(IsFadeDemo, "Scene_Demo");
     }
 
     private void Update()
@@ -59,8 +54,6 @@ public class SceneManagerTitle : SceneSuperClass
 
     void FadeUpdate()
     {
-        //フェード中は移行を受け付けない
-        if (isFading_) return;
         //パッドの入力を反映
         Gamepad gamepad = Gamepad.current;
 
@@ -71,11 +64,11 @@ public class SceneManagerTitle : SceneSuperClass
         }
 
         //パッドのXボタンの入力がされたら
-        if (gamepad.buttonEast.wasPressedThisFrame)
+        if (gamepad.buttonEast.wasPressedThisFrame&&!IsFadeMain)
         {
-            PlayAudio.PlaySE(audio);
-            //フェードアウト
+            SceneFadeManager.StartMoveScene("Scene_MainGame");
             IsFadeMain = true;
+            PlayAudio.PlaySE(audio);
         }
 
         passedTime_ += Time.deltaTime;
@@ -85,6 +78,7 @@ public class SceneManagerTitle : SceneSuperClass
             IsFadeDemo = true;
         }
     }
+    /*
     /// <summary>
     /// 多重読み込み防止フェードアウト関数
     /// </summary>
@@ -97,4 +91,5 @@ public class SceneManagerTitle : SceneSuperClass
                       SceneFadeManager.StartMoveScene(SceneName);
                   });
     }
+    */
 }
