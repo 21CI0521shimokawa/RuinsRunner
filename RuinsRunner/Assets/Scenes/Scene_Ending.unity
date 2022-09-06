@@ -1086,20 +1086,20 @@ MonoBehaviour:
 
 
 
-    ~programmer~
+    -programmer-
 
 
-    CI0117 Taiga Kudou
+    Taiga Kudo
 
 
-    CI0140 Riku
-    Hosoya
+    Riku Hosoya
 
 
-    CI0521 Kazuma Shimokawa
+    Kazuma
+    Shimokawa
 
 
-    ~Production~
+    -Production-
 
 
     Team RuinsRunner
@@ -3524,6 +3524,7 @@ MonoBehaviour:
   EnemyFromBackCameraSpeed: 3
   EndGameCameraSpeed: 4
   PlayerTransform: {fileID: 0}
+  PlayerScripts: {fileID: 0}
 --- !u!114 &872903295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5841,6 +5842,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8891717940244169411, guid: d17c4b39595a27246861edfcf64b8da4, type: 3}
     - target: {fileID: 9115153201087195339, guid: 3f27a8f2ca0d1fb4aa9e99c4571f2fee, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9115153201087195339, guid: 3f27a8f2ca0d1fb4aa9e99c4571f2fee, type: 3}
       propertyPath: AttackSignsPrefubs
       value: 
       objectReference: {fileID: 870066007021404426, guid: d17c4b39595a27246861edfcf64b8da4, type: 3}
@@ -7600,8 +7605,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 11.38
-  m_Range: 12.81
+  m_Intensity: 7.48
+  m_Range: 8.39
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -7634,7 +7639,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
