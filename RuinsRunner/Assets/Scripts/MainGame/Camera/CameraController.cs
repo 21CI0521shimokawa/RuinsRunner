@@ -21,6 +21,7 @@ public class CameraController
     [SerializeField] float EndGameCameraSpeed;
     [Header("PlayerŠÖ˜A")]
     [SerializeField] Transform PlayerTransform;
+    [SerializeField] PlayerController PlayerScripts;
 
     private void Awake()
     {
@@ -49,12 +50,19 @@ public class CameraController
               new Vector3(DefaultCameraTransform.position.x,PlayerTransform.position.y+5,PlayerTransform.position.z+8),
               },
               3f, PathType.Linear
-              ).OnUpdate(() =>
+              )
+              .OnStart(() =>
+              {
+                  PlayerScripts.canMove = false;
+                  PlayerScripts.isReverseLR = true;
+              })
+              .OnUpdate(() =>
               {
                   CameraObject.transform.DORotate(DoRotation, EnemyFromBackCameraSpeed);
               })
               .OnComplete(() =>
               {
+                  PlayerScripts.canMove = true;
               })
               .SetEase(SetEaseType);
     }
@@ -62,11 +70,20 @@ public class CameraController
     public void DoDefaultCameraPositonMove(GameObject CameraObject)
     {
         var DoRotation = new Vector3(26.6f, 0, 0);
-        CameraObject.transform.DOMove(new Vector3(DefaultCameraTransform.position.x, DefaultCameraTransform.position.y,PlayerTransform.position.z-6), ReturnDefaultCameraPositonCameraSpeed)
-            .OnUpdate(() =>
-            {
-                CameraObject.transform.DORotate(DoRotation, ReturnDefaultCameraPositonCameraSpeed);
-            })
+        CameraObject.transform.DOMove(new Vector3(DefaultCameraTransform.position.x, DefaultCameraTransform.position.y, PlayerTransform.position.z - 6), ReturnDefaultCameraPositonCameraSpeed)
+             .OnStart(() =>
+             {
+                 PlayerScripts.canMove = false;
+             })
+             .OnUpdate(() =>
+             {
+                 CameraObject.transform.DORotate(DoRotation, ReturnDefaultCameraPositonCameraSpeed);
+             })
+             .OnComplete(() =>
+             {
+                 PlayerScripts.canMove = true;
+                 PlayerScripts.isReverseLR= false;
+             })
             .SetEase(SetEaseType);
     }
     #endregion
