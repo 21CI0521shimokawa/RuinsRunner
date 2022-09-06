@@ -26,6 +26,9 @@ public class ItemGeneratorVer2 : MonoBehaviour
     //何個目まで連続で置くか
     int consecutiveSetQuantity_;
 
+    //アイテムの間隔
+    [SerializeField] float itemSetInterval_;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,15 @@ public class ItemGeneratorVer2 : MonoBehaviour
 
     public void Generate(float _floorSizeZ)
     {
+        if(itemSetInterval_ <= 0)
+        {
+            Debug.LogWarning("アイテムの生成間隔が不正です");
+            return;
+        }
+
+
+        float oldPrefabNoSetFloorSizeZ = prefabNoSetFloorSizeZ_;
+
         prefabNoSetFloorSizeZ_ += _floorSizeZ;
         
         //置いたアイテムの長さ
@@ -57,7 +69,11 @@ public class ItemGeneratorVer2 : MonoBehaviour
             }
 
             //prefabを設置
-            GameObject generatePrefab = mapGenerator_.Generate(selectPrefab, setPrefabSizeZ);
+
+
+            //GameObject generatePrefab = mapGenerator_.Generate(selectPrefab, setPrefabSizeZ);
+            //GameObject generatePrefab = mapGenerator_.Generate(selectPrefab, -oldPrefabNoSetFloorSizeZ + _floorSizeZ - itemSetInterval_ + setPrefabSizeZ);
+            GameObject generatePrefab = mapGenerator_.Generate(selectPrefab, -oldPrefabNoSetFloorSizeZ + setPrefabSizeZ);
 
             //X軸移動させる
             Vector3 newPotision = generatePrefab.transform.position;
@@ -68,9 +84,9 @@ public class ItemGeneratorVer2 : MonoBehaviour
             generatePrefab.transform.position = newPotision;
 
             //間隔を引く
-            prefabNoSetFloorSizeZ_ -= 4;
+            prefabNoSetFloorSizeZ_ -= itemSetInterval_;
 
-            setPrefabSizeZ += 4;
+            setPrefabSizeZ += itemSetInterval_;
 
             ++setItemCount_; 
         }

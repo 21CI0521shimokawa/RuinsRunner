@@ -19,6 +19,8 @@ public class EndrollControll : SceneSuperClass
     void Start()
     {
         DoTextMove(TargetText);
+
+        MoveLooksLikeRunning.moveMagnification = 1.0f;
     }
     void DoTextMove(TextMeshProUGUI _TargetText)
     {
