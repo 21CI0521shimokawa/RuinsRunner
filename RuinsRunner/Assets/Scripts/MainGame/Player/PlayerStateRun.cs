@@ -180,7 +180,7 @@ public class PlayerStateRun : StateBase
         {
             if (playerController_.PlayerMoveChack(moveVec.normalized * 0.05f))
             {
-                playerController_.rigidbody_.velocity = new Vector3(moveVec.x, playerController_.rigidbody_.velocity.y, playerController_.rigidbody_.velocity.z);
+                playerController_.rigidbody_.velocity = new Vector3(playerController_.isReverseLR ? -moveVec.x : moveVec.x, playerController_.rigidbody_.velocity.y, playerController_.rigidbody_.velocity.z);
 
                 //指定したスピードから現在の速度を引いて加速力を求める
                 //float currentSpeed = moveVec.x - rigidbody_.velocity.x;

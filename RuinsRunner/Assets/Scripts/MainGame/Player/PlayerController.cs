@@ -8,9 +8,10 @@ public class PlayerController
 {
     public StateMachine state_;
     public Animator animator_;
-    [SerializeField] bool canMove = true;
+    public bool canMove = true;
 
     public Rigidbody rigidbody_;
+    public bool isReverseLR = false;
 
     //Player関係
     //[SerializeField] float[] positionZTables; //プレイヤのZ座標のテーブル
@@ -160,6 +161,8 @@ public class PlayerController
         {
             return false;
         }
+
+        if (isReverseLR) _checkRayVector.x *= -1;
 
         Vector3 origin = this.transform.position; // 原点
         Vector3 direction = _checkRayVector.normalized; // ベクトル

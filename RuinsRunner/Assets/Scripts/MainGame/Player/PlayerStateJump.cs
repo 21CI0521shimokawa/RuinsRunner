@@ -88,7 +88,7 @@ public class PlayerStateJump : StateBase
         {
             if (playerController_.PlayerMoveChack(moveVec.normalized * 0.05f))
             {
-                rigidbody_.velocity = new Vector3(moveVec.x, rigidbody_.velocity.y, rigidbody_.velocity.z);
+                rigidbody_.velocity = new Vector3(playerController_.isReverseLR ? -moveVec.x : moveVec.x, rigidbody_.velocity.y, rigidbody_.velocity.z);
 
                 //指定したスピードから現在の速度を引いて加速力を求める
                 //float currentSpeed = moveVec.x - rigidbody_.velocity.x;

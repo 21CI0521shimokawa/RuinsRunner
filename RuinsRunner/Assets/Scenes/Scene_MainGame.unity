@@ -3060,6 +3060,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3810429623139307457, guid: 5cc8d906e3c02864ab687153583511f2, type: 3}
   m_PrefabInstance: {fileID: 351361081}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1741348395 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1279469272058172842, guid: 5cc8d906e3c02864ab687153583511f2, type: 3}
+  m_PrefabInstance: {fileID: 351361081}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741348388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4cc3afbaef47c42b1c319ddbcefbc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1767879135
 GameObject:
   m_ObjectHideFlags: 0
@@ -3673,6 +3684,7 @@ MonoBehaviour:
   EnemyFromBackCameraSpeed: 3
   EndGameCameraSpeed: 4
   PlayerTransform: {fileID: 1741348393}
+  PlayerScripts: {fileID: 1741348395}
 --- !u!1 &2088021768
 GameObject:
   m_ObjectHideFlags: 0
