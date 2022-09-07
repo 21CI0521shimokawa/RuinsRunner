@@ -62,6 +62,8 @@ MonoBehaviour:
   - {fileID: 6488447310172164570, guid: 954d5bae29def254e84e3313e1b7f7d5, type: 3}
   - {fileID: 6488447310172164570, guid: 224f4b16484250f44b4e9216e8cfd110, type: 3}
   - {fileID: 6488447310172164570, guid: b983307bb66927148b985ed610711090, type: 3}
+  - {fileID: 6488447310172164570, guid: 1ffb968d305efc34a9f5cde130b645d0, type: 3}
+  - {fileID: 6488447310172164570, guid: 7da9a6c786edbfb4ab2b4aac461cc186, type: 3}
   wallTorchPrefab_: {fileID: 6488447310172164570, guid: e4370f95f19e17a42902251de32377f8, type: 3}
   goalMapPrefab_: {fileID: 3839287147619380478, guid: ffba19aa75c23c1439ba3ab9c5a4fd11, type: 3}
   miniGameEntryTimes_: 14000000320000005a000000
@@ -85,12 +87,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6693a440581113d448af1b53206968f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabNoSetFloorSizeZ_: 4
+  prefabNoSetFloorSizeZ_: 0
   coinPrefabs_: {fileID: 264181131417774409, guid: 9d3e0238b797bff4c894bbaa5e3a4713, type: 3}
   meetPrefabs_: {fileID: 8214590461903862056, guid: a5fb0c9d0cf5680499634409c0831105, type: 3}
   setPositionXTable_:
-  - 0
-  - -2.25
-  - 2.25
-  - -4.5
-  - 4.5
+  - 1
+  - -1
+  - 3
+  - -3
+  - 5
+  - -5
+  itemSetInterval_: 4
+  setConsecutiveSetQuantityTable_:
+  - 0.05
+  - 0.15
+  - 0.4
+  - 0.25
+  - 0.15

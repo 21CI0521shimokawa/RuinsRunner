@@ -12,4 +12,13 @@ public class FloorChip : NewMapChip
             return canRotate_;
         }
     }
+
+    [SerializeField, Tooltip("‹´Prefab‚©‚Ç‚¤‚©")] bool isBridge_;
+    public bool isBridge
+    {
+        get
+        {
+            return isBridge_;
+        }
+    }
 }

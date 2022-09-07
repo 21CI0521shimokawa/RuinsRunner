@@ -48,11 +48,11 @@ public class NewMapGeneratorState_Normal : StateBase
                 //}
                 #endregion
 
-                //床を決める 仮
-                int floorNumber = Random.Range(0, mapGenerator_.floorPrefabs.Count);
+                //床を決める
+                GameObject floorPrefab = SetFloorPrefabDecide();
 
                 //床を設置
-                GameObject generateFloor = mapGenerator_.Generate(mapGenerator_.floorPrefabs[floorNumber]);
+                GameObject generateFloor = mapGenerator_.Generate(floorPrefab);
 
                 //回転
                 mapGenerator_.FloorRotate(generateFloor);
@@ -154,6 +154,32 @@ public class NewMapGeneratorState_Normal : StateBase
         mapGenerator_ = null;
     }
 
+    GameObject SetFloorPrefabDecide()
+    {
+        //ランダムで一つ決める
+        int floorNumber = Random.Range(0, mapGenerator_.floorPrefabs.Count);
+
+        //一つ前に設置した床が橋なら
+        if(mapGenerator_.latestFloorInfo.isBridge)
+        {
+            //次置く床が橋以外になるまで決めなおす
+            while(true)
+            {
+                //決めた床が橋なら
+                if (mapGenerator_.floorPrefabs[floorNumber].GetComponent<FloorChip>().isBridge)
+                {
+                    //もう一度決める
+                    floorNumber = Random.Range(0, mapGenerator_.floorPrefabs.Count);
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        return mapGenerator_.floorPrefabs[floorNumber];
+    }
 
     bool MiniGameEntryCheck(ref StateBase _state)
     {

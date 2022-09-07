@@ -173,8 +173,18 @@ public class PlayerStateRun : StateBase
 
         float gamepadStickLX = ControllerManager.GetGamepadStickL().x;
 
-        moveVec.x += gamepadStickLX > 0.6f ? speed_ : 0;
-        moveVec.x += gamepadStickLX < -0.6f ? -speed_ : 0;
+        #region ‹Œ
+        //moveVec.x += gamepadStickLX > 0.6f ? speed_ : 0;
+        //moveVec.x += gamepadStickLX < -0.6f ? -speed_ : 0;
+        #endregion
+
+        //ƒXƒeƒBƒbƒN‚ð“|‚µ‚½•ª‚¾‚¯ˆÚ“®
+        moveVec.x = Mathf.Lerp(0, speed_, Mathf.InverseLerp(0.1f, 0.8f, Mathf.Abs(gamepadStickLX)));
+        moveVec.x *= Mathf.Sign(gamepadStickLX);
+
+        //ˆÚ“®”{—¦‚É‰ž‚¶‚ÄˆÚ“®‘¬“x‚ðã‚°‚é
+        //‚©‚©‚Á‚Ä‚¢‚é”{—¦‚Ì50“‚¾‚¯‚ ‚°‚é
+        moveVec.x *= ((MoveLooksLikeRunning.moveMagnification - 1.0f) * 0.5f) + 1.0f;
 
         if (moveVec.x != 0)
         {

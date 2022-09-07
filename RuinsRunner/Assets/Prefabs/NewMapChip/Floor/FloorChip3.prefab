@@ -416,6 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17100824d9b79074d88f6ed4cc09684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!114 &1338865149428275842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee186c6742fca474091a2031fba5ce1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyZPos: -15
 --- !u!114 &4671435657749616180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,6 +444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeZ_: 12
   canRotate_: 1
+  isBridge_: 1
 --- !u!1 &6724112338971705416
 GameObject:
   m_ObjectHideFlags: 0
