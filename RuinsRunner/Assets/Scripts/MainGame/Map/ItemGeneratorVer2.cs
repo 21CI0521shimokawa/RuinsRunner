@@ -16,7 +16,6 @@ public class ItemGeneratorVer2 : MonoBehaviour
     //置いたアイテムの個数
     int setItemCount_;
 
-
     //置くX座標テーブル
     [SerializeField] float[] setPositionXTable_;
 
@@ -29,6 +28,12 @@ public class ItemGeneratorVer2 : MonoBehaviour
     //アイテムの間隔
     [SerializeField] float itemSetInterval_;
 
+    //アイテムを連続で置く個数とその確率テーブル
+    [SerializeField] float[] setConsecutiveSetQuantityTable_;
+
+    //一つ前のアイテムが浮いてるかどうか
+    bool isBeforeItemFloating_;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +42,8 @@ public class ItemGeneratorVer2 : MonoBehaviour
         setItemCount_ = 0;
         setPositionTableNum_ = -1;
         consecutiveSetQuantity_ = 0;
+
+        isBeforeItemFloating_ = false;
     }
 
     public void Generate(float _floorSizeZ)
@@ -101,6 +108,12 @@ public class ItemGeneratorVer2 : MonoBehaviour
             return setPositionXTable_[setPositionTableNum_];
         }
 
+        //一つ前のアイテムが浮いて設置されていたら特別に連続して置く
+        if(isBeforeItemFloating_)
+        {
+            return setPositionXTable_[setPositionTableNum_];
+        }
+
         //テーブルの中から一つランダムで決める
         int newSetPositionTableNum = Random.Range(0, setPositionXTable_.Length);
         
@@ -112,7 +125,7 @@ public class ItemGeneratorVer2 : MonoBehaviour
         setPositionTableNum_ = newSetPositionTableNum;
 
         //何個目まで連続で置くか決める
-        consecutiveSetQuantity_ += Random.Range(1, 6);  //1個~5個まで
+        consecutiveSetQuantity_ += SetconsecutiveSetQuantity();
 
         return setPositionXTable_[setPositionTableNum_];
     }
@@ -129,7 +142,7 @@ public class ItemGeneratorVer2 : MonoBehaviour
 
         RaycastHit[] hits = Physics.RaycastAll(ray, 10);
 
-        bool isHit = false;
+        isBeforeItemFloating_ = true;
         foreach (RaycastHit hit in hits) // もしRayを投射して何らかのコライダーに衝突したら
         {
             //トリガーだったら除外する
@@ -143,13 +156,39 @@ public class ItemGeneratorVer2 : MonoBehaviour
             if (hitGameObjectTagName == "") { continue; }
             //必要に応じて追加
 
-            isHit = true;
+            isBeforeItemFloating_ = false;
             break;
         }
 
-        return isHit ? 1.0f : 2.5f;
+        //アイテムの下に床がないなら浮かせる
+        return isBeforeItemFloating_ ? 2.5f : 1.0f;
     }
 
+    //連続で置く個数を決める
+    int SetconsecutiveSetQuantity()
+    {
+        //0～1の値を取得
+        float randomValue = Random.Range(Mathf.Epsilon, 1.0f);
+
+        int returnValue = 0;
+
+        //返す値を決定
+        while(randomValue > 0.0f)
+        {
+            //tableの個数とreturnValueが同じかそれ以上になってしまったら
+            if(setConsecutiveSetQuantityTable_.Length <= returnValue)
+            {
+                Debug.LogWarning("setConsecutiveSetQuantityTableの設定がおかしいかもしれません");
+                return returnValue;
+            }
+
+            //returnValue番の値分引く
+            randomValue -= setConsecutiveSetQuantityTable_[returnValue];
+
+            ++returnValue;
+        }
+        return returnValue;
+    }
 
     public bool IsGenerate()
     {

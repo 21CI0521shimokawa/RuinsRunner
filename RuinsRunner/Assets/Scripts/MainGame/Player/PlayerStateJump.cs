@@ -56,7 +56,7 @@ public class PlayerStateJump : StateBase
 
         _gameobject.transform.position = playerPosition;
 
-        return StateTimeCount >= 1.0;
+        return StateTimeCount >= 1.2f;
     }
 
     //¶‰EˆÚ“®

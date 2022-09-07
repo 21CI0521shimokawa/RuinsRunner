@@ -15,7 +15,7 @@ public class NewMapGenerator : MonoBehaviour
 
     //一番直近に生成した床チップの情報を保存する変数
     [SerializeField, Tooltip("生成するマップチップとくっつく床データを入れておく")] FloorChip latestFloorInfo_;
-    public NewMapChip latestFloorInfo
+    public FloorChip latestFloorInfo
     {
         get
         {

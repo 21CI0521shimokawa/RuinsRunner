@@ -58,12 +58,29 @@ public class PlayerStateFall
     bool Action()
     {
 
+        //穴に落ちるまではプレイヤを後ろに下げながら落下させるように（穴に引っかかる不具合防止）
+        if(!isFallIntoFall_)
+        {
+            Vector3 newVec = playerController_.transform.position;
+            newVec += Vector3.back * (MainGameConst.moveSpeed * MoveLooksLikeRunning.moveMagnification * 0.8f) * Time.deltaTime;
+
+            //床より下にいるなら下方向に引っ張る（穴に引っかかる不具合防止）
+            if (playerController_.transform.position.y < 0.0f)
+            {
+                //newVec.y -= 10.0f * Time.deltaTime;
+                playerController_.rigidbody_.AddForce(Vector3.down * 20.0f * Time.deltaTime, ForceMode.VelocityChange);
+            }
+
+            playerController_.rigidbody_.MovePosition(newVec);
+        }
+
         //穴に落ちたら復帰
         if(playerController_.FallIntoHole())
         {
             playerController_.Damage();
 
             playerController_.gameObject.GetComponent<Rigidbody>().position = new Vector3(0, 10, playerController_.GetPositionZ());
+            playerController_.rigidbody_.velocity = new Vector3(0.0f, playerController_.rigidbody_.velocity.y, 0.0f);
 
             isFallIntoFall_ = true;
 

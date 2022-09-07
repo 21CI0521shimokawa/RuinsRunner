@@ -2389,7 +2389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7100380774684161388, guid: e8375f3949676094eb9aa64da5e29189, type: 3}
       propertyPath: m_Volume
-      value: 0.7
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7100380774684161390, guid: e8375f3949676094eb9aa64da5e29189, type: 3}
       propertyPath: m_RootOrder
@@ -3339,10 +3339,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 993814399999030682, guid: 6cb24037e9094584d915e6348b23e62b, type: 3}
-      propertyPath: itemSetInterval_
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1483653190106877619, guid: 6cb24037e9094584d915e6348b23e62b, type: 3}
       propertyPath: mapFolder_
       value: 
@@ -3411,6 +3407,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 1827408500673082040, guid: 6cb24037e9094584d915e6348b23e62b, type: 3}
+      propertyPath: floorPrefabs_.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827408500673082040, guid: 6cb24037e9094584d915e6348b23e62b, type: 3}
+      propertyPath: floorPrefabs_.Array.data[6]
+      value: 
+      objectReference: {fileID: 6488447310172164570, guid: 19b09fac1547bb3469936be57af33abb, type: 3}
+    - target: {fileID: 1827408500673082040, guid: 6cb24037e9094584d915e6348b23e62b, type: 3}
+      propertyPath: floorPrefabs_.Array.data[7]
+      value: 
+      objectReference: {fileID: 6488447310172164570, guid: 185306fb6a53bb841ac8779ec74224b0, type: 3}
     - target: {fileID: 2000649146379340826, guid: 6cb24037e9094584d915e6348b23e62b, type: 3}
       propertyPath: remainTime_
       value: 120

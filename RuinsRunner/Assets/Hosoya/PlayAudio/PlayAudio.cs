@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayAudio : ObjectSuperClass
 {
     static AudioSource audioSource_;
+    [SerializeField] AudioSource audioSourceSet_;
 
     struct PlayAudioData
     {
@@ -27,7 +28,11 @@ public class PlayAudio : ObjectSuperClass
         }
 
 
-        audioSource_ = GetComponent<AudioSource>();
+        if(audioSourceSet_ != null)
+        {
+            audioSource_ = audioSourceSet_;
+        }
+
         playAudioList_ = new List<PlayAudioData>();
     }
 
