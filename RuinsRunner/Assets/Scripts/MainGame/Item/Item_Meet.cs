@@ -16,7 +16,7 @@ public class Item_Meet : ItemBase
         //_player.GetComponent<PlayerController>().Recovery();
         StaticInterfaceManager.MovePlayerZ(-1, _player.GetComponent<PlayerController>());
         StaticInterfaceManager.UpdateScore(500);
-        MoveLooksLikeRunning.moveMagnification = 1.5f;  //移動速度倍率
+        MoveLooksLikeRunning.moveMagnification = 1.7f;  //移動速度倍率
         StaticInterfaceManager.PlayConcentrationLineEffect();
         ScoreManager scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         scoreManager.scoreUpTime = 10.0f;    //得点アップ時間

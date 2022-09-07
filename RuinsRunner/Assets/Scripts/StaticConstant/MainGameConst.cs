@@ -1,4 +1,4 @@
 public static class MainGameConst
 {
-    public const float moveSpeed = 5.0f;
+    public const float moveSpeed = 6.0f;
 }

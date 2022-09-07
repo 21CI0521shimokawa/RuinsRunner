@@ -3328,6 +3328,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 993814399999030682, guid: 6cb24037e9094584d915e6348b23e62b, type: 3}
+      propertyPath: itemSetInterval_
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1483653190106877619, guid: 6cb24037e9094584d915e6348b23e62b, type: 3}
       propertyPath: mapFolder_
       value: 

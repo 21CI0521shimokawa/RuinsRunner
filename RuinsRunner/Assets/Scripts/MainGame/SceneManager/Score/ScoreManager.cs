@@ -41,6 +41,10 @@ public class ScoreManager
         }
     }
 
+
+    //‘¬“x‚ðŒ¸‚ç‚·‘¬“x
+    float speedCurrentVelocity_;
+
     private void Start()
     {
         Scene scene = SceneManager.GetSceneByName("Manager");
@@ -63,6 +67,8 @@ public class ScoreManager
 
         scoreMagnification_ = 1.0f;
         scoreUpTime_ = 0.0f;
+
+        speedCurrentVelocity_ = 0.0f;
     }
 
     void Update()
@@ -71,6 +77,8 @@ public class ScoreManager
         {
             scoreUpTime_ -= Time.deltaTime;
             scoreMagnification_ = 3.0f;
+
+            speedCurrentVelocity_ = 0.0f;
         }
         else
         {
@@ -79,7 +87,7 @@ public class ScoreManager
 
             if(MoveLooksLikeRunning.moveMagnification > 1.0f)
             {
-                MoveLooksLikeRunning.moveMagnification = 1.0f;
+                MoveLooksLikeRunning.moveMagnification = Mathf.SmoothDamp(MoveLooksLikeRunning.moveMagnification, 1.0f, ref speedCurrentVelocity_, 0.5f, Mathf.Infinity, Time.deltaTime);
                 StaticInterfaceManager.StopConcentrationLineEffect();
             }
         }
