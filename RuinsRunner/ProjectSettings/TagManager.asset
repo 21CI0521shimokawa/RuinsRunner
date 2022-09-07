@@ -1,3 +1,51 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f2473fa7d1ff7b533c177fa0fb53c41cf880275dd8e2b88a7c3fa4065321aeba
-size 565
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - SceneManager
+  - Enemy
+  - Pillar
+  - Trap
+  - PillarForEvent
+  - MapGenerator
+  - ScoreManager
+  - ForEvent
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - PostEffect
+  - Water
+  - UI
+  - ObjectPostEffect
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
