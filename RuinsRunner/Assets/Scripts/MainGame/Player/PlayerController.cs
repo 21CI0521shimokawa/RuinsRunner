@@ -8,10 +8,8 @@ public class PlayerController
 {
     public StateMachine state_;
     public Animator animator_;
-    public bool canMove = true;
 
     public Rigidbody rigidbody_;
-    public bool isReverseLR = false;
 
     //Player関係
     //[SerializeField] float[] positionZTables; //プレイヤのZ座標のテーブル
@@ -40,7 +38,31 @@ public class PlayerController
 
 
     //Run関連
+    bool canMove_;
+    public bool canMove
+    {
+        set
+        {
+            canMove_ = value;
+        }
+        get
+        {
+            return canMove_;
+        }
+    }
 
+    bool isReverseLR_;
+    public bool isReverseLR
+    {
+        set
+        {
+            isReverseLR_ = value;
+        }
+        get
+        {
+            return isReverseLR_;
+        }
+    }
 
     //Defeat関連
 
@@ -81,6 +103,20 @@ public class PlayerController
 
     [SerializeField] GameObject fallCoinPrefab_;
 
+
+    Renderer renderer_;
+    float outOfCameraTimeCount_;
+
+    //前後移動関係
+    bool isMoveZ;               //前後移動中かどうか
+    double moveZStartTime_;     //前後移動を始めた時間
+    float moveZStartPositionZ_;  //前後移動を始めたときのZ座標
+    float moveZEndPositionZ_;   //前後移動が終わる時のZ座標
+
+    float moveZTime_;            //何秒かけて移動するか
+
+    float flontMoveTimeCount_;  //前後移動用タイムカウント
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,12 +125,23 @@ public class PlayerController
         state_ = new StateMachine(new PlayerStateRun());
 
         rigidbody_ = gameObject.GetComponent<Rigidbody>();
+
+        canMove_ = true;
+        isReverseLR_ = false;
+
+        renderer_ = GetComponent<Renderer>();
+
+        moveZStartTime_ = 0.0;
+        moveZStartPositionZ_ = gameObject.transform.position.z;
+        moveZTime_ = 1.0f;
+        flontMoveTimeCount_ = 1.0f;
+
+        outOfCameraTimeCount_ = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!canMove) return;
         state_.Update(gameObject);
 
         //わざと重くする装置 低スペックシミュレーション用
@@ -107,6 +154,8 @@ public class PlayerController
         //}
 
         Debug.Log(state_.StateName);
+
+        OutOfCameraForLongTime();
     }
 
 
@@ -269,6 +318,69 @@ public class PlayerController
         if (state_.StateName == "PlayerStateRun")
         {
             state_ = new StateMachine(new PlayerStateStumble());
+        }
+    }
+
+    //前後移動
+    public void FrontMove(GameObject _gameObject)
+    {
+        flontMoveTimeCount_ += Time.deltaTime;
+
+        //今前後移動をしていないかどうか
+        if (!isMoveZ)
+        {
+            ////現在のZ座標とプレイヤがいる予定の場所が違ったら
+            if (_gameObject.transform.position.z != GetPositionZ())
+            {
+                //前に障害物がないかプレイヤがある程度後ろに下がったら
+                if (PlayerMoveChack(new Vector3(0, 0, 1)) || _gameObject.transform.position.z < 7.0f)
+                {
+                    isMoveZ = true; //前後移動開始
+                    moveZStartTime_ = flontMoveTimeCount_;
+                    moveZStartPositionZ_ = _gameObject.transform.position.z;
+                    moveZEndPositionZ_ = GetPositionZ();
+                }
+            }
+        }
+        //前後移動中
+        else
+        {
+            Vector3 newVec = _gameObject.transform.position;
+
+            //移動時間中かどうか
+            if (flontMoveTimeCount_ - moveZStartTime_ < moveZTime_)
+            {
+                newVec.z = Mathf.Lerp(moveZStartPositionZ_, moveZEndPositionZ_, Mathf.InverseLerp((float)moveZStartTime_, (float)(moveZStartTime_ + moveZTime_), flontMoveTimeCount_));
+            }
+            else
+            {
+                newVec.z = moveZEndPositionZ_;
+                isMoveZ = false;
+            }
+
+            //_gameObject.transform.position = newVec;
+            rigidbody_.MovePosition(newVec);
+        }
+    }
+
+    //プレイヤが長時間カメラ外にいたときに強制的に復帰させる
+    void OutOfCameraForLongTime()
+    {
+        //カメラに写っていたら
+        if(renderer_.isVisible)
+        {
+            outOfCameraTimeCount_ = 0.0f;
+        }
+        else
+        {
+            outOfCameraTimeCount_ += Time.deltaTime;
+
+            //2秒以上見えない状態が続いたら強制的に落下させる
+            if(outOfCameraTimeCount_ > 2.0f)
+            {
+                rigidbody_.position = new Vector3(0, -10, GetPositionZ());
+                outOfCameraTimeCount_ = 0.0f;
+            }
         }
     }
 
