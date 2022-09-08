@@ -29,7 +29,10 @@ public class PlayerStateJump : StateBase
         StateBase nextState = this;
 
         //横移動
-        SideMove(gameObject);
+        if (playerController_.canMove)
+        {
+            SideMove(gameObject);
+        }
 
         if (Action(gameObject))
         {
@@ -55,6 +58,13 @@ public class PlayerStateJump : StateBase
         }
 
         _gameobject.transform.position = playerPosition;
+
+
+        //現在のZ座標とプレイヤがいるはずの座標が異なっていたら
+        //if (_gameobject.transform.position.z != playerController_.GetPositionZ())
+        {
+            playerController_.FrontMove(_gameobject);
+        }
 
         return StateTimeCount >= 1.2f;
     }

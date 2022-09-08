@@ -9,22 +9,10 @@ public class PlayerStateRun : StateBase
 
     [SerializeField] float speed_;   //左右移動速度
 
-    //前後移動関係
-    bool isMoveZ;               //前後移動中かどうか
-    double moveZStartTime_;     //前後移動を始めた時間
-    float moveZStartPositionZ_;  //前後移動を始めたときのZ座標
-    float moveZEndPositionZ_;   //前後移動が終わる時のZ座標
-
-    float moveZTime_;            //何秒かけて移動するか
-
     public override void StateInitialize()
     {
         playerController_ = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         speed_ = 8;
-
-        moveZStartTime_ = 0.0;
-        moveZStartPositionZ_ = playerController_.gameObject.transform.position.z;
-        moveZTime_ = 1.0f;
 
         //走るモーションじゃなかったらSetTriggerする
         //if (!playerController_.animator_.GetCurrentAnimatorStateInfo(0).IsName("Sprint"))
@@ -44,7 +32,10 @@ public class PlayerStateRun : StateBase
         //FrontAndBackMove(gameObject);
 
         //横移動
-        SideMove(gameObject);
+        if(playerController_.canMove)
+        {
+            SideMove(gameObject);
+        }
 
         //（仮）
         if (Input.GetKeyDown(KeyCode.Space))
@@ -111,11 +102,10 @@ public class PlayerStateRun : StateBase
             }
         }
 
-        //現在のZ座標よりプレイヤがいる予定の場所の方が敵に遠かったら（仮）
-        //if分条件を '<' から　'!=' にしました（前後の移動を確認したかったため） 工藤 6/29
-        if (gameObject.transform.position.z != playerController_.GetPositionZ())
+        //現在のZ座標とプレイヤがいるはずの座標が異なっていたら
+        //if (gameObject.transform.position.z != playerController_.GetPositionZ())
         {
-            FrontMove(gameObject);    //こいつのせいで柱すり抜ける
+            playerController_.FrontMove(gameObject);
         }
 
         //トラップを踏んだら
@@ -210,47 +200,6 @@ public class PlayerStateRun : StateBase
             playerController_.rigidbody_.velocity = new Vector3(0, playerController_.rigidbody_.velocity.y, playerController_.rigidbody_.velocity.z);
         }
     }
-
-    //前後移動
-    void FrontMove(GameObject _gameObject)
-    {
-        //今前後移動をしていないかどうか
-        if (!isMoveZ)
-        {
-            ////現在のZ座標とプレイヤがいる予定の場所が違ったら
-            if (_gameObject.transform.position.z != playerController_.GetPositionZ())
-            {
-                //前に障害物がないかプレイヤがある程度後ろに下がったら
-                if(playerController_.PlayerMoveChack(new Vector3(0, 0, 1)) || _gameObject.transform.position.z < 7.0f)
-                {
-                    isMoveZ = true; //前後移動開始
-                    moveZStartTime_ = StateTimeCount;
-                    moveZStartPositionZ_ = _gameObject.transform.position.z;
-                    moveZEndPositionZ_ = playerController_.GetPositionZ();
-                }
-            }
-        }
-        //前後移動中
-        else
-        {
-            Vector3 newVec = _gameObject.transform.position;
-
-            //移動時間中かどうか
-            if (StateTimeCount - moveZStartTime_ < moveZTime_)
-            {
-                newVec.z = Mathf.Lerp(moveZStartPositionZ_, moveZEndPositionZ_, Mathf.InverseLerp((float)moveZStartTime_, (float)(moveZStartTime_ + moveZTime_), (float)StateTimeCount));
-            }
-            else
-            {
-                newVec.z = moveZEndPositionZ_;
-                isMoveZ = false;
-            }
-
-            //_gameObject.transform.position = newVec;
-            playerController_.rigidbody_.MovePosition(newVec);
-        }
-    }
-
 
     //柱検知
     GameObject PillarChack()
