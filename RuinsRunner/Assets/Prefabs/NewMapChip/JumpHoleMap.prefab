@@ -2196,8 +2196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 30
-  fallEndPosZ: 20
+  fallStartPosZ: 25
+  fallEndPosZ: 10
 --- !u!114 &3298732380830295731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4926,8 +4926,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 30
-  fallEndPosZ: 20
+  fallStartPosZ: 25
+  fallEndPosZ: 10
 --- !u!114 &8841415312219060019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14547,14 +14547,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7864986475062314298}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1135ab7d1f32202479049931927e95c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 30
-  fallEndPosZ: 20
+  fallStartPosZ: 25
+  fallEndPosZ: 10
 --- !u!114 &8285166240033612904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15145,8 +15145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 30
-  fallEndPosZ: 20
+  fallStartPosZ: 25
+  fallEndPosZ: 10
 --- !u!114 &3366352875899091093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15622,8 +15622,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 30
-  fallEndPosZ: 20
+  fallStartPosZ: 25
+  fallEndPosZ: 10
 --- !u!1001 &4404329325533379874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25072,8 +25072,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 30
-  fallEndPosZ: 20
+  fallStartPosZ: 25
+  fallEndPosZ: 10
 --- !u!114 &8691580146861990687
 MonoBehaviour:
   m_ObjectHideFlags: 0

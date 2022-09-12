@@ -58,7 +58,7 @@ public class EnemyStateAttackFromBack : StateBase
             .Where(x => State == AttackFromBackState.PREPARATION)
             .Subscribe(_ =>
             {
-                var PrerationTime = Random.Range(1, 3);
+                var PrerationTime = Random.Range(2, 3);
                 gameObject.transform.DOPath
                     (
                     new[]
@@ -87,12 +87,13 @@ public class EnemyStateAttackFromBack : StateBase
             .Subscribe(_ =>
             {
                 HitProcessingWithPlayer(gameObject);
-                EnemyController.EnemyAnimator.SetTrigger("Attack");
-               StaticInterfaceManager.PlayEnemyStormEffect();
                 var EnemyNewPositon = FollowTarget.position;
                 gameObject.transform.DOMoveZ(EnemyNewPositon.z, 1)
+            .SetDelay(1.5f)
             .OnStart(() =>
             {
+                EnemyController.EnemyAnimator.SetTrigger("Attack");
+                StaticInterfaceManager.PlayEnemyStormEffect();
                 PlayAudio.PlaySE(EnemyController._AttackSE);
             })
              .OnComplete(() =>

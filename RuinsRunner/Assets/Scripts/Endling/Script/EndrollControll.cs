@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using SceneDefine;
+using UnityEngine.InputSystem;
 
 public class EndrollControll : SceneSuperClass
 {
@@ -16,6 +17,7 @@ public class EndrollControll : SceneSuperClass
     [SerializeField] Ease EaseType;
     [Header("sceneˆÚsÝ’è")]
     [SerializeField] float SceneChangeTime;
+    private Tweener _tweener;
     void Start()
     {
         DoTextMove(TargetText);
@@ -24,7 +26,10 @@ public class EndrollControll : SceneSuperClass
     }
     void DoTextMove(TextMeshProUGUI _TargetText)
     {
-        _TargetText.transform.DOMoveY(DestinationY, MoveTime)
+        _tweener = _TargetText.transform.DOMoveY(DestinationY, MoveTime)
+            .OnUpdate(() =>
+            {
+            })
             .OnComplete(() =>
             {
                 SceneFadeManager.StartMoveScene("Scene_Title");
