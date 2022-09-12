@@ -1466,7 +1466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 30
+  fallStartPosZ: 35
   fallEndPosZ: 20
 --- !u!4 &6716802166358731419 stripped
 Transform:
@@ -2234,7 +2234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 30
+  fallStartPosZ: 35
   fallEndPosZ: 20
 --- !u!114 &3298732380830295731
 MonoBehaviour:
@@ -7617,7 +7617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 30
+  fallStartPosZ: 35
   fallEndPosZ: 20
 --- !u!1001 &2132077860557741592
 PrefabInstance:
@@ -15000,7 +15000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 30
+  fallStartPosZ: 35
   fallEndPosZ: 20
 --- !u!114 &8285166240033612904
 MonoBehaviour:
@@ -15592,8 +15592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 30
-  fallEndPosZ: 20
+  fallStartPosZ: 35
+  fallEndPosZ: 15
 --- !u!114 &3366352875899091093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16069,8 +16069,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 30
-  fallEndPosZ: 20
+  fallStartPosZ: 35
+  fallEndPosZ: 15
 --- !u!1001 &4404329325533379874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25665,7 +25665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFallDown: 1
-  fallStartPosZ: 40
+  fallStartPosZ: 35
   fallEndPosZ: 20
 --- !u!114 &8691580146861990687
 MonoBehaviour:

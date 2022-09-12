@@ -2670,7 +2670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetText: {fileID: 224035147}
-  MoveTime: 30
+  MoveTime: 20
   DestinationY: 2341
   EaseType: 1
   SceneChangeTime: 0

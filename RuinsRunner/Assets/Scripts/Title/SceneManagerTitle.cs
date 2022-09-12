@@ -54,6 +54,8 @@ public class SceneManagerTitle : SceneSuperClass
 
     void FadeUpdate()
     {
+        if (IsFadeMain || IsFadeDemo) return;
+
         //パッドの入力を反映
         Gamepad gamepad = Gamepad.current;
 
@@ -75,6 +77,7 @@ public class SceneManagerTitle : SceneSuperClass
         if (passedTime_ > displayTime)
         {
             //フェードアウト
+            SceneFadeManager.StartMoveScene("Scene_Demo");
             IsFadeDemo = true;
         }
     }

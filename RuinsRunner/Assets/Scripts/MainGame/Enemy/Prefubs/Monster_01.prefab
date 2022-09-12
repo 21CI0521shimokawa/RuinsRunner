@@ -1541,9 +1541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyAnimator: {fileID: 95327782838202756}
-  _IsSqueeze: 0
-  _IsCatch: 0
   AttackSignsPrefubs: {fileID: 870066007021404426, guid: d17c4b39595a27246861edfcf64b8da4, type: 3}
+  AttackSE: {fileID: 0}
 --- !u!54 &3861351979908098640
 Rigidbody:
   m_ObjectHideFlags: 0

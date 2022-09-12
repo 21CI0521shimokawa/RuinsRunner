@@ -35,9 +35,6 @@ public class SceneManagerResult : SceneSuperClass
         //ハイスコアの初期化
         highscore_ = PlayerPrefs.GetInt("Highscore", 0);
 
-        //ハイスコアのテキスト反映
-        highscoreTMP.text = highscore_.ToString();
-
         //スコアを共有シーンから持ってきて反映させる
         foreach (var rootGameObject in scene.GetRootGameObjects())
         {
@@ -49,6 +46,17 @@ public class SceneManagerResult : SceneSuperClass
             }
         }
         scoreTMP.text = score_.ToString();
+
+        //ハイスコア更新
+        if(highscore_ < score_)
+        {
+            highscore_ = score_;
+            PlayerPrefs.SetInt("HighScore", score_);
+            PlayerPrefs.Save();
+        }
+
+        //ハイスコアのテキスト反映
+        highscoreTMP.text = highscore_.ToString();
 
         //スコアボードを徐々に表示
         StartCoroutine(GraduallyAppear());

@@ -48,7 +48,7 @@ public class EnemyController
     {
         var InstansPositon = new Vector3(EnemyTransform.position.x, EnemyTransform.position.y+0.1f, EnemyTransform.position.z+6);
         GameObject InstanceObject=Instantiate(SignPrefub, InstansPositon, EnemyTransform.rotation);
-        DOVirtual.DelayedCall(1.0f, () =>
+        DOVirtual.DelayedCall(3.0f, () =>
         {
             Destroy(InstanceObject);//消し方をフェードアウトに今後したい..
         });

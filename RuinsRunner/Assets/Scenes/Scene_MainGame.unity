@@ -3419,6 +3419,10 @@ PrefabInstance:
       propertyPath: floorPrefabs_.Array.data[7]
       value: 
       objectReference: {fileID: 6488447310172164570, guid: 185306fb6a53bb841ac8779ec74224b0, type: 3}
+    - target: {fileID: 1827408500673082040, guid: 6cb24037e9094584d915e6348b23e62b, type: 3}
+      propertyPath: miniGameMapPrefabs_.Array.data[2]
+      value: 
+      objectReference: {fileID: 6488447310172164570, guid: 62ab8eb827599ca478dcdb2585507b58, type: 3}
     - target: {fileID: 2000649146379340826, guid: 6cb24037e9094584d915e6348b23e62b, type: 3}
       propertyPath: remainTime_
       value: 120
@@ -3940,7 +3944,7 @@ PrefabInstance:
       objectReference: {fileID: 1687448419}
     - target: {fileID: 3365909364952815574, guid: c91add993c1723944a15478bc9a267ad, type: 3}
       propertyPath: NumberToGenerate
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3365909364952815574, guid: c91add993c1723944a15478bc9a267ad, type: 3}
       propertyPath: WhatTimeDoAvoidGame
