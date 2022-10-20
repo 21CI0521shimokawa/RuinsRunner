@@ -5,60 +5,76 @@ using UnityEngine;
 public class AvoidGameController
     : ObjectSuperClass
     , IAvoidGame
-
 {
-    [Header("関数取得")]
-    [SerializeField] EnemyController EnemyController;
-    [Header("飛んでくるオブジェクト関連")]
-    [SerializeField] GameObject RockPrefubs;
-    [Header("ミニゲーム設定")]
-    [SerializeField] int LeftMaxGenerationPosition;
-    [SerializeField] int RightMaxGenerationPosition;
-    [SerializeField] float RockGenerationPositionZ;
-    [SerializeField] int RockGenerationPositionY;
-    [SerializeField] int WhatTimeDoAvoidGame;
-    [SerializeField] float IntervalTime;
+    [Header("外部関数取得")]
+    [SerializeField,Tooltip("Enemy情報取得")] EnemyController EnemyController;
+    [Header("飛んでくるオブジェクト取得")]
+    [SerializeField] GameObject BirdPrefubs;
+    [Header("AvoidGame設定")]
+    [SerializeField,Tooltip("生成される左の上限位置を整数値")] int LeftMaxGenerationPosition;
+    [SerializeField,Tooltip("生成される右の上限位置を整数値")] int RightMaxGenerationPosition;
+    [SerializeField,Tooltip("生成されるオブジェクトのZ位置")] float BirdGenerationPositionZ;
+    [SerializeField,Tooltip("生成されるオブジェクトのY位置")] int BirdGenerationPositionY;
+    [SerializeField,Tooltip("現在のミニゲーム回数")] int NowDoAvoidGameCount;
+    [SerializeField,Tooltip("生成するインターバル時間")] float IntervalTime;
     [SerializeField] int NumberToGenerate;
     [SerializeField] int NumberToAttack;
     [SerializeField] AudioClip AttackSignsSE;
+
+    /// <summary>
+    /// AvoidGameスタート(インターフェース)
+    /// </summary>
     public void DoAvoidGame()
     {
-        StartCoroutine(AvoidGameMove());
+        StartCoroutine(AvoidGameMove());//AvoidGameMoveコルーチンスタート
     }
+
+    /// <summary>
+    /// リソースを解放
+    /// </summary>
+    /// <param name="_disposing">リソースを解放したかの判定</param>
+    protected override void Dispose(bool _disposing)
+    {
+        if (this.isDisposed_)
+        {// 解放済みなので処理しない
+            return;
+        }
+        this.isDisposed_ = true; // Dispose済みを記録
+        base.Dispose(_disposing); // ★★★忘れずに、基底クラスの Dispose を呼び出す【重要】
+    }
+
+    /// <summary>
+    /// 鳥を一定感覚で指定範囲内でランダムで一定回数生成させる関数
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator AvoidGameMove()
     {
-        List<int> generationPositionX = new List<int>();
-        for (int i = 0; i < WhatTimeDoAvoidGame; ++i)
+        List<int> GenerationPositionX = new List<int>();
+        for (int i = 0; i < NowDoAvoidGameCount; ++i) //NowDoAvoidGameCountの数だけループさせる
         {
-            yield return new WaitForSeconds(IntervalTime);
-            generationPositionX.Clear();
-            PlayAudio.PlaySE(AttackSignsSE);
-            int numToAtk = NumberToAttack;
+            yield return new WaitForSeconds(IntervalTime); //生成のインターバル
+            GenerationPositionX.Clear(); //生成するX値をリセットする
+            PlayAudio.PlaySE(AttackSignsSE); //生成する時にSEを流す
+            int NumToAttack = NumberToAttack;
 
-            //取りうる値（int型に変更しました）のうちランダムでかぶらないように選び、指定された数まで生成
-            for (int j = LeftMaxGenerationPosition; j <= RightMaxGenerationPosition; j++)
+            for (int j = LeftMaxGenerationPosition; j <= RightMaxGenerationPosition; j++)//取りうる値のうちランダムでかぶらないように選び、指定された数まで生成
             {
-                generationPositionX.Add(j);
+                GenerationPositionX.Add(j); //GenerationPositionXに要素(生成する位置情報)を追加
             }
 
-            while (generationPositionX.Count > RightMaxGenerationPosition - LeftMaxGenerationPosition - NumberToGenerate + 1)
+            while (GenerationPositionX.Count > RightMaxGenerationPosition - LeftMaxGenerationPosition - NumberToGenerate + 1)
             {
+                int Index = Random.Range(0, GenerationPositionX.Count); //生成するX値をランダムで取得
 
-                int index = Random.Range(0, generationPositionX.Count);
-
-                int posX = generationPositionX[index];
-                var gameObj = Instantiate(RockPrefubs, new Vector3(posX, RockGenerationPositionY, RockGenerationPositionZ), Quaternion.Euler(0, 180, 0));
-                if (numToAtk > 0)
+                int InstantiatePositonX = GenerationPositionX[Index]; //Indexで取得した値を代入
+                GameObject BirdObject = Instantiate(BirdPrefubs, new Vector3(InstantiatePositonX, BirdGenerationPositionY, BirdGenerationPositionZ), Quaternion.Euler(0, 180, 0));
+                if (NumToAttack > 0)
                 {
-                    gameObj.GetComponent<RockController>().isAttack = true;
-                    --numToAtk;
+                    BirdObject.GetComponent<BirdController>().isAttack = true; //NumToAttackがNumberToAttackの値より大きかったら攻撃対象にする
+                    --NumToAttack;
                 }
-                generationPositionX.RemoveAt(index);
+                GenerationPositionX.RemoveAt(Index); //ランダムで取得した生成する位置情報を消す
             }
-
-            //var RockGenerationPositionX = Random.Range(LeftMaxGenerationPosition, RightMaxGenerationPosition + 1);
-            //GameObject InstanceObject=Instantiate(RockPrefubs, new Vector3(RockGenerationPositionX, RockGenerationPositionY, RockGenerationPositionZ), Quaternion.Euler(-180, 0, 0));
-         //   EnemyController.CreateSignPrefub(EnemyController._AttackSignsPrefubs, InstanceObjectTransform);
         }
         yield break;
     }
