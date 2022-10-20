@@ -4,55 +4,38 @@ using UnityEngine;
 
 public class EnemyStateRun : StateBase
 {
-    EnemyController enemyController;
-    public Rigidbody EnemyRigidBody;
-    Transform FollowTarget;
-    StateBase NextState;
+    StateBase NextState; //このステート(RunState)
+    EnemyController EnemyController; //Enemyの親クラスを取得
+    private Rigidbody EnemyRigidBody; //Enemyの剛体取得
+    private Transform FollowTargetTransform; ////攻撃する対象オブジェクトのトランスフォーム取得
 
+    /// <summary>
+    /// ステートが変更されて最初に一度だけ呼ばれる関数
+    /// </summary>
     public override void StateInitialize()
     {
-        enemyController = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyController>();
-        EnemyRigidBody = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Rigidbody>();
-        FollowTarget = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        enemyController.EnemyAnimator.SetTrigger("Chase");
+        EnemyController = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyController>(); //Enemyの親クラス取得
+        EnemyRigidBody = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Rigidbody>(); //Enemyの剛体取得
+        FollowTargetTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); //ターゲット(Player)のトランスフォーム取得
+        EnemyController._EnemyAnimator.SetTrigger("Run"); //Runアニメーション再生
         NextState = this;
     }
-    public override StateBase StateUpdate(GameObject gameObject)
+
+    /// <summary>
+    /// ステートが変更されるまで毎フレーム呼ばれる関数
+    /// </summary>
+    /// <param name="EnemygameObject"></param>
+    /// <returns></returns>
+    public override StateBase StateUpdate(GameObject EnemygameObject)
     {
-        #region 追跡処理
-        Chase(gameObject);
-        #endregion
-        #region 怯むステート移行(仮)
-        //if(Input.GetKeyDown(KeyCode.A))
-        // {
-        //     NextState = new EnemyStateKnockBack();
-        // }
-        #endregion
         return NextState;
     }
 
-    public void Chase(GameObject gameObject)
-    {
-        //現在両方とも凍結中
-        #region 下川実装
-        //Quaternion move_rotation = Quaternion.LookRotation(FollowTarget.transform.position - gameObject.transform.position, Vector3.up);
-        //gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, move_rotation, 0.1f);
-        //EnemyRigidBody.velocity = gameObject.transform.forward * MoveSpeed;
-        #endregion
-        #region 工藤実装
-        //float destinationX = FollowTarget.position.x;
-        //enemyController.GetComponent<Transform>().position = new Vector3(Mathf.Lerp(enemyController.GetComponent<Transform>().position.x, destinationX, 0.1f), 0, Mathf.Lerp(enemyController.GetComponent<Transform>().position.z, 10, 0.01f));
-        #endregion
-    }
-
-    //スタブ
+    /// <summary>
+    /// ステートが終わる時に一度だけ呼ばれる関数
+    /// </summary>
     public override void StateFinalize()
     {
-    }
-
-    public override void ReceiveDamage()
-    {
-        NextState = new EnemyStateKnockBack();
-        Debug.Log("柱にあたりました");
+        //スタブ
     }
 }

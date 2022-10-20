@@ -10,29 +10,31 @@ using UnityEngine.InputSystem;
 public class EndrollControll : SceneSuperClass
 {
     [Header("移動させるテキスト")]
-    [SerializeField] TextMeshProUGUI TargetText;
+    [SerializeField,Tooltip("テキストオブジェクト")] TextMeshProUGUI TargetText;
     [Header("エンドロール設定")]
-    [SerializeField] float MoveTime;
-    [SerializeField] float DestinationY;
-    [SerializeField] Ease EaseType;
-    [Header("scene移行設定")]
-    [SerializeField] float SceneChangeTime;
-    private Tweener _tweener;
+    [SerializeField,Tooltip("エンドロールの時間")] float MoveTime;
+    [SerializeField,Tooltip("テキストの目標値")] float DestinationY;
+    [SerializeField,Tooltip("イージングの種類指定")] Ease EaseType;
+
+    /// <summary>
+    /// ゲームが始まる時に一度だけ呼ばれる関数
+    /// </summary>
     void Start()
     {
-        DoTextMove(TargetText);
-
-        MoveLooksLikeRunning.moveMagnification = 1.0f;
+        MoveLooksLikeRunning.moveMagnification = 1.0f; //Playerの移動速度をデフォルト状態に戻す
+        DoTextMove(TargetText); //エンドロール開始
     }
+
+    /// <summary>
+    /// エンドロール処理関数
+    /// </summary>
+    /// <param name="_TargetText">エンドロールさせるテキストオブジェクト</param>
     void DoTextMove(TextMeshProUGUI _TargetText)
     {
-        _tweener = _TargetText.transform.DOMoveY(DestinationY, MoveTime)
-            .OnUpdate(() =>
-            {
-            })
+        _TargetText.transform.DOMoveY(DestinationY, MoveTime) //MoveTimeの速さで移動
             .OnComplete(() =>
             {
-                SceneFadeManager.StartMoveScene("Scene_Title");
+                SceneFadeManager.StartMoveScene("Scene_Title"); //移動完了したらシーン移行
             })
             .SetEase(EaseType);
     }
