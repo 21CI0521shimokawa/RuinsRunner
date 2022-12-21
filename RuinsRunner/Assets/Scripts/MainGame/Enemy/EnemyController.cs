@@ -3,24 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class EnemyController
-    : ObjectSuperClass
+public class EnemyController : ObjectSuperClass
 {
-    StateMachine EnemyState;
-
+    private StateMachine EnemyState; //それぞれのステート(class)の管理
+    private const float signPrefubDestroyTime = 3.0f; //攻撃予兆オブジェクトの破棄時間
+    private Tween EnemyTweener;
+    public Tween _EnemyTweener
+    {
+        get { return EnemyTweener; }
+        set { EnemyTweener = value; }
+    }
     [Header("Enemyアニメーター取得")]
-    [SerializeField] Animator EnemyAnimator;
+    [SerializeField, Tooltip("アニメーター")] Animator EnemyAnimator;
     public Animator _EnemyAnimator
     {
         get { return EnemyAnimator; }
     }
     [Header("EnemyAttackステート関連")]
-    [SerializeField] GameObject AttackSignsPrefubs;
+    [SerializeField, Tooltip("攻撃予兆オブジェクト")] GameObject AttackSignsPrefubs;
     public GameObject _AttackSignsPrefubs
     {
         get { return AttackSignsPrefubs; } 
     }
-    [SerializeField] AudioClip AttackSE;
+    [SerializeField, Tooltip("攻撃する時のSE")] AudioClip AttackSE;
     public AudioClip _AttackSE
     {
         get { return AttackSE; }
@@ -31,7 +36,8 @@ public class EnemyController
     /// </summary>
     void Start()
     {
-        EnemyState = new StateMachine(new EnemyStateRun()); //AttackFromBackが始まるまではステートをRunにする
+        //AttackFromBackが始まるまではステートをRunにする
+        EnemyState = new StateMachine(new EnemyStateRun()); 
     }
 
     /// <summary>
@@ -39,7 +45,8 @@ public class EnemyController
     /// </summary>
     void Update()
     {
-        EnemyState.Update(this.gameObject); //現在のステートを毎フレーム呼び出す
+        //現在のステートを毎フレーム呼び出す
+        EnemyState.Update(this.gameObject);
     }
 
     /// <summary>
@@ -48,7 +55,8 @@ public class EnemyController
     /// <param name="other"> 衝突判定</param>
     protected void OnTriggerEnter(Collider Other)
     {
-        if(Other.CompareTag("EnemyAttack")) //EnemyAttackがついているオブジェクトに衝突したらステートをAttackFromBackに変更
+        // EnemyAttackがついているオブジェクトに衝突したらステートをAttackFromBackに変更
+        if (Other.CompareTag("EnemyAttack"))
         { 
             EnemyState = new StateMachine(new EnemyStateAttackFromBack());
         }
@@ -57,14 +65,18 @@ public class EnemyController
     /// リソースを解放
     /// </summary>
     /// <param name="_disposing">リソースを解放したかの判定</param>
-    protected override void Dispose(bool _disposing)
+    protected override void Dispose(bool Disposing)
     {
         if (this.isDisposed_)
-        {// 解放済みなので処理しない
+        {
+            // 解放済みなので処理しない
             return;
         }
-        this.isDisposed_ = true; // Dispose済みを記録
-        base.Dispose(_disposing); // ★★★忘れずに、基底クラスの Dispose を呼び出す【重要】
+        // Dispose済みを記録
+        this.isDisposed_ = true;
+
+        // ★★★忘れずに、基底クラスの Dispose を呼び出す【重要】
+        base.Dispose(Disposing);
     }
 
     /// <summary>
@@ -74,11 +86,14 @@ public class EnemyController
     /// <param name="EnemyTransform">Enemyの位置取得</param>
     public void CreateSignPrefub(GameObject SignPrefub, Transform EnemyTransform)
     {
-        var InstansPositon = new Vector3(EnemyTransform.position.x, EnemyTransform.position.y + 0.1f, EnemyTransform.position.z + 6); //攻撃予兆オブジェクトを生成する位置設定
-        GameObject InstanceObject = Instantiate(SignPrefub, InstansPositon, EnemyTransform.rotation); //攻撃予兆オブジェクト生成
-        DOVirtual.DelayedCall(3.0f, () =>
+        //攻撃予兆オブジェクトを生成する位置設定
+        var InstansPositon = new Vector3(EnemyTransform.position.x, EnemyTransform.position.y + 0.1f, EnemyTransform.position.z + 6);
+        //攻撃予兆オブジェクト生成
+        GameObject instanceObject = Instantiate(SignPrefub, InstansPositon, EnemyTransform.rotation);
+        DOVirtual.DelayedCall(signPrefubDestroyTime, () =>
         {
-            Destroy(InstanceObject); //オブジェクト破棄
+            //オブジェクト破棄
+            Destroy(instanceObject);
         });
     }
 }
