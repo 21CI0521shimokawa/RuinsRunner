@@ -9,15 +9,16 @@ using DG.Tweening;
 public class AttackSignsBlinking : MonoBehaviour
 {
     [Header("攻撃予兆作成の設定")]
-    [SerializeField,Tooltip("点滅する時間")] float BlinkingTime;
-    [SerializeField,Tooltip("点滅させるゲームオブジェクトの描画情報取得")] Renderer Renderer;
-    private const int LoopTime = -1; //無限ループ用
+    [SerializeField, Tooltip("点滅する時間")] float blinkingTime;
+    [SerializeField, Tooltip("点滅させるゲームオブジェクトの描画情報取得")] new Renderer blinkingRenderer;
+    private const int loopTime = -1; //ループ用
 
     /// <summary>
     /// 生成されてから一度だけ呼ばれる関数
     /// </summary>
     void Start()
     {
-        this.Renderer.material.DOColor(Color.red, BlinkingTime).SetLoops(LoopTime, LoopType.Yoyo); //オブジェクトの色を赤色にBlinkingTimeの速さで変化させ無限ループ
+        //オブジェクトの色を赤色にBlinkingTimeの速さで変化させループ
+        blinkingRenderer.material.DOColor(Color.red, blinkingTime).SetLoops(loopTime, LoopType.Yoyo);
     }
 }
