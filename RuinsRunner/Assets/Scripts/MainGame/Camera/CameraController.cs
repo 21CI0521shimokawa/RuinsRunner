@@ -31,8 +31,7 @@ public class CameraController
     protected override void Dispose(bool disposing)
     {
         if (this.isDisposed_)
-        {
-            // 解放済みなので処理しない
+        {// 解放済みなので処理しない
             return;
         }
         // Dispose済みを記録
@@ -60,9 +59,9 @@ public class CameraController
               //カメラをPlayerの前に移動
               new Vector3(defaultCameraTransform.position.x,playerTransform.position.y+5,playerTransform.position.z+8),
          },
-         //EnemyFromBackCameraSpeedの速さで移動完了
+         //EnemyFromBackCameraSpeedの速さで移動完了しイージングタイプを指定
          enemyFromBackCameraSpeed, PathType.Linear
-         );
+         ).SetEase(setEaseType);
 
         tweener.OnStart(() =>
          {
@@ -80,8 +79,7 @@ public class CameraController
          {
              //カメラ移動が完了したのでコントローラーの入力を再開
              playerScripts.canMove = true;
-         })
-         .SetEase(setEaseType);
+         });
     }
 
     /// <summary>
@@ -92,12 +90,12 @@ public class CameraController
     {
         //ローテーションの値を指定
         var DoRotation = new Vector3(26.6f, 0, 0);
-        //元の位置に戻る
+        //元の位置に戻りイージングタイプを指定
         tweener = cameraObject.transform.DOMove(
               new Vector3(defaultCameraTransform.position.x,
                           defaultCameraTransform.position.y,
                           playerTransform.position.z - 6),
-                          returnDefaultCameraPositonCameraSpeed);
+                          returnDefaultCameraPositonCameraSpeed).SetEase(setEaseType);
         tweener
          .OnStart(() =>
          {
@@ -115,8 +113,7 @@ public class CameraController
              playerScripts.canMove = true;
              //カメラ移動が完了したのでコントローラーの入力を再開
              playerScripts.isReverseLR = false;
-         })
-        .SetEase(setEaseType);
+         });
     }
     #endregion
 }
