@@ -36,14 +36,14 @@ public class EndrollController : SceneSuperClass
     /// </summary>
     void DoTextMove()
     {
-        //MoveTimeの速さで移動
-        targetText.transform.DOMoveY(destinationY, moveTime)
+        //MoveTimeの速さで移動しイージングタイプを指定
+        var tweener = targetText.transform.DOMoveY(destinationY, moveTime).SetEase(easeType);
+
+        tweener
             .OnComplete(() =>
             {
                 //移動完了したらシーン移行
                 lodingManeger.LoadToNextScene("Scene_Title");
-            })
-            //イージングタイプを指定
-            .SetEase(easeType);
+            });
     }
 }
